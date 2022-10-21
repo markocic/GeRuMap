@@ -6,22 +6,53 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{
     private static MainFrame instance = null;
+    MyMenuBar menuBar;
+    Toolbar toolbar;
+
 
     private MainFrame() {
         initialize();
     }
 
     private void initialize(){
+        initGui();
+
+    }
+
+    private void initGui() {
+        Toolkit alat = Toolkit.getDefaultToolkit();
+        Dimension screen = alat.getScreenSize();
+        int scH = screen.height;
+        int scW = screen.width;
+
+        this.setSize(scW/2,scH/2);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("GeRuMap");
+
+        menuBar = new MyMenuBar();
+        this.setJMenuBar(menuBar);
+
+        toolbar = new Toolbar();
+        this.add(toolbar,BorderLayout.NORTH);
+
+
+
+
+
+
         JPanel panel = new JPanel();
         this.add(panel);
-        panel.setBackground(Color.BLUE);
-
-
-        this.setSize(1280,720);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("GeRuMap");
         this.setVisible(true);
-        
+
+
+
+
+
+
+
+
+
     }
 
     public static MainFrame getInstance(){
