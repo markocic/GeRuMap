@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.gui.swing.controller.ExitAction;
+import raf.dsw.gerumap.gui.swing.controller.InfoAction;
 import raf.dsw.gerumap.gui.swing.controller.NewProjectAction;
 
 import javax.swing.*;
@@ -12,9 +13,9 @@ public class MyMenuBar extends JMenuBar {
         init();
     }
     JMenu file = new JMenu("File");
-    JMenuItem info = new JMenu("Info");
     JMenu help = new JMenu("Help");
 
+    JMenuItem info = new JMenuItem(new InfoAction());
     JMenuItem newProject = new JMenuItem(new NewProjectAction());
     JMenuItem exit = new JMenuItem(new ExitAction());
 
