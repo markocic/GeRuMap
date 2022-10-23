@@ -1,7 +1,12 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.gui.swing.view.InfoModal;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 public class InfoAction extends AbstractGerumapAction {
@@ -15,6 +20,8 @@ public class InfoAction extends AbstractGerumapAction {
     }
 
     public void actionPerformed(ActionEvent arg0) {
+
+        InfoModal infoModal = new InfoModal(MainFrame.getInstance());
 
     }
 
