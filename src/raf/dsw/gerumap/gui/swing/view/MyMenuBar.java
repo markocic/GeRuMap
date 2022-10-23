@@ -12,6 +12,8 @@ public class MyMenuBar extends JMenuBar {
         init();
     }
     JMenu file = new JMenu("File");
+    JMenu info = new JMenu("Info");
+    JMenu help = new JMenu("Help");
 
     JMenuItem newProject = new JMenuItem(new NewProjectAction());
     JMenuItem exit = new JMenuItem(new ExitAction());
@@ -21,6 +23,8 @@ public class MyMenuBar extends JMenuBar {
         this.add(file);
         file.add(newProject);
         file.add(exit);
+        this.add(info);
+        this.add(help);
     }
 
 
