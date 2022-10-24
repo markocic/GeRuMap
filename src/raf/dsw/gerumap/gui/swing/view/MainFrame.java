@@ -40,7 +40,11 @@ public class MainFrame extends JFrame{
         JPanel panel2 = new JPanel();
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panel, panel2);
+
+        panel.setMinimumSize(new Dimension(100,scW/2));
         splitPane.setDividerLocation(scW / 10);
+
+
 
         this.add(splitPane);
         this.setVisible(true);
