@@ -46,6 +46,8 @@ public class MainFrame extends JFrame{
 
 
 
+
+
         this.add(splitPane);
         this.setVisible(true);
 
