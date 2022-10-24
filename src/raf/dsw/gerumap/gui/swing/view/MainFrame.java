@@ -36,22 +36,14 @@ public class MainFrame extends JFrame{
         toolbar = new Toolbar();
         this.add(toolbar,BorderLayout.NORTH);
 
-
-
-
-
-
         JPanel panel = new JPanel();
-        this.add(panel);
+        JPanel panel2 = new JPanel();
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panel, panel2);
+        splitPane.setDividerLocation(scW / 10);
+
+        this.add(splitPane);
         this.setVisible(true);
-
-
-
-
-
-
-
-
 
     }
 
