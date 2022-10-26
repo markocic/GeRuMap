@@ -43,13 +43,14 @@ public class MainFrame extends JFrame{
         JPanel panel = new JPanel();
         JPanel panel2 = new JPanel();
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panel, panel2);
+        JScrollPane scroll = new JScrollPane();
+        scroll.setMinimumSize(new Dimension(200,150));
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel2);
+        this.getContentPane().add(splitPane,BorderLayout.CENTER);
+        splitPane.setOneTouchExpandable(true);
 
         panel.setMinimumSize(new Dimension(100,scW/2));
         splitPane.setDividerLocation(scW / 10);
-
-
-
 
 
         this.add(splitPane);

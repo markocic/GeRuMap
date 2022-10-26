@@ -7,27 +7,20 @@ import raf.dsw.gerumap.gui.swing.controller.NewProjectAction;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class MyMenuBar extends JMenuBar {
     public MyMenuBar() {
-        init();
-    }
-    JMenu file = new JMenu("File");
-    JMenu help = new JMenu("Help");
+        JMenu file = new JMenu("File");
+        file.setMnemonic(KeyEvent.VK_F);
+        file.add(MainFrame.getInstance().getActionManager().getExitAction());
+        file.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
 
-    JMenuItem info = new JMenuItem(new InfoAction());
-    JMenuItem newProject = new JMenuItem(new NewProjectAction());
-    JMenuItem exit = new JMenuItem(new ExitAction());
+        JMenu help = new JMenu("Help");
+        help.setMnemonic(KeyEvent.VK_H);
+        help.add(MainFrame.getInstance().getActionManager().getInfoAction());
 
-
-    private void init() {
         this.add(file);
-        file.add(newProject);
-        file.add(exit);
-        help.add(info);
-
         this.add(help);
     }
-
-
 }
