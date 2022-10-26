@@ -11,12 +11,6 @@ public class MainFrame extends JFrame{
 
 
     private MainFrame() {
-        initialize();
-    }
-
-    private void initialize(){
-        initGui();
-
     }
 
     private void initGui() {
@@ -56,6 +50,7 @@ public class MainFrame extends JFrame{
     public static MainFrame getInstance(){
         if(instance == null){
             instance = new MainFrame();
+            instance.initGui();
         }
         return instance;
 
