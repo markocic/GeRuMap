@@ -1,17 +1,27 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+
 import java.awt.*;
 
 import javax.swing.*;
 
 public class MainFrame extends JFrame{
     private static MainFrame instance = null;
+    private ActionManager actionManager;
     MyMenuBar menuBar;
     Toolbar toolbar;
 
 
     private MainFrame() {
     }
+
+    private void initialize(){
+        actionManager = new ActionManager();
+        initGui();
+    }
+
+
 
     private void initGui() {
         Toolkit alat = Toolkit.getDefaultToolkit();
@@ -50,9 +60,13 @@ public class MainFrame extends JFrame{
     public static MainFrame getInstance(){
         if(instance == null){
             instance = new MainFrame();
-            instance.initGui();
+            instance.initialize();
         }
         return instance;
 
+    }
+
+    public ActionManager getActionManager() {
+        return actionManager;
     }
 }
