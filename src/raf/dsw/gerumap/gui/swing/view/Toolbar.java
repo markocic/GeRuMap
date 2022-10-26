@@ -19,10 +19,10 @@ public class Toolbar extends JToolBar {
 
 
     private void init() {
-    tbIzadji = new JButton(new QuitAction());
-    tbNovi = new JButton(new NewSomethingAction());
-    this.add(tbIzadji);
-    this.add(tbNovi);
+        tbNovi = new JButton(new NewProjectAction());
+        tbIzadji = new JButton(new ExitAction());
+        this.add(tbNovi);
+        this.add(tbIzadji);
 
 
 
