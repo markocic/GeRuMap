@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.model;
+package raf.dsw.gerumap.repository.implementation;
 
 public class MindMap {
     private boolean template;
