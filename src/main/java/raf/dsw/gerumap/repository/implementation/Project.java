@@ -14,7 +14,7 @@ public class Project extends MapNode {
         this.author = author;
         this.path = path;
     }
-    
+
     public String getAuthor() {
         return author;
     }
