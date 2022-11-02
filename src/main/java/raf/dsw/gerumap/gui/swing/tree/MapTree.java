@@ -24,7 +24,7 @@ public class MapTree implements IMapTree {
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new MapTreeView(treeModel);
-        //return treeView;
+//        return treeView;
         return null; // trenutno nije napravljeno da valja
     }
 
