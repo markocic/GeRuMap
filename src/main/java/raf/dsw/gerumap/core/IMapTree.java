@@ -7,5 +7,7 @@ import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 public interface IMapTree {
     MapTreeView generateTree(ProjectExplorer projectExplorer);
     void addChild(MapTreeItem parent);
+
+    void deleteChild(MapTreeItem parent, MapTreeItem child);
     MapTreeItem getSelectedNode();
 }
