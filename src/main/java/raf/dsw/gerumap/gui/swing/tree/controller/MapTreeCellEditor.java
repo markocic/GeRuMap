@@ -30,9 +30,9 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
 
 
 
-    public boolean isCellEditable(EventObject arguemnt){
-        if(arguemnt instanceof MouseEvent)
-            if(((MouseEvent) arguemnt).getClickCount() == 3){ //caka da nakon 3 klika imamo promijenu
+    public boolean isCellEditable(EventObject argument){
+        if(argument instanceof MouseEvent)
+            if(((MouseEvent) argument).getClickCount() == 3){ //caka da nakon 3 klika imamo promijenu
                 return true;
             }
 
@@ -40,7 +40,7 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
     }
 
     public void actionPerformed(ActionEvent e){
-        if(!(clickedOn instanceof MapTreeCellRenderer))
+        if(!(clickedOn instanceof MapTreeItem))
             return;
         MapTreeItem clicked = (MapTreeItem) clickedOn;
         clicked.setName(e.getActionCommand());
