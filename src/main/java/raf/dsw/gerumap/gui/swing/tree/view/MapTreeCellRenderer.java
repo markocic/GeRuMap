@@ -20,10 +20,10 @@ public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
         URL imageURL = null;
 
         if(((MapTreeItem)val).getMapNode() instanceof ProjectExplorer){
-            imageURL = getClass().getResource("/images/tdiagram.gif"); //obavezno napraviti nove
+            imageURL = getClass().getResource("/images/diagram.png");
         }
         else if(((MapTreeItem)val).getMapNode()instanceof Project){
-            imageURL = getClass().getResource("/images/tproject.gif");
+            imageURL = getClass().getResource("/images/project.png");
         }
 
         Icon icon = null;
