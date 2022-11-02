@@ -4,6 +4,7 @@ import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import java.awt.*;
@@ -51,7 +52,10 @@ public class MainFrame extends JFrame{
         JPanel panel = new JPanel();
         JPanel panel2 = new JPanel();
 
-        JScrollPane scroll = new JScrollPane();
+        mapTree = new MapTree();
+        MapTreeView mapTreeView = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+
+        JScrollPane scroll = new JScrollPane(mapTreeView);
         scroll.setMinimumSize(new Dimension(200,150));
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel2);
         this.getContentPane().add(splitPane,BorderLayout.CENTER);
@@ -59,10 +63,6 @@ public class MainFrame extends JFrame{
 
         panel.setMinimumSize(new Dimension(100,scW/2));
         splitPane.setDividerLocation(scW / 10);
-
-        mapTree = new MapTree();
-        mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
-
 
 
         this.add(splitPane);

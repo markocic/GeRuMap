@@ -20,12 +20,11 @@ public class MapTree implements IMapTree {
 
 
     @Override
-    public IMapTree generateTree(ProjectExplorer projectExplorer) {
+    public MapTreeView generateTree(ProjectExplorer projectExplorer) {
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new MapTreeView(treeModel);
-//        return treeView;
-        return null; // trenutno nije napravljeno da valja
+        return treeView;
     }
 
     @Override
