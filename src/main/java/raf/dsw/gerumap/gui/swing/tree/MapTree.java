@@ -10,6 +10,7 @@ import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.Random;
 
 public class MapTree implements IMapTree {
 
@@ -46,7 +47,7 @@ public class MapTree implements IMapTree {
 
     private MapNode createChild(MapNode parent){
         if(parent instanceof ProjectExplorer){
-            return new Project("Project" + "bilo koji broj",parent);
+            return new Project("Project" + (new Random()).nextInt(100),parent);
         }
         return null;
     }

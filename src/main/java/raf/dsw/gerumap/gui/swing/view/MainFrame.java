@@ -18,6 +18,7 @@ public class MainFrame extends JFrame{
     private Toolbar toolbar;
 
     private IMapTree mapTree;
+    private MapTreeView mapTreeView;
     private ProjectExplorer projectExplorer;
 
 
@@ -53,7 +54,7 @@ public class MainFrame extends JFrame{
         JPanel panel2 = new JPanel();
 
         mapTree = new MapTree();
-        MapTreeView mapTreeView = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+        mapTreeView = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
 
         JScrollPane scroll = new JScrollPane(mapTreeView);
         scroll.setMinimumSize(new Dimension(200,150));
@@ -81,5 +82,41 @@ public class MainFrame extends JFrame{
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+
+    public void setMenuBar(MyMenuBar menuBar) {
+        this.menuBar = menuBar;
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    public void setToolbar(Toolbar toolbar) {
+        this.toolbar = toolbar;
+    }
+
+    public IMapTree getMapTree() {
+        return mapTree;
+    }
+
+    public void setMapTree(IMapTree mapTree) {
+        this.mapTree = mapTree;
+    }
+
+    public MapTreeView getMapTreeView() {
+        return mapTreeView;
+    }
+
+    public void setMapTreeView(MapTreeView mapTreeView) {
+        this.mapTreeView = mapTreeView;
+    }
+
+    public ProjectExplorer getProjectExplorer() {
+        return projectExplorer;
+    }
+
+    public void setProjectExplorer(ProjectExplorer projectExplorer) {
+        this.projectExplorer = projectExplorer;
     }
 }
