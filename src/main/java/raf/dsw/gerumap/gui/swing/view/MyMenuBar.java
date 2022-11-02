@@ -18,6 +18,7 @@ public class MyMenuBar extends JMenuBar {
 
         JMenu help = new JMenu("Help");
         help.setMnemonic(KeyEvent.VK_H);
+        help.add(MainFrame.getInstance().getActionManager().getAuthorAction());
         help.add(MainFrame.getInstance().getActionManager().getInfoAction());
 
         this.add(file);
