@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.model;
+package raf.dsw.gerumap.repository.composite;
 
 public abstract class MapNode {
 

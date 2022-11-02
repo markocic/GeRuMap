@@ -1,6 +1,6 @@
-package raf.dsw.gerumap.gui.swing.model;
+package raf.dsw.gerumap.repository.implementation;
 
-import java.io.File;
+import raf.dsw.gerumap.repository.composite.MapNode;
 
 public class Project extends MapNode {
     public Project(String name, MapNode parent) {

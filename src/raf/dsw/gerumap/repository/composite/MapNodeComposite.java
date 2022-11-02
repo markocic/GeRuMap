@@ -1,9 +1,9 @@
-package raf.dsw.gerumap.gui.swing.model;
+package raf.dsw.gerumap.repository.composite;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MapNodeComposite extends MapNode{
+public abstract class MapNodeComposite extends MapNode {
 
     List<MapNode> children;
 
