@@ -1,6 +1,10 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import java.awt.*;
 
@@ -9,8 +13,12 @@ import javax.swing.*;
 public class MainFrame extends JFrame{
     private static MainFrame instance = null;
     private ActionManager actionManager;
-    MyMenuBar menuBar;
-    Toolbar toolbar;
+    private MyMenuBar menuBar;
+    private Toolbar toolbar;
+
+    private IMapTree mapTree;
+    private ProjectExplorer projectExplorer;
+
 
 
     private MainFrame() {
@@ -51,6 +59,10 @@ public class MainFrame extends JFrame{
 
         panel.setMinimumSize(new Dimension(100,scW/2));
         splitPane.setDividerLocation(scW / 10);
+
+        mapTree = new MapTree();
+        mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+
 
 
         this.add(splitPane);

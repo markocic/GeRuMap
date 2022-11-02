@@ -18,4 +18,16 @@ public abstract class ApplicationFramework {
     public void setGui(Gui gui) {
         this.gui = gui;
     }
+
+    public Gui getGui() {
+        return gui;
+    }
+
+    public MapRepository getMapRepository() {
+        return mapRepository;
+    }
+
+    public void setMapRepository(MapRepository mapRepository) {
+        this.mapRepository = mapRepository;
+    }
 }
