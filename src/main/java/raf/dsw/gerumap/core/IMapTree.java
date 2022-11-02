@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.tree;
+package raf.dsw.gerumap.core;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;

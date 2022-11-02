@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
+import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.repository.composite.MapNode;
