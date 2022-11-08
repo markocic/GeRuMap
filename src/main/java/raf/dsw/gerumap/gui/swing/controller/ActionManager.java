@@ -4,6 +4,8 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 
 public class ActionManager {
+
+    private DeleteAction deleteAction;
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
 
@@ -17,10 +19,19 @@ public class ActionManager {
 
 
     private void initActions(){
+        deleteAction = new DeleteAction();
         exitAction = new ExitAction();
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
         authorAction = new AuthorAction();
+    }
+
+    public DeleteAction getDeleteAction() {
+        return deleteAction;
+    }
+
+    public void setDeleteAction(DeleteAction deleteAction) {
+        this.deleteAction = deleteAction;
     }
 
     public InfoAction getInfoAction() {
