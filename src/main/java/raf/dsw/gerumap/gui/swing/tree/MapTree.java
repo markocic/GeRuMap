@@ -17,7 +17,7 @@ public class MapTree implements IMapTree {
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
 
-
+    private MapTreeItem selectedNode;
 
 
     @Override
@@ -41,19 +41,24 @@ public class MapTree implements IMapTree {
     }
 
     @Override
-    public void deleteChild(MapTreeItem parent, MapTreeItem child) {
+    public void deleteChild(MapTreeItem child) {
         // TODO: funkcija koja ce obrisati child iz parent's child array
-        if(!((parent.getMapNode()) instanceof MapNodeComposite))return;
-        parent.remove(child);
-        ((MapNodeComposite) parent.getMapNode()).deleteChild(child.getMapNode());
+        if(!((child.getMapNode().getParent()) instanceof MapNodeComposite))return;
+        child.removeFromParent();
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override
     public MapTreeItem getSelectedNode() {
-        return null;
+        return selectedNode;
     }
+
+    public void setSelectedNode(MapTreeItem selectedNode) {
+        this.selectedNode = selectedNode;
+    }
+
+
 
     private MapNode createChild(MapNode parent){
         if(parent instanceof ProjectExplorer){

@@ -8,6 +8,7 @@ public interface IMapTree {
     MapTreeView generateTree(ProjectExplorer projectExplorer);
     void addChild(MapTreeItem parent);
 
-    void deleteChild(MapTreeItem parent, MapTreeItem child);
+    void deleteChild(MapTreeItem child);
+
     MapTreeItem getSelectedNode();
 }
