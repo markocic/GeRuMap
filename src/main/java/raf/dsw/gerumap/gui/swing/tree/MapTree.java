@@ -3,8 +3,10 @@ package raf.dsw.gerumap.gui.swing.tree;
 import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
+import raf.dsw.gerumap.repository.factory.FactoryUtils;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
@@ -45,7 +47,6 @@ public class MapTree implements IMapTree {
         // TODO: funkcija koja ce obrisati child iz parent's child array
         if(!((child.getMapNode().getParent()) instanceof MapNodeComposite))return;
         child.removeFromParent();
-        treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
@@ -60,11 +61,9 @@ public class MapTree implements IMapTree {
 
 
 
-    private MapNode createChild(MapNode parent){
-        if(parent instanceof ProjectExplorer){
-            return new Project("Project" + (new Random()).nextInt(100),parent);
-        }
-        return null;
+    public MapNode createChild(MapNode parent){
+        MapNode child = new FactoryUtils().getFactory(parent).getNode(parent);
+        return child;
     }
 
 

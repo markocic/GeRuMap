@@ -1,8 +1,12 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import com.sun.tools.javac.Main;
 import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.repository.composite.MapNode;
+import raf.dsw.gerumap.repository.factory.NodeFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +22,7 @@ public class NewProjectAction extends AbstractGerumapAction {
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        MapTreeItem selected = (MapTreeItem) MainFrame.getInstance().getMapTreeView().getLastSelectedPathComponent();
+        MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
         MainFrame.getInstance().getMapTree().addChild(selected);
 
     }

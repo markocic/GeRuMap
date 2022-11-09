@@ -1,12 +1,23 @@
 package raf.dsw.gerumap.repository.implementation;
 
 import raf.dsw.gerumap.repository.composite.MapNode;
+import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
-public class Project extends MapNode {
+public class Project extends MapNodeComposite {
     private String author;
     private String path;
     public Project(String name, MapNode parent) {
         super(name, parent);
+    }
+
+    @Override
+    public void addChild(MapNode child) {
+
+    }
+
+    @Override
+    public void deleteChild(MapNode child) {
+
     }
 
     public Project(String name, MapNode parent, String author, String path) {

@@ -5,6 +5,8 @@ import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.repository.factory.FactoryUtils;
+import raf.dsw.gerumap.repository.factory.NodeFactory;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import java.awt.*;
@@ -20,6 +22,9 @@ public class MainFrame extends JFrame{
     private IMapTree mapTree;
     private MapTreeView mapTreeView;
     private ProjectExplorer projectExplorer;
+
+    private NodeFactory nodeFactory;
+    private FactoryUtils factoryUtils;
 
 
 
@@ -55,6 +60,8 @@ public class MainFrame extends JFrame{
 
         mapTree = new MapTree();
         mapTreeView = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+
+        this.factoryUtils = new FactoryUtils();
 
         JScrollPane scroll = new JScrollPane(mapTreeView);
         scroll.setMinimumSize(new Dimension(200,150));
@@ -118,5 +125,21 @@ public class MainFrame extends JFrame{
 
     public void setProjectExplorer(ProjectExplorer projectExplorer) {
         this.projectExplorer = projectExplorer;
+    }
+
+    public NodeFactory getNodeFactory() {
+        return nodeFactory;
+    }
+
+    public void setNodeFactory(NodeFactory nodeFactory) {
+        this.nodeFactory = nodeFactory;
+    }
+
+    public FactoryUtils getFactoryUtils() {
+        return factoryUtils;
+    }
+
+    public void setFactoryUtils(FactoryUtils factoryUtils) {
+        this.factoryUtils = factoryUtils;
     }
 }
