@@ -1,11 +1,15 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.repository.implementation.Project;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AuthorModal extends JDialog implements ActionListener {
+
+    JTextField authorField;
 
     public AuthorModal(JFrame parent) {
         super(parent, "Author", true);
@@ -17,7 +21,7 @@ public class AuthorModal extends JDialog implements ActionListener {
         }
         JPanel messagePane = new JPanel();
         messagePane.add(new JLabel("Author: "));
-        JTextField authorField = new JTextField(12);
+        this.authorField = new JTextField(12);
         messagePane.add(authorField);
         getContentPane().add(messagePane);
         JPanel buttonPane = new JPanel();
@@ -41,6 +45,12 @@ public class AuthorModal extends JDialog implements ActionListener {
 
     public void saveActionPerformed(ActionEvent e) {
         // kod za save dugme
-        System.out.println("save");
+        // ako nije izabran projekat za koji se menja autor, ne menja nista, TODO moze se ubaciti error poruka u buducnosti
+        if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) return;
+        Project currentProject = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
+        currentProject.setAuthor(this.authorField.getText());
+        System.out.println(currentProject.getAuthor());
+        setVisible(false);
+        dispose();
     }
 }
