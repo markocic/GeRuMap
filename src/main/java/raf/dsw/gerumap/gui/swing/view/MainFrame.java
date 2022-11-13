@@ -26,6 +26,8 @@ public class MainFrame extends JFrame{
     private NodeFactory nodeFactory;
     private FactoryUtils factoryUtils;
 
+    private RightPanel rightPanel;
+
 
 
     private MainFrame() {
@@ -56,7 +58,8 @@ public class MainFrame extends JFrame{
         this.add(toolbar,BorderLayout.NORTH);
 
         JPanel panel = new JPanel();
-        RightPanel rightPanel = new RightPanel();
+        this.rightPanel = new RightPanel();
+
 
         // pozivanje osnovnih komponenti
         mapTree = new MapTree();
@@ -143,5 +146,13 @@ public class MainFrame extends JFrame{
 
     public void setFactoryUtils(FactoryUtils factoryUtils) {
         this.factoryUtils = factoryUtils;
+    }
+
+    public RightPanel getRightPanel() {
+        return rightPanel;
+    }
+
+    public void setRightPanel(RightPanel rightPanel) {
+        this.rightPanel = rightPanel;
     }
 }

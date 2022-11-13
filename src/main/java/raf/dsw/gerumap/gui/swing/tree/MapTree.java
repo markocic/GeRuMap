@@ -35,6 +35,7 @@ public class MapTree implements IMapTree {
         if(!((parent.getMapNode()) instanceof MapNodeComposite))return;
 
         MapNode child = createChild(parent.getMapNode());
+        child.addSubscriber(MainFrame.getInstance().getRightPanel());
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());

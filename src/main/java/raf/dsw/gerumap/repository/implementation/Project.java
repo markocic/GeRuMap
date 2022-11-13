@@ -32,6 +32,7 @@ public class Project extends MapNodeComposite {
 
     public void setAuthor(String author) {
         this.author = author;
+        this.notifySubscribers(this);
     }
 
     public String getPath() {

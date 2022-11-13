@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.core.ISubscriber;
+import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 
@@ -25,6 +26,10 @@ public class RightPanel extends JPanel implements ISubscriber {
     @Override
     public void update(Object notification) {
         // ne radi nista sad
-
+        if (notification instanceof Project) {
+            Project project = (Project) notification;
+            this.authorNameLabel.setText(project.getAuthor());
+            this.projectNameLabel.setText(project.getName());
+        }
     }
 }
