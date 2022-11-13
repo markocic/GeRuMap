@@ -42,14 +42,9 @@ public class RightPanel extends JPanel implements ISubscriber {
             }
         }
 
-//        if (notification instanceof MindMap) {
-//            MindMap mindMap = (MindMap) notification;
-//            this.tabbedPane.removeAll();
-//
-//            for (MapNode curr_mindMap : ((Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getChildren()) {
-//                this.tabbedPane.addTab(curr_mindMap.getName(), new JLabel(curr_mindMap.getName()));
-//                System.out.println("HERE");
-//            }
-//        }
+        if (notification instanceof MindMap) {
+            MindMap mindMap = (MindMap) notification;
+            mindMap.getParent().notifySubscribers(mindMap.getParent());
+        }
     }
 }

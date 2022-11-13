@@ -12,6 +12,7 @@ public class ActionManager {
     private InfoAction infoAction;
 
     private AuthorAction authorAction;
+    private OpenProjectAction openProjectAction;
 
     public ActionManager() {
         initActions();
@@ -24,6 +25,7 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
         authorAction = new AuthorAction();
+        openProjectAction = new OpenProjectAction();
     }
 
     public DeleteAction getDeleteAction() {
@@ -64,5 +66,13 @@ public class ActionManager {
 
     public void setAuthorAction(AuthorAction authorAction) {
         this.authorAction = authorAction;
+    }
+
+    public OpenProjectAction getOpenProjectAction() {
+        return openProjectAction;
+    }
+
+    public void setOpenProjectAction(OpenProjectAction openProjectAction) {
+        this.openProjectAction = openProjectAction;
     }
 }

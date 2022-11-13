@@ -20,6 +20,7 @@ public class MapTree implements IMapTree {
     private DefaultTreeModel treeModel;
 
     private MapTreeItem selectedNode;
+    private MapTreeItem openedNode;
 
 
     @Override
@@ -60,6 +61,11 @@ public class MapTree implements IMapTree {
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
+    public void openSelectedNode() {
+        this.openedNode = this.getSelectedNode();
+        this.openedNode.getMapNode().notifySubscribers(this.openedNode.getMapNode());
+    }
+
     @Override
     public MapTreeItem getSelectedNode() {
         return selectedNode;
@@ -67,7 +73,6 @@ public class MapTree implements IMapTree {
 
     public void setSelectedNode(MapTreeItem selectedNode) {
         this.selectedNode = selectedNode;
-        selectedNode.getMapNode().notifySubscribers(selectedNode.getMapNode());
     }
 
 
