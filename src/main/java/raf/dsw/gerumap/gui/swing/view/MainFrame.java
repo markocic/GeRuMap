@@ -56,15 +56,16 @@ public class MainFrame extends JFrame{
         this.add(toolbar,BorderLayout.NORTH);
 
         JPanel panel = new JPanel();
-        JPanel panel2 = new JPanel();
-
-        // postavljanje desnog panela
-        panel2.setLayout(new BoxLayout(panel2, BoxLayout.PAGE_AXIS));
-        JLabel projectNameLabel = new JLabel("project name");
-        JLabel authorNameLabel = new JLabel("author name");
-
-        panel2.add(projectNameLabel);
-        panel2.add(authorNameLabel);
+        RightPanel rightPanel = new RightPanel();
+//        JPanel panel2 = new JPanel();
+//
+//        // postavljanje desnog panela
+//        panel2.setLayout(new BoxLayout(panel2, BoxLayout.PAGE_AXIS));
+//        JLabel projectNameLabel = new JLabel("project name");
+//        JLabel authorNameLabel = new JLabel("author name");
+//
+//        panel2.add(projectNameLabel);
+//        panel2.add(authorNameLabel);
 
         // pozivanje osnovnih komponenti
         mapTree = new MapTree();
@@ -75,7 +76,7 @@ public class MainFrame extends JFrame{
         // postavljanje levog panela
         JScrollPane scroll = new JScrollPane(mapTreeView);
         scroll.setMinimumSize(new Dimension(200,150));
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, panel2);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, rightPanel);
         this.getContentPane().add(splitPane,BorderLayout.CENTER);
         splitPane.setOneTouchExpandable(true);
 
