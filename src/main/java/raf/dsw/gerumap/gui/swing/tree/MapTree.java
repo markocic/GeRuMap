@@ -58,6 +58,7 @@ public class MapTree implements IMapTree {
 
     public void setSelectedNode(MapTreeItem selectedNode) {
         this.selectedNode = selectedNode;
+        selectedNode.getMapNode().notifySubscribers(selectedNode.getMapNode());
     }
 
 

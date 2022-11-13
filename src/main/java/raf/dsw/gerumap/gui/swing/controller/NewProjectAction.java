@@ -1,12 +1,7 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
-import com.sun.tools.javac.Main;
-import raf.dsw.gerumap.AppCore;
-import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.repository.composite.MapNode;
-import raf.dsw.gerumap.repository.factory.NodeFactory;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.repository.implementation;
 
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
@@ -12,7 +14,12 @@ public class MindMap extends MapNodeComposite {
 
     @Override
     public void addChild(MapNode child) {
-
+        if (child != null && child instanceof Element) {
+            Element element = (Element) child;
+            if (!this.getChildren().contains(element)) {
+                this.getChildren().add(element);
+            }
+        }
     }
 
     @Override
@@ -21,7 +28,8 @@ public class MindMap extends MapNodeComposite {
     }
 
     public MindMap() {
-        super("no name", null);
+        super("Map " + MainFrame.getInstance().getMapCounter(), null);
+        MainFrame.getInstance().setMapCounter(MainFrame.getInstance().getMapCounter() + 1);
     }
 
     ///jos dosta toga

@@ -6,11 +6,7 @@ public class TabbedPane extends JTabbedPane {
     public TabbedPane() {
     }
 
-
-
-
-
-
-
-
+    public TabbedPane(int tabPlacement) {
+        super(tabPlacement);
+    }
 }
