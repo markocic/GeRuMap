@@ -47,7 +47,16 @@ public class MapTree implements IMapTree {
     public void deleteChild(MapTreeItem child) {
         // TODO: funkcija koja ce obrisati child iz parent's child array
         if(!((child.getMapNode().getParent()) instanceof MapNodeComposite))return;
+
+        if (child.getMapNode().getParent() instanceof Project) {
+
+            Project parent = (Project) child.getMapNode().getParent();
+            parent.deleteChild(child.getMapNode());
+        }
+
         child.removeFromParent();
+
+        child.getMapNode().notifySubscribers(child.getMapNode());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 

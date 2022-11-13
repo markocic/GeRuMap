@@ -20,11 +20,20 @@ public class MindMap extends MapNodeComposite {
                 this.getChildren().add(element);
             }
         }
+
+        this.notifySubscribers(this);
     }
 
     @Override
     public void deleteChild(MapNode child) {
+        if (child != null && child instanceof Element) {
+            Element element = (Element) child;
+            if (this.getChildren().contains(element)) {
+                this.getChildren().remove(element);
+            }
+        }
 
+        this.notifySubscribers(this);
     }
 
     public MindMap() {
