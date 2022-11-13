@@ -57,15 +57,6 @@ public class MainFrame extends JFrame{
 
         JPanel panel = new JPanel();
         RightPanel rightPanel = new RightPanel();
-//        JPanel panel2 = new JPanel();
-//
-//        // postavljanje desnog panela
-//        panel2.setLayout(new BoxLayout(panel2, BoxLayout.PAGE_AXIS));
-//        JLabel projectNameLabel = new JLabel("project name");
-//        JLabel authorNameLabel = new JLabel("author name");
-//
-//        panel2.add(projectNameLabel);
-//        panel2.add(authorNameLabel);
 
         // pozivanje osnovnih komponenti
         mapTree = new MapTree();
