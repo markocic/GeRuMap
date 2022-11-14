@@ -8,4 +8,5 @@ public interface ISubscriber {
     void updateMindMapDeleted(String name);
     void updateProjectOpened(Object project);
     void updateMindMapNameChanged(String oldName, String newName);
+    void updateOpenedProjectDeleted();
 }

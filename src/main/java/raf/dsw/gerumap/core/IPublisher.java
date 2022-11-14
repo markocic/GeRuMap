@@ -12,7 +12,7 @@ public interface IPublisher {
     void notifyMindMapDeleted(String name);
 
     void notifyProjectOpened(Object project);
-
+    void notifyOpenedProjectDeleted();
     void notifyMindMapNameChanged(String oldName, String newName);
 
 

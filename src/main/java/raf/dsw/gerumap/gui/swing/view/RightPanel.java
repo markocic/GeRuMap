@@ -97,4 +97,11 @@ public class RightPanel extends JPanel implements ISubscriber {
             }
         }
     }
+
+    @Override
+    public void updateOpenedProjectDeleted() {
+        this.projectNameLabel.setText("project name");
+        this.authorNameLabel.setText("author name");
+        tabbedPane.removeAll();
+    }
 }

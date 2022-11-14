@@ -50,10 +50,17 @@ public class MapTree implements IMapTree {
         if(!((child.getMapNode().getParent()) instanceof MapNodeComposite))return;
 
         if (child.getMapNode().getParent() instanceof Project) {
-
+            // ako brisemo mapu
             Project parent = (Project) child.getMapNode().getParent();
             child.getMapNode().notifyMindMapDeleted(child.getMapNode().getName());
             parent.deleteChild(child.getMapNode());
+        }
+
+        if (child.getMapNode() instanceof Project) {
+            // ako brisemo projekat
+            if (this.openedNode == child) {
+                child.getMapNode().notifyOpenedProjectDeleted();
+            }
         }
 
         child.removeFromParent();

@@ -98,6 +98,14 @@ public abstract class MapNode implements IPublisher {
         }
     }
 
+    @Override
+    public void notifyOpenedProjectDeleted() {
+        if (this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateOpenedProjectDeleted();
+        }
+    }
+
     public String getName() {
         return name;
     }
