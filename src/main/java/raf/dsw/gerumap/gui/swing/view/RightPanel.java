@@ -1,8 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import raf.dsw.gerumap.core.ISubscriber;
+import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
-import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;

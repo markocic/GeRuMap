@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.core;
+package raf.dsw.gerumap.gui.swing.observer;
 
 public interface ISubscriber {
     void update(Object notification);

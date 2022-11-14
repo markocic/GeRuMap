@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.core;
+package raf.dsw.gerumap.gui.swing.observer;
 
 public interface IPublisher {
     void addSubscriber(ISubscriber sub);
