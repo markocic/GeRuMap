@@ -24,7 +24,7 @@ public class Project extends MapNodeComposite {
                 this.getChildren().add(mindMap);
             }
         }
-        this.notifySubscribers(this);
+        this.notifyMindMapCreated(child.getName());
     }
 
     @Override
@@ -51,6 +51,12 @@ public class Project extends MapNodeComposite {
     public void setAuthor(String author) {
         this.author = author;
         this.notifyAuthorChanged(author);
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        this.notifyProjectNameChanged(name);
     }
 
     public static int getCounter() {

@@ -8,7 +8,12 @@ public interface IPublisher {
     void notifyAuthorChanged(String newAuthor);
     void notifyProjectNameChanged(String newProjectName);
 
+    void notifyMindMapCreated(String mindMapName);
     void notifyMindMapDeleted(String name);
+
+    void notifyProjectOpened(Object project);
+
+    void notifyMindMapNameChanged(String oldName, String newName);
 
 
 

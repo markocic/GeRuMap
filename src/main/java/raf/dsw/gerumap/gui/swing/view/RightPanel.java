@@ -59,10 +59,40 @@ public class RightPanel extends JPanel implements ISubscriber {
     }
 
     @Override
+    public void updateMindMapCreated(String mindMapName) {
+        this.tabbedPane.addTab(mindMapName, new JLabel(mindMapName));
+    }
+
+    @Override
     public void updateMindMapDeleted(String name) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
             if (tabbedPane.getTitleAt(i) == name) {
                 tabbedPane.removeTabAt(i);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void updateProjectOpened(Object project) {
+        if (!(project instanceof Project)) return; // TODO: ovde moze error da ne moze da se otvori nesto sto nije project
+        Project openedProject = (Project) project;
+        this.authorNameLabel.setText(openedProject.getAuthor());
+        this.projectNameLabel.setText(openedProject.getName());
+
+        this.tabbedPane.removeAll();
+
+        System.out.println((openedProject.getChildren().size()));
+        for (MapNode mindMap : openedProject.getChildren()) {
+            this.tabbedPane.addTab(mindMap.getName(), new JLabel(mindMap.getName()));
+        }
+    }
+
+    @Override
+    public void updateMindMapNameChanged(String oldName, String newName) {
+        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            if (tabbedPane.getTitleAt(i) == oldName) {
+                tabbedPane.setTitleAt(i, newName);
                 return;
             }
         }

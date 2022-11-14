@@ -64,7 +64,7 @@ public class MapTree implements IMapTree {
 
     public void openSelectedNode() {
         this.openedNode = this.getSelectedNode();
-        this.openedNode.getMapNode().notifySubscribers(this.openedNode.getMapNode());
+        this.openedNode.getMapNode().notifyProjectOpened(this.openedNode.getMapNode());
     }
 
     @Override

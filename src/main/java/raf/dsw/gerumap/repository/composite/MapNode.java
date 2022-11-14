@@ -67,10 +67,34 @@ public abstract class MapNode implements IPublisher {
     }
 
     @Override
+    public void notifyMindMapCreated(String mindMapName) {
+        if (mindMapName == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateMindMapCreated(mindMapName);
+        }
+    }
+
+    @Override
     public void notifyMindMapDeleted(String name) {
         if (name == null || this.subscribers == null || this.subscribers.isEmpty()) return;
         for (ISubscriber sub : this.subscribers) {
             sub.updateMindMapDeleted(name);
+        }
+    }
+
+    @Override
+    public void notifyProjectOpened(Object project) {
+        if (project == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateProjectOpened(project);
+        }
+    }
+
+    @Override
+    public void notifyMindMapNameChanged(String oldName, String newName) {
+        if (oldName == null || newName == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateMindMapNameChanged(oldName, newName);
         }
     }
 
@@ -80,7 +104,6 @@ public abstract class MapNode implements IPublisher {
 
     public void setName(String name) {
         this.name = name;
-        this.notifyProjectNameChanged(name);
     }
 
     public MapNode getParent() {

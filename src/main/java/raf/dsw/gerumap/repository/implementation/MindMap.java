@@ -42,8 +42,12 @@ public class MindMap extends MapNodeComposite {
         counter++;
     }
 
-    ///jos dosta toga
 
+    @Override
+    public void setName(String name) {
+        this.notifyMindMapNameChanged(this.getName(), name);
+        super.setName(name);
+    }
 
     public boolean isTemplate() {
         return template;
