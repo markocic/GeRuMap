@@ -1,7 +1,5 @@
 package raf.dsw.gerumap.repository.implementation;
 
-import raf.dsw.gerumap.gui.swing.tree.MapTree;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 

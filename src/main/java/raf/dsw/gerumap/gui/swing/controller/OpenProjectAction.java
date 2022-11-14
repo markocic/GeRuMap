@@ -19,6 +19,6 @@ public class OpenProjectAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode();
+        ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode(); // samo ako je selektovan projekat
     }
 }

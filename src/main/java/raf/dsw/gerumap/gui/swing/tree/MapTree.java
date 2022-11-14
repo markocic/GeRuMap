@@ -7,11 +7,13 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 import raf.dsw.gerumap.repository.factory.FactoryUtils;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.util.List;
 import java.util.Random;
 
 public class MapTree implements IMapTree {
@@ -36,7 +38,7 @@ public class MapTree implements IMapTree {
         if(!((parent.getMapNode()) instanceof MapNodeComposite))return;
 
         MapNode child = createChild(parent.getMapNode());
-        child.addSubscriber(MainFrame.getInstance().getRightPanel());
+//        child.addSubscriber(MainFrame.getInstance().getRightPanel());
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
@@ -70,7 +72,16 @@ public class MapTree implements IMapTree {
     }
 
     public void openSelectedNode() {
+        if (!(this.openedNode == null)) {
+            this.openedNode.getMapNode().removeSubscriber(MainFrame.getInstance().getRightPanel());
+        }
         this.openedNode = this.getSelectedNode();
+        this.openedNode.getMapNode().addSubscriber(MainFrame.getInstance().getRightPanel());
+
+        List<MapNode> children = ((Project)this.openedNode.getMapNode()).getChildren();
+        for (MapNode child: children) {
+            child.addSubscriber(MainFrame.getInstance().getRightPanel());
+        }
         this.openedNode.getMapNode().notifyProjectOpened(this.openedNode.getMapNode());
     }
 
