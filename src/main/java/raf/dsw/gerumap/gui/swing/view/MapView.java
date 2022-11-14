@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MapView extends JPanel {
     private JLabel labelIme;
@@ -8,6 +9,9 @@ public class MapView extends JPanel {
 
     public MapView(String name) {
         labelIme = new JLabel();
+        this.add(labelIme);
+        this.setBackground(Color.lightGray); // trenutno postavljeno radi razlikovanja
+
     }
 
 
