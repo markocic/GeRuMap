@@ -14,12 +14,11 @@ public class MapView extends JPanel {
 
     }
 
+    public JLabel getLabelIme() {
+        return labelIme;
+    }
 
-
-
-
-
-
-
-
+    public void setLabelIme(JLabel labelIme) {
+        this.labelIme = labelIme;
+    }
 }

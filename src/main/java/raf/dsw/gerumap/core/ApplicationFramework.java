@@ -1,9 +1,11 @@
 package raf.dsw.gerumap.core;
 
+import raf.dsw.gerumap.logger.Logger;
 import raf.dsw.gerumap.repository.MapRepository;
 
 public abstract class ApplicationFramework {
     protected Gui gui;
+    protected Logger logger;
     protected MapRepository mapRepository;
 
     public ApplicationFramework() {
@@ -13,6 +15,7 @@ public abstract class ApplicationFramework {
     public void initialise(Gui gui, MapRepository mapRepository){
         this.gui = gui;
         this.mapRepository = mapRepository;
+        this.logger = logger;
     }
 
     public void setGui(Gui gui) {
@@ -29,5 +32,13 @@ public abstract class ApplicationFramework {
 
     public void setMapRepository(MapRepository mapRepository) {
         this.mapRepository = mapRepository;
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Logger logger) {
+        this.logger = logger;
     }
 }
