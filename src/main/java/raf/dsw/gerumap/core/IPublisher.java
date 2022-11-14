@@ -1,9 +1,14 @@
 package raf.dsw.gerumap.core;
 
 public interface IPublisher {
-    public void addSubscriber(ISubscriber sub);
-    public void removeSubscriber(ISubscriber sub);
-    public void notifySubscribers(Object notification);
+    void addSubscriber(ISubscriber sub);
+    void removeSubscriber(ISubscriber sub);
+    void notifySubscribers(Object notification);
+
+    void notifyAuthorChanged(String newAuthor);
+    void notifyProjectNameChanged(String newProjectName);
+
+    void notifyMindMapDeleted(String name);
 
 
 

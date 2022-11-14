@@ -52,12 +52,13 @@ public class MapTree implements IMapTree {
         if (child.getMapNode().getParent() instanceof Project) {
 
             Project parent = (Project) child.getMapNode().getParent();
+            child.getMapNode().notifyMindMapDeleted(child.getMapNode().getName());
             parent.deleteChild(child.getMapNode());
         }
 
         child.removeFromParent();
 
-        child.getMapNode().notifySubscribers(child.getMapNode());
+//        child.getMapNode().notifySubscribers(child.getMapNode());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 

@@ -28,23 +28,43 @@ public class RightPanel extends JPanel implements ISubscriber {
     @Override
     public void update(Object notification) {
         // ne radi nista sad
-        if (notification instanceof Project) {
-            Project project = (Project) notification;
-            this.authorNameLabel.setText(project.getAuthor());
-            this.projectNameLabel.setText(project.getName());
+//        if (notification instanceof Project) {
+//            Project project = (Project) notification;
+//            this.authorNameLabel.setText(project.getAuthor());
+//            this.projectNameLabel.setText(project.getName());
+//
+//            this.tabbedPane.removeAll();
+//
+//            System.out.println((project.getChildren().size()));
+//            for (MapNode mindMap : project.getChildren()) {
+//                this.tabbedPane.addTab(mindMap.getName(), new JLabel(mindMap.getName()));
+//                System.out.println("HERE");
+//            }
+//        }
+//
+//        if (notification instanceof MindMap) {
+//            MindMap mindMap = (MindMap) notification;
+//            mindMap.getParent().notifySubscribers(mindMap.getParent());
+//        }
+    }
 
-            this.tabbedPane.removeAll();
+    @Override
+    public void updateAuthorName(String newAuthor) {
+        this.authorNameLabel.setText(newAuthor);
+    }
 
-            System.out.println((project.getChildren().size()));
-            for (MapNode mindMap : project.getChildren()) {
-                this.tabbedPane.addTab(mindMap.getName(), new JLabel(mindMap.getName()));
-                System.out.println("HERE");
+    @Override
+    public void updateProjectNameChanged(String newProjectName) {
+        this.projectNameLabel.setText(newProjectName);
+    }
+
+    @Override
+    public void updateMindMapDeleted(String name) {
+        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            if (tabbedPane.getTitleAt(i) == name) {
+                tabbedPane.removeTabAt(i);
+                return;
             }
-        }
-
-        if (notification instanceof MindMap) {
-            MindMap mindMap = (MindMap) notification;
-            mindMap.getParent().notifySubscribers(mindMap.getParent());
         }
     }
 }

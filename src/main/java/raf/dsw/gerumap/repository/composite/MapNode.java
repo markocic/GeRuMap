@@ -50,13 +50,37 @@ public abstract class MapNode implements IPublisher {
         }
     }
 
+    @Override
+    public void notifyAuthorChanged(String newAuthor) {
+        if (newAuthor == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateAuthorName(newAuthor);
+        }
+    }
+
+    @Override
+    public void notifyProjectNameChanged(String newProjectName) {
+        if (newProjectName == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateProjectNameChanged(newProjectName);
+        }
+    }
+
+    @Override
+    public void notifyMindMapDeleted(String name) {
+        if (name == null || this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (ISubscriber sub : this.subscribers) {
+            sub.updateMindMapDeleted(name);
+        }
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        this.notifySubscribers(this);
+        this.notifyProjectNameChanged(name);
     }
 
     public MapNode getParent() {

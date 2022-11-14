@@ -1,5 +1,8 @@
 package raf.dsw.gerumap.core;
 
 public interface ISubscriber {
-    public void update(Object notification);
+    void update(Object notification);
+    void updateAuthorName(String newAuthor);
+    void updateMindMapDeleted(String name);
+    void updateProjectNameChanged(String newProjectName);
 }

@@ -35,7 +35,7 @@ public class Project extends MapNodeComposite {
                 this.getChildren().remove(mindMap);
             }
         }
-        this.notifySubscribers(this);
+        this.notifyMindMapDeleted(child.getName());
     }
 
     public Project(String name, MapNode parent, String author, String path) {
@@ -50,7 +50,7 @@ public class Project extends MapNodeComposite {
 
     public void setAuthor(String author) {
         this.author = author;
-        this.notifySubscribers(this);
+        this.notifyAuthorChanged(author);
     }
 
     public static int getCounter() {
