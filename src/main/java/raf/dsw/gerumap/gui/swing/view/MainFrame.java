@@ -28,10 +28,6 @@ public class MainFrame extends JFrame{
 
     private RightPanel rightPanel;
 
-    private int projectCounter = 0;
-    private int mapCounter = 0;
-    private int elementCounter = 0;
-
 
 
     private MainFrame() {
@@ -160,27 +156,4 @@ public class MainFrame extends JFrame{
         this.rightPanel = rightPanel;
     }
 
-    public int getProjectCounter() {
-        return projectCounter;
-    }
-
-    public void setProjectCounter(int projectCounter) {
-        this.projectCounter = projectCounter;
-    }
-
-    public int getMapCounter() {
-        return mapCounter;
-    }
-
-    public void setMapCounter(int mapCounter) {
-        this.mapCounter = mapCounter;
-    }
-
-    public int getElementCounter() {
-        return elementCounter;
-    }
-
-    public void setElementCounter(int elementCounter) {
-        this.elementCounter = elementCounter;
-    }
 }

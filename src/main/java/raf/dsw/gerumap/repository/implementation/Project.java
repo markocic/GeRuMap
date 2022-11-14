@@ -6,6 +6,12 @@ import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 public class Project extends MapNodeComposite {
     private String author;
     private String path;
+    private static int counter = 0;
+
+    public Project() {
+        super("Project " + counter, null);
+        counter++;
+    }
     public Project(String name, MapNode parent) {
         super(name, parent);
     }
@@ -45,6 +51,14 @@ public class Project extends MapNodeComposite {
     public void setAuthor(String author) {
         this.author = author;
         this.notifySubscribers(this);
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Project.counter = counter;
     }
 
     public String getPath() {

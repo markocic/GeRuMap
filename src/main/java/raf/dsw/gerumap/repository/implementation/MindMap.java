@@ -7,6 +7,7 @@ import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
 public class MindMap extends MapNodeComposite {
     private boolean template;
+    private static int counter = 0;
 
     public MindMap(String name, MapNode parent) {
         super(name, parent);
@@ -37,8 +38,8 @@ public class MindMap extends MapNodeComposite {
     }
 
     public MindMap() {
-        super("Map " + MainFrame.getInstance().getMapCounter(), null);
-        MainFrame.getInstance().setMapCounter(MainFrame.getInstance().getMapCounter() + 1);
+        super("Map " + counter, null);
+        counter++;
     }
 
     ///jos dosta toga

@@ -8,8 +8,7 @@ import raf.dsw.gerumap.repository.implementation.Project;
 public class ProjectFactory extends NodeFactory {
     @Override
     public MapNode createNode() {
-        Project child = new Project("Project " + MainFrame.getInstance().getProjectCounter(), null);
-        MainFrame.getInstance().setProjectCounter(MainFrame.getInstance().getProjectCounter() + 1);
+        Project child = new Project();
         return child;
     }
 }

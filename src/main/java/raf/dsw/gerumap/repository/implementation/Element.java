@@ -5,12 +5,14 @@ import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
 public class Element extends MapNode {
+
+    private static int counter = 0;
     public Element(String name, MapNode parent) {
         super(name, parent);
     }
 
     public Element() {
-        super("Element " + MainFrame.getInstance().getElementCounter(), null);
-        MainFrame.getInstance().setElementCounter(MainFrame.getInstance().getElementCounter() + 1);
+        super("Element " + counter, null);
+        counter++;
     }
 }
