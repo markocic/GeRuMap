@@ -12,7 +12,7 @@ public class DeleteAction extends AbstractGerumapAction{
     MapTreeItem parent;
     public DeleteAction() {
         putValue(Action.MNEMONIC_KEY, KeyEvent.VK_DELETE);
-
+        putValue(SMALL_ICON, loadIcon("/images/deleteStuff.png"));
         putValue(NAME, "Delete");
         putValue(SHORT_DESCRIPTION, "Delete");
 

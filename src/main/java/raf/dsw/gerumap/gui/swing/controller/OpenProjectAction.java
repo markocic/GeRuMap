@@ -12,7 +12,7 @@ public class OpenProjectAction extends AbstractGerumapAction {
     public OpenProjectAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
                 KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-//        putValue(SMALL_ICON, loadIcon("/images/plus_icon.png"));
+        putValue(SMALL_ICON, loadIcon("/images/openFolder.png"));
         putValue(NAME, "Open Project");
         putValue(SHORT_DESCRIPTION, "Open Project");
     }
