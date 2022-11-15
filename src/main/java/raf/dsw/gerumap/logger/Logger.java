@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.logger;
 
-public interface Logger extends System.Logger {
+public interface Logger  {
     //trenutno prazan i generican
+
 
 }

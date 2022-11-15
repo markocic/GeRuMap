@@ -2,31 +2,23 @@ package raf.dsw.gerumap.logger;
 
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ResourceBundle;
 
 public class FileLogger implements Logger, ISubscriber {
 
     // genericno generisan no pun intended :)
+    File log = new File("/logger");
+    FileWriter fw = new FileWriter(log);
+    PrintWriter pw = new PrintWriter(fw);
 
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public boolean isLoggable(Level level) {
-        return false;
-    }
-
-    @Override
-    public void log(Level level, ResourceBundle bundle, String msg, Throwable thrown) {
+    public FileLogger() throws IOException {
 
     }
 
-    @Override
-    public void log(Level level, ResourceBundle bundle, String format, Object... params) {
-
-    }
 
     @Override
     public void update(Object notification) {

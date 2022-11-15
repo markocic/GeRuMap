@@ -2,6 +2,7 @@ package raf.dsw.gerumap.repository.composite;
 
 import raf.dsw.gerumap.gui.swing.observer.IPublisher;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
+import raf.dsw.gerumap.logger.ConsoleLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,7 @@ public abstract class MapNode implements IPublisher {
             sub.updateMindMapDeleted(name);
         }
     }
+
 
     @Override
     public void notifyProjectOpened(Object project) {
