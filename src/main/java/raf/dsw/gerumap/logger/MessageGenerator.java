@@ -42,11 +42,15 @@ public class MessageGenerator implements MsgPublisher {
         if (msgSubscriberList.contains(sub)) {
             msgSubscriberList.remove(sub);
         }
-
+        if(sub == null || this.msgSubscriberList == null || !this.msgSubscriberList.contains(sub)) return;
+        this.msgSubscriberList.remove(sub);
     }
 
     @Override
     public void notifySubscribers(Object notification) {
-
+        if (notification == null || this.msgSubscriberList == null || this.msgSubscriberList.isEmpty()) return;
+        for (MsgSubscriber sub: this.msgSubscriberList) {
+            sub.update(notification);
+        }
     }
 }

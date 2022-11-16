@@ -12,10 +12,33 @@ public class FileLogger extends Logger{
 
     // genericno generisan no pun intended :)
     File log = new File("/logger");
-    FileWriter fw = new FileWriter(log);
-    PrintWriter pw = new PrintWriter(fw);
+    FileWriter fw;
+    PrintWriter pw;
 
     public FileLogger() throws IOException {
+
+    }
+
+
+    public void writeStuff(File file) throws IOException {
+        fw = new FileWriter(file);
+        pw = new PrintWriter(fw);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
