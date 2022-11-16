@@ -21,6 +21,10 @@ public class NewProjectAction extends AbstractGerumapAction {
 
     public void actionPerformed(ActionEvent arg0) {
         MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
+        if (selected == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate odabrati neki cvor iz Project Explorera", TipPoruke.OBAVJESTENJE);
+            return;
+        }
         if (selected.getMapNode() instanceof Element) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete dodati 'decu' na elemente", TipPoruke.GRESKA);
             return;

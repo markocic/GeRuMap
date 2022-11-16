@@ -74,7 +74,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateProjectOpened(Object project) {
-        if (!(project instanceof Project)) return; // TODO: ovde moze error da ne moze da se otvori nesto sto nije project
+        if (!(project instanceof Project)) return;
         Project openedProject = (Project) project;
         this.authorNameLabel.setText(openedProject.getAuthor());
         this.projectNameLabel.setText(openedProject.getName());
@@ -90,7 +90,7 @@ public class RightPanel extends JPanel implements ISubscriber {
     @Override
     public void updateMindMapNameChanged(String oldName, String newName) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-            if (tabbedPane.getTitleAt(i) == oldName) {
+            if (tabbedPane.getTitleAt(i).equals(oldName)) {
                 tabbedPane.setTitleAt(i, newName);
                 return;
             }

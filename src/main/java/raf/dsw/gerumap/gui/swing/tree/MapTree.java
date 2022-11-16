@@ -7,14 +7,12 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 import raf.dsw.gerumap.repository.factory.FactoryUtils;
-import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.List;
-import java.util.Random;
 
 public class MapTree implements IMapTree {
 
@@ -67,15 +65,22 @@ public class MapTree implements IMapTree {
         }
 
         child.removeFromParent();
-
-//        child.getMapNode().notifySubscribers(child.getMapNode());
+        this.selectedNode = null;
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     public void openSelectedNode() {
+        // ukoliko je prethodno bio otvoren projekat, sklanjamo njega i svu njegovu decu kao subskrajbere
         if (!(this.openedNode == null)) {
             this.openedNode.getMapNode().removeSubscriber(MainFrame.getInstance().getRightPanel());
+
+            List<MapNode> children = ((Project)this.openedNode.getMapNode()).getChildren();
+            for (MapNode child: children) {
+                child.removeSubscriber(MainFrame.getInstance().getRightPanel());
+            }
         }
+
+        // postavljamo novi otvoreni projekat i njega i svu njegovu decu postavljamo kao subskrajbere
         this.openedNode = this.getSelectedNode();
         this.openedNode.getMapNode().addSubscriber(MainFrame.getInstance().getRightPanel());
 

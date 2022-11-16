@@ -23,13 +23,13 @@ public class OpenProjectAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
-            AppCore.getInstance().getMsgGenerator().generateMsg("Morate selektovati neki cvor", TipPoruke.GRESKA);
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate selektovati projekat koji zelite da otvorite", TipPoruke.OBAVJESTENJE);
             return;
         }
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Mozete otvoriti samo projekat", TipPoruke.GRESKA);
             return;
         }
-        ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode(); // samo ako je selektovan projekat
+        ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode();
     }
 }

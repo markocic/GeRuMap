@@ -23,6 +23,10 @@ public class DeleteAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Niste selektovali sta zelite da obrisete", TipPoruke.OBAVJESTENJE);
+            return;
+        }
         if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer)  {
             AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete obrisati Project Explorer", TipPoruke.GRESKA);
             return;

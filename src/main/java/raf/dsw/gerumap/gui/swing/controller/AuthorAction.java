@@ -14,8 +14,6 @@ import java.awt.event.KeyEvent;
 public class AuthorAction extends AbstractGerumapAction {
 
     public AuthorAction() {
-//        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
-//                KeyEvent.VK_F4, ActionEvent.ALT_MASK));
         putValue(SMALL_ICON, loadIcon("/images/user.png"));
         putValue(NAME, "Author");
         putValue(SHORT_DESCRIPTION, "Author");
@@ -23,6 +21,10 @@ public class AuthorAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Niste selektovali nijedan projekat", TipPoruke.OBAVJESTENJE);
+            return;
+        }
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Autora mozete menjati samo za projekat", TipPoruke.GRESKA);
             return;
