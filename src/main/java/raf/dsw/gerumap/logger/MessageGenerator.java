@@ -1,12 +1,10 @@
 package raf.dsw.gerumap.logger;
 
-import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.gui.swing.observer.MsgPublisher;
 import raf.dsw.gerumap.gui.swing.observer.MsgSubscriber;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
-import java.sql.Time;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class MessageGenerator implements MsgPublisher {
 
     private String message;
     private TipPoruke tipPoruke;
-    private LocalTime time;
+    private LocalDateTime time;
 
     private List<MsgSubscriber> msgSubscriberList;
     public MessageGenerator() {
@@ -24,7 +22,7 @@ public class MessageGenerator implements MsgPublisher {
     public void generateMsg(String message, TipPoruke tipPoruke){
         this.message = message;
         this.tipPoruke = tipPoruke;
-        this.time = java.time.LocalTime.now();
+        this.time = java.time.LocalDateTime.now();
 
         this.notifySubscribers();
 
@@ -61,7 +59,8 @@ public class MessageGenerator implements MsgPublisher {
 
     @Override
     public String toString() {
-        return "[" + this.tipPoruke + "] [" + this.time.toString() + "] " + this.message;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm");
+        return "[" + this.tipPoruke + "] [" + dtf.format(time) + "] " + this.message;
     }
 
     public String getMessage() {
@@ -80,11 +79,11 @@ public class MessageGenerator implements MsgPublisher {
         this.tipPoruke = tipPoruke;
     }
 
-    public LocalTime getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
@@ -96,7 +95,4 @@ public class MessageGenerator implements MsgPublisher {
         this.msgSubscriberList = msgSubscriberList;
     }
 
-    public void setTimeStamp(LocalTime time) {
-        this.time = time;
-    }
 }
