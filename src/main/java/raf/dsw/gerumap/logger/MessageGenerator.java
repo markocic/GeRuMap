@@ -21,8 +21,10 @@ public class MessageGenerator implements MsgPublisher {
     }
 
 
-    public void generateMsg(String tekst){
-
+    public void generateMsg(String message, TipPoruke tipPoruke, Time timeStamp){
+        this.message = message;
+        this.tipPoruke = tipPoruke;
+        this.timeStamp = timeStamp;
 
 
     }
@@ -49,10 +51,10 @@ public class MessageGenerator implements MsgPublisher {
     }
 
     @Override
-    public void notifySubscribers(Object notification) {
-        if (notification == null || this.msgSubscriberList == null || this.msgSubscriberList.isEmpty()) return;
+    public void notifySubscribers() {
+        if (this.msgSubscriberList == null || this.msgSubscriberList.isEmpty()) return;
         for (MsgSubscriber sub: this.msgSubscriberList) {
-            sub.update(notification);
+            sub.update(this);
         }
     }
 
