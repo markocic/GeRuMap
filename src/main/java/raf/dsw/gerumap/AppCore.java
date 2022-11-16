@@ -24,6 +24,9 @@ public class AppCore extends ApplicationFramework {
 
     @Override
     public void run() {
+        msgGenerator.addSubscriber(gui);
+        msgGenerator.addSubscriber(fileLogger);
+        msgGenerator.addSubscriber(consoleLogger);
         this.gui.start();
     }
 
