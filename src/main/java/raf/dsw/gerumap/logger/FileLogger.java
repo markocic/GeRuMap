@@ -12,17 +12,34 @@ public class FileLogger implements Logger{
 
     // genericno generisan no pun intended :)
     File log = new File("log.txt");
+
     FileWriter fw;
     PrintWriter pw;
 
     public FileLogger(){
-
     }
-
 
     public void log(String tekst) {
         // pise tekst u fajl
         // tekst je u formatu [TIP PORUKE] [TIME STAMP] tekst poruke
+        try {
+            fw = new FileWriter("log.txt",true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            fw.write(tekst);
+            fw.write("\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 
