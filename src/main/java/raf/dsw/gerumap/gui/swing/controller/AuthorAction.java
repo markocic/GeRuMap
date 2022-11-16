@@ -1,8 +1,11 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.AuthorModal;
 import raf.dsw.gerumap.gui.swing.view.InfoModal;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +24,10 @@ public class AuthorAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO implement dialog to take in author name and change it in project class
+        if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Autora mozete menjati samo za projekat", TipPoruke.GRESKA);
+            return;
+        }
         AuthorModal authorModal = new AuthorModal(MainFrame.getInstance());
 
     }

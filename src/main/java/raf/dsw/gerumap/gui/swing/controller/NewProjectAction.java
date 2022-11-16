@@ -4,11 +4,11 @@ import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.implementation.Element;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.sql.Time;
 
 public class NewProjectAction extends AbstractGerumapAction {
     public NewProjectAction() {
@@ -21,6 +21,10 @@ public class NewProjectAction extends AbstractGerumapAction {
 
     public void actionPerformed(ActionEvent arg0) {
         MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
+        if (selected.getMapNode() instanceof Element) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete dodati 'decu' na elemente", TipPoruke.GRESKA);
+            return;
+        }
         MainFrame.getInstance().getMapTree().addChild(selected);
     }
 

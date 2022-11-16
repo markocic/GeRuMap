@@ -26,6 +26,7 @@ public class MessageGenerator implements MsgPublisher {
         this.tipPoruke = tipPoruke;
         this.time = java.time.LocalTime.now();
 
+        this.notifySubscribers();
 
     }
 
