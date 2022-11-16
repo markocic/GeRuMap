@@ -6,6 +6,7 @@ import raf.dsw.gerumap.gui.swing.observer.MsgSubscriber;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class MessageGenerator implements MsgPublisher {
 
     private String message;
     private TipPoruke tipPoruke;
-    private Time timeStamp;
+    private LocalTime time;
 
     private List<MsgSubscriber> msgSubscriberList;
     public MessageGenerator() {
@@ -57,7 +58,7 @@ public class MessageGenerator implements MsgPublisher {
 
     @Override
     public String toString() {
-        return this.tipPoruke + " " + this.timeStamp + " " + this.message;
+        return this.tipPoruke + " " + this.time + " " + this.message;
     }
 
     public String getMessage() {
@@ -76,11 +77,23 @@ public class MessageGenerator implements MsgPublisher {
         this.tipPoruke = tipPoruke;
     }
 
-    public Time getTimeStamp() {
-        return timeStamp;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setTimeStamp(Time timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public List<MsgSubscriber> getMsgSubscriberList() {
+        return msgSubscriberList;
+    }
+
+    public void setMsgSubscriberList(List<MsgSubscriber> msgSubscriberList) {
+        this.msgSubscriberList = msgSubscriberList;
+    }
+
+    public void setTimeStamp(LocalTime time) {
+        this.time = time;
     }
 }
