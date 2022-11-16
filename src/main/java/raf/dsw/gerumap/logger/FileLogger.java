@@ -11,10 +11,6 @@ import java.util.ResourceBundle;
 public class FileLogger implements Logger{
 
     // genericno generisan no pun intended :)
-    File log = new File("log.txt");
-
-    FileWriter fw;
-    PrintWriter pw;
 
     public FileLogger(){
     }
@@ -22,6 +18,7 @@ public class FileLogger implements Logger{
     public void log(String tekst) {
         // pise tekst u fajl
         // tekst je u formatu [TIP PORUKE] [TIME STAMP] tekst poruke
+        FileWriter fw;
         try {
             fw = new FileWriter("log.txt",true);
         } catch (IOException e) {
