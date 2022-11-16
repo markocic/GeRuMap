@@ -1,11 +1,17 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class InfoModal extends JDialog implements ActionListener {
+
+
 
     public InfoModal(JFrame parent) {
         super(parent, "Info", true);
@@ -16,7 +22,13 @@ public class InfoModal extends JDialog implements ActionListener {
         }
         JPanel messagePane = new JPanel();
         messagePane.add(new JLabel("Marko Kocic 99/22 RN"));
+        JLabel marko = new JLabel(new ImageIcon(InfoModal.class.getResource("/images/marko_100x100.jpeg")));
+        messagePane.add(marko);
+
         messagePane.add(new JLabel("Danilo Joncic 141/22 RN"));
+        JLabel danilo = new JLabel(new ImageIcon(InfoModal.class.getResource("/images/danilo_100x100.jpeg")));
+        messagePane.add(danilo);
+
         getContentPane().add(messagePane);
         JPanel buttonPane = new JPanel();
         JButton button = new JButton("OK");
