@@ -54,4 +54,6 @@ public class MessageGenerator implements MsgPublisher {
             sub.update(notification);
         }
     }
+
+
 }

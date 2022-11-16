@@ -13,4 +13,9 @@ public class SwingGui implements Gui {
     public void start() {
         MainFrame.getInstance().setVisible(true);
     }
+
+    @Override
+    public void update(Object notification) {
+
+    }
 }
