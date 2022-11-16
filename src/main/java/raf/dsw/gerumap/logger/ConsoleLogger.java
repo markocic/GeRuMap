@@ -6,7 +6,7 @@ import raf.dsw.gerumap.repository.composite.MapNode;
 import javax.swing.text.Utilities;
 import java.util.ResourceBundle;
 
-public class ConsoleLogger {
+public class ConsoleLogger extends Logger {
 
 
     // genericno generisan no pun intended :)

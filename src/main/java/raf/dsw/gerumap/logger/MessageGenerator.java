@@ -1,6 +1,9 @@
 package raf.dsw.gerumap.logger;
 
-public class MessageGenerator {
+import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
+import raf.dsw.gerumap.gui.swing.observer.MsgPublisher;
+
+public class MessageGenerator implements MsgPublisher {
     public MessageGenerator() {
     }
 
@@ -12,4 +15,18 @@ public class MessageGenerator {
     }
 
 
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+
+    }
+
+    @Override
+    public void notifySubscribers(Object notification) {
+
+    }
 }
