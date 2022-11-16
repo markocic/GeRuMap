@@ -2,13 +2,10 @@ package raf.dsw.gerumap.logger;
 
 import raf.dsw.gerumap.gui.swing.observer.MsgSubscriber;
 
-public abstract class Logger implements MsgSubscriber{
+public interface Logger extends MsgSubscriber{
     //trenutno prazan i generican
 
+    public void log();
 
 
-    @Override
-    public void update(Object notification) {
-
-    }
 }

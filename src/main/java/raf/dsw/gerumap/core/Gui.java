@@ -1,6 +1,8 @@
 package raf.dsw.gerumap.core;
 
-public interface Gui {
+import raf.dsw.gerumap.gui.swing.observer.MsgSubscriber;
+
+public interface Gui extends MsgSubscriber {
     void start();
 
 }
