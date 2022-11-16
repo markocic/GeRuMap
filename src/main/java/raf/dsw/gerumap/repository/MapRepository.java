@@ -19,7 +19,6 @@ public class MapRepository implements IMapRepository {
 
     @Override
     public void addChild(MapNodeComposite parent, MapNode child) {
-        // TODO
         parent.addChild(child);
     }
 }

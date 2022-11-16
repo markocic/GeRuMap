@@ -14,6 +14,6 @@ public class FactoryUtils {
         if (parent instanceof ProjectExplorer) return this.projectFactory;
         else if (parent instanceof Project) return this.mapFactory;
         else if (parent instanceof MindMap) return this.elementFactory;
-        else return null; // TODO: moze se izbaciti error ukoliko je selektovao element
+        else return null;
     }
 }

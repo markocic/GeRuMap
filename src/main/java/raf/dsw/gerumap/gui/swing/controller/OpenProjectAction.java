@@ -1,7 +1,10 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +22,14 @@ public class OpenProjectAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate selektovati neki cvor", TipPoruke.GRESKA);
+            return;
+        }
+        if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Mozete otvoriti samo projekat", TipPoruke.GRESKA);
+            return;
+        }
         ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode(); // samo ako je selektovan projekat
     }
 }

@@ -23,7 +23,6 @@ public class AuthorAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement dialog to take in author name and change it in project class
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Autora mozete menjati samo za projekat", TipPoruke.GRESKA);
             return;

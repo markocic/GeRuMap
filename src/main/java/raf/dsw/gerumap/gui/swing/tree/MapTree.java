@@ -50,7 +50,6 @@ public class MapTree implements IMapTree {
 
     @Override
     public void deleteChild(MapTreeItem child) {
-        // TODO: funkcija koja ce obrisati child iz parent's child array
         if(!((child.getMapNode().getParent()) instanceof MapNodeComposite))return;
 
         if (child.getMapNode().getParent() instanceof Project) {

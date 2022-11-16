@@ -45,7 +45,6 @@ public class AuthorModal extends JDialog implements ActionListener {
 
     public void saveActionPerformed(ActionEvent e) {
         // kod za save dugme
-        // ako nije izabran projekat za koji se menja autor, ne menja nista, TODO moze se ubaciti error poruka u buducnosti
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) return;
         Project currentProject = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         currentProject.setAuthor(this.authorField.getText());
