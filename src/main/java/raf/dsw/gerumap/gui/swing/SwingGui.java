@@ -22,20 +22,16 @@ public class SwingGui implements Gui {
     public void update(Object notification) {
         // izbaci error poruku
         MessageGenerator msg = (MessageGenerator) notification;
-        JOptionPane poruka;
         if (msg.getTipPoruke() == TipPoruke.GRESKA) {
-            poruka = new JOptionPane(msg.getMessage(), JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(MainFrame.getInstance(), msg.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
         else if (msg.getTipPoruke() == TipPoruke.UPOZORENJE) {
-            poruka = new JOptionPane(msg.getMessage(), JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(MainFrame.getInstance(), msg.getMessage(), "Upozorenje", JOptionPane.WARNING_MESSAGE);
+
         }
         else if (msg.getTipPoruke() == TipPoruke.OBAVJESTENJE) {
-            poruka = new JOptionPane(msg.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            poruka = new JOptionPane(msg.getMessage());
-        }
+            JOptionPane.showMessageDialog(MainFrame.getInstance(), msg.getMessage(), "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
 
-        poruka.setVisible(true);
+        }
     }
 }

@@ -21,10 +21,10 @@ public class MessageGenerator implements MsgPublisher {
     }
 
 
-    public void generateMsg(String message, TipPoruke tipPoruke, Time timeStamp){
+    public void generateMsg(String message, TipPoruke tipPoruke){
         this.message = message;
         this.tipPoruke = tipPoruke;
-        this.timeStamp = timeStamp;
+        this.time = java.time.LocalTime.now();
 
 
     }
@@ -60,7 +60,7 @@ public class MessageGenerator implements MsgPublisher {
 
     @Override
     public String toString() {
-        return this.tipPoruke + " " + this.time + " " + this.message;
+        return "[" + this.tipPoruke + "] [" + this.time.toString() + "] " + this.message;
     }
 
     public String getMessage() {

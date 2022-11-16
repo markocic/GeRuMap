@@ -8,6 +8,7 @@ import raf.dsw.gerumap.logger.TipPoruke;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.Time;
 
 public class NewProjectAction extends AbstractGerumapAction {
     public NewProjectAction() {
@@ -21,8 +22,6 @@ public class NewProjectAction extends AbstractGerumapAction {
     public void actionPerformed(ActionEvent arg0) {
         MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
         MainFrame.getInstance().getMapTree().addChild(selected);
-        AppCore.getInstance().getMsgGenerator().generateMsg("Test", TipPoruke.OBAVJESTENJE, java.time.LocalTime.now());
-        AppCore.getInstance().getMsgGenerator().notifySubscribers();
     }
 
 }

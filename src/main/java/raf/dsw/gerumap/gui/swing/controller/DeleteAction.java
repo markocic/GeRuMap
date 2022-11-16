@@ -1,7 +1,10 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,6 +23,11 @@ public class DeleteAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof ProjectExplorer)  {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete obrisati Project Explorer", TipPoruke.GRESKA);
+            AppCore.getInstance().getMsgGenerator().notifySubscribers();
+            return;
+        }
         MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getSelectedNode());
     }
 }
