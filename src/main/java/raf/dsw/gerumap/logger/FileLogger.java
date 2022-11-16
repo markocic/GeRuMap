@@ -15,7 +15,7 @@ public class FileLogger implements Logger{
     FileWriter fw;
     PrintWriter pw;
 
-    public FileLogger() throws IOException {
+    public FileLogger(){
 
     }
 

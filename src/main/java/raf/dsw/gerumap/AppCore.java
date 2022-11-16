@@ -3,16 +3,23 @@ package raf.dsw.gerumap;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.core.Gui;
 import raf.dsw.gerumap.gui.swing.SwingGui;
+import raf.dsw.gerumap.logger.ConsoleLogger;
+import raf.dsw.gerumap.logger.FileLogger;
 import raf.dsw.gerumap.logger.MessageGenerator;
 import raf.dsw.gerumap.repository.MapRepository;
+
+import java.io.IOException;
 
 
 public class AppCore extends ApplicationFramework {
 
+    FileLogger fileLogger = new FileLogger();
+    ConsoleLogger consoleLogger = new ConsoleLogger();
+
     private static AppCore instance;
     private MessageGenerator msgGenerator = new MessageGenerator();
 
-    private AppCore() {
+    private AppCore(){
     }
 
     @Override
