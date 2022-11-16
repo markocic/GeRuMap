@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ResourceBundle;
 
-public class FileLogger implements Logger, ISubscriber {
+public class FileLogger {
 
     // genericno generisan no pun intended :)
     File log = new File("/logger");
@@ -20,43 +20,5 @@ public class FileLogger implements Logger, ISubscriber {
     }
 
 
-    @Override
-    public void update(Object notification) {
 
-    }
-
-    @Override
-    public void updateAuthorName(String newAuthor) {
-
-    }
-
-    @Override
-    public void updateProjectNameChanged(String newProjectName) {
-
-    }
-
-    @Override
-    public void updateMindMapCreated(String mindMapName) {
-
-    }
-
-    @Override
-    public void updateMindMapDeleted(String name) {
-
-    }
-
-    @Override
-    public void updateProjectOpened(Object project) {
-
-    }
-
-    @Override
-    public void updateMindMapNameChanged(String oldName, String newName) {
-
-    }
-
-    @Override
-    public void updateOpenedProjectDeleted() {
-
-    }
 }

@@ -11,6 +11,7 @@ public abstract class MapNode implements IPublisher {
 
     private String name;
     private MapNode parent;
+    private ConsoleLogger consoleLogger;
 
     private List<ISubscriber> subscribers;
 
@@ -97,6 +98,7 @@ public abstract class MapNode implements IPublisher {
         if (oldName == null || newName == null || this.subscribers == null || this.subscribers.isEmpty()) return;
         for (ISubscriber sub : this.subscribers) {
             sub.updateMindMapNameChanged(oldName, newName);
+
         }
     }
 
@@ -105,6 +107,7 @@ public abstract class MapNode implements IPublisher {
         if (this.subscribers == null || this.subscribers.isEmpty()) return;
         for (ISubscriber sub : this.subscribers) {
             sub.updateOpenedProjectDeleted();
+
         }
     }
 
