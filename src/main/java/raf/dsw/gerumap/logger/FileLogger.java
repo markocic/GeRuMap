@@ -20,13 +20,17 @@ public class FileLogger implements Logger{
     }
 
 
-    public void log() {
-        return;
+    public void log(String tekst) {
+        // pise tekst u fajl
+        // tekst je u formatu [TIP PORUKE] [TIME STAMP] tekst poruke
     }
 
 
     @Override
     public void update(Object notification) {
+        // poziva log funkciju
+        // error checkovi pre ovoga
+        log(notification.toString());
 
     }
 }

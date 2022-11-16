@@ -8,9 +8,7 @@ import java.util.ResourceBundle;
 
 public class ConsoleLogger implements Logger {
 
-
     // genericno generisan no pun intended :)
-
 
     public ConsoleLogger() {
 
@@ -18,15 +16,14 @@ public class ConsoleLogger implements Logger {
 
     @Override
     public void update(Object notification) {
-
+        // poziva log funkciju
+        log(notification.toString());
     }
 
     @Override
-    public void log() {
-
+    public void log(String tekst) {
+        System.out.println(tekst);
     }
-
-    //System.out.println(" " +  java.time.LocalTime.now() + "NOTIFICATION:" + notification );
 
 
 }

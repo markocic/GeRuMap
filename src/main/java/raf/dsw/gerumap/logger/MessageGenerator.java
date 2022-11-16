@@ -55,5 +55,32 @@ public class MessageGenerator implements MsgPublisher {
         }
     }
 
+    @Override
+    public String toString() {
+        return this.tipPoruke + " " + this.timeStamp + " " + this.message;
+    }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public TipPoruke getTipPoruke() {
+        return tipPoruke;
+    }
+
+    public void setTipPoruke(TipPoruke tipPoruke) {
+        this.tipPoruke = tipPoruke;
+    }
+
+    public Time getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Time timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 }
