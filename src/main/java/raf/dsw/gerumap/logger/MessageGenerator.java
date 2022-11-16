@@ -31,6 +31,7 @@ public class MessageGenerator implements MsgPublisher {
     public void addSubscriber(MsgSubscriber sub) {
         if (sub == null) return;
         if (msgSubscriberList == null) msgSubscriberList = new ArrayList<>();
+        if (this.msgSubscriberList.contains(sub)) return;
 
         msgSubscriberList.add(sub);
     }
