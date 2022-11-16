@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class FileLogger extends Logger{
 
     // genericno generisan no pun intended :)
-    File log = new File("/logger");
+    File log = new File("log.txt");
     FileWriter fw;
     PrintWriter pw;
 
@@ -20,26 +20,8 @@ public class FileLogger extends Logger{
     }
 
 
-    public void writeStuff(File file) throws IOException {
-        fw = new FileWriter(file);
-        pw = new PrintWriter(fw);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void log() {
+        return;
     }
 
 
