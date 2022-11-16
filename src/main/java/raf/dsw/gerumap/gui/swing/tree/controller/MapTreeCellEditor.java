@@ -63,6 +63,9 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
                 }
             }
 
+        } else {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete promeniti naziv Project Explorer-a", TipPoruke.GRESKA);
+            return;
         }
         clicked.setName(e.getActionCommand());
     }
