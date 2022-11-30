@@ -28,6 +28,11 @@ public class MainFrame extends JFrame{
 
     private RightPanel rightPanel;
 
+    private Paleta paleta;
+
+
+
+
 
 
     private MainFrame() {
@@ -76,6 +81,10 @@ public class MainFrame extends JFrame{
 
         panel.setMinimumSize(new Dimension(100,scW/2));
         splitPane.setDividerLocation(scW / 10);
+
+        paleta = new Paleta();
+        this.getContentPane().add(paleta,BorderLayout.EAST);
+
 
 
         this.add(splitPane);
