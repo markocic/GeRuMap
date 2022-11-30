@@ -1,7 +1,7 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 
-
+import raf.dsw.gerumap.gui.swing.controller.paleta.*;
 
 public class ActionManager {
 
@@ -13,6 +13,13 @@ public class ActionManager {
 
     private AuthorAction authorAction;
     private OpenProjectAction openProjectAction;
+
+    private BrisanjeAction brisanjeAction;
+    private DodajPojamAction dodajPojamAction;
+    private NapraviVezuAction napraviVezuAction;
+    private PomeranjeAction pomeranjeAction;
+    private SelekcijaAction selekcijaAction;
+    private ZumiranjeAction zumiranjeAction;
 
     public ActionManager() {
         initActions();
@@ -26,6 +33,13 @@ public class ActionManager {
         infoAction = new InfoAction();
         authorAction = new AuthorAction();
         openProjectAction = new OpenProjectAction();
+
+        brisanjeAction = new BrisanjeAction();
+        dodajPojamAction = new DodajPojamAction();
+        napraviVezuAction = new NapraviVezuAction();
+        pomeranjeAction = new PomeranjeAction();
+        selekcijaAction = new SelekcijaAction();
+        zumiranjeAction = new ZumiranjeAction();
     }
 
     public DeleteAction getDeleteAction() {
