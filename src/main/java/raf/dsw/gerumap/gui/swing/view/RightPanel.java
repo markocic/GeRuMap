@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.view;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.Project;
+import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
 
@@ -10,11 +11,13 @@ public class RightPanel extends JPanel implements ISubscriber {
     private JLabel projectNameLabel;
     private JLabel authorNameLabel;
     private TabbedPane tabbedPane;
+    private StateManager stateManager;
 
     public RightPanel() {
         this.projectNameLabel = new JLabel("project name");
         this.authorNameLabel = new JLabel("author name");
         this.tabbedPane = new TabbedPane(JTabbedPane.TOP);
+        this.stateManager = new StateManager();
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -46,7 +49,32 @@ public class RightPanel extends JPanel implements ISubscriber {
 //            mindMap.getParent().notifySubscribers(mindMap.getParent());
 //        }
     }
+    // State metode
+    public void startBrisanjeState() {
+        this.stateManager.setBrisanjeState();
+    }
 
+    public void startDodajPojamState() {
+        this.stateManager.setDodajPojamState();
+    }
+
+    public void startNapraviVezuState() {
+        this.stateManager.setNapraviVezuState();
+    }
+
+    public void startPomeranjeState() {
+        this.stateManager.setPomeranjeState();
+    }
+
+    public void startSelekcijaState() {
+        this.stateManager.setSelekcijaState();
+    }
+
+    public void startZumiranjeState() {
+        this.stateManager.setZumiranjeState();
+    }
+
+    // Observer metode
     @Override
     public void updateAuthorName(String newAuthor) {
         this.authorNameLabel.setText(newAuthor);

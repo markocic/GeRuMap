@@ -19,7 +19,7 @@ public class StateManager {
         selekcijaState = new SelekcijaState();
         zumiranjeState = new ZumiranjeState();
 
-        currentState = dodajPojamState;
+        currentState = selekcijaState;
     }
 
     public State getCurrentState() {
@@ -27,26 +27,34 @@ public class StateManager {
     }
 
     public void setBrisanjeState() {
+        System.out.println("brisanje");
         currentState = brisanjeState;
     }
 
     public void setDodajPojamState() {
+        System.out.println("dodaj pojam");
+
         currentState = dodajPojamState;
     }
 
     public void setPomeranjeState() {
+        System.out.println("pomeranje");
+
         currentState = pomeranjeState;
     }
 
     public void setSelekcijaState() {
+        System.out.println("selekcija");
         currentState = selekcijaState;
     }
 
     public void setNapraviVezuState() {
+        System.out.println("napravi vezu");
         currentState = napraviVezuState;
     }
 
     public void setZumiranjeState() {
+        System.out.println("zumiranje");
         currentState = zumiranjeState;
     }
 
