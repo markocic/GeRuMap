@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class ZumiranjeAction extends AbstractGerumapAction {
     public ZumiranjeAction() {
+        putValue(SMALL_ICON, loadIcon("/images/lupa.png"));
         putValue(NAME, "Zumiranje");
         putValue(SHORT_DESCRIPTION, "Zumiranje");
     }

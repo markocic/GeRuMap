@@ -89,4 +89,52 @@ public class ActionManager {
     public void setOpenProjectAction(OpenProjectAction openProjectAction) {
         this.openProjectAction = openProjectAction;
     }
+
+    public BrisanjeAction getBrisanjeAction() {
+        return brisanjeAction;
+    }
+
+    public void setBrisanjeAction(BrisanjeAction brisanjeAction) {
+        this.brisanjeAction = brisanjeAction;
+    }
+
+    public DodajPojamAction getDodajPojamAction() {
+        return dodajPojamAction;
+    }
+
+    public void setDodajPojamAction(DodajPojamAction dodajPojamAction) {
+        this.dodajPojamAction = dodajPojamAction;
+    }
+
+    public NapraviVezuAction getNapraviVezuAction() {
+        return napraviVezuAction;
+    }
+
+    public void setNapraviVezuAction(NapraviVezuAction napraviVezuAction) {
+        this.napraviVezuAction = napraviVezuAction;
+    }
+
+    public PomeranjeAction getPomeranjeAction() {
+        return pomeranjeAction;
+    }
+
+    public void setPomeranjeAction(PomeranjeAction pomeranjeAction) {
+        this.pomeranjeAction = pomeranjeAction;
+    }
+
+    public SelekcijaAction getSelekcijaAction() {
+        return selekcijaAction;
+    }
+
+    public void setSelekcijaAction(SelekcijaAction selekcijaAction) {
+        this.selekcijaAction = selekcijaAction;
+    }
+
+    public ZumiranjeAction getZumiranjeAction() {
+        return zumiranjeAction;
+    }
+
+    public void setZumiranjeAction(ZumiranjeAction zumiranjeAction) {
+        this.zumiranjeAction = zumiranjeAction;
+    }
 }

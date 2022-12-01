@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class PomeranjeAction extends AbstractGerumapAction {
     public PomeranjeAction() {
+        putValue(SMALL_ICON, loadIcon("/images/move.png"));
         putValue(NAME, "Pomeranje");
         putValue(SHORT_DESCRIPTION, "pomeranje");
     }
