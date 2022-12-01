@@ -16,12 +16,7 @@ public class BrisanjeAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-        System.out.println("TO DO Brisanje action");
-
-=======
         MainFrame.getInstance().getRightPanel().startBrisanjeState();
         setActive(this);
->>>>>>> 1fc0c0f (dodat mediator state sablona, dodate akcije u paletu, napravljena mogucnost za vizuelni prikaz trenutnog aktivnog stejta)
     }
 }
