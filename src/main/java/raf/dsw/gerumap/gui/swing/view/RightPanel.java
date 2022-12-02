@@ -87,7 +87,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateMindMapCreated(String mindMapName) {
-        this.tabbedPane.addTab(mindMapName, new MapView(mindMapName));
+        this.tabbedPane.addTab(mindMapName, new MapView());
     }
 
     @Override
@@ -111,7 +111,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
         System.out.println((openedProject.getChildren().size()));
         for (MapNode mindMap : openedProject.getChildren()) {
-            this.tabbedPane.addTab(mindMap.getName(), new MapView(mindMap.getName()));
+            this.tabbedPane.addTab(mindMap.getName(), new MapView());
         }
     }
 
@@ -130,5 +130,13 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.projectNameLabel.setText("project name");
         this.authorNameLabel.setText("author name");
         tabbedPane.removeAll();
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public void setStateManager(StateManager stateManager) {
+        this.stateManager = stateManager;
     }
 }
