@@ -12,7 +12,6 @@ public abstract class MapNode implements IPublisher {
 
     private String name;
     private MapNode parent;
-    private ConsoleLogger consoleLogger;
 
     private List<ISubscriber> subscribers;
 

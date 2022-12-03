@@ -59,6 +59,12 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.stateManager.setPodesavanjaState();
     }
 
+    // mis eventovi
+    public void misKliknut(int x, int y, MindMap map) {
+        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
+        this.stateManager.getCurrentState().performAction(x, y, map);
+    }
+
     // Observer metode
     @Override
     public void updateAuthorName(String newAuthor) {

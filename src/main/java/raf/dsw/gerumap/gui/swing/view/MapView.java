@@ -34,19 +34,14 @@ public class MapView extends JInternalFrame{
     public class MouseController extends MouseAdapter {
         @Override
         public void mousePressed(MouseEvent e) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                if (MainFrame.getInstance().getRightPanel().getStateManager().getCurrentState() instanceof DodajPojamState) {
-                    // trenutni state je dodaj pojam
-                    MainFrame.getInstance().getRightPanel().getStateManager().getCurrentState().performAction();
-                }
-                System.out.println("pritisnut levi klik na mestu " + e.getX() + " " + e.getY());
+            if (e.getButton() == MouseEvent.BUTTON1 && e.getSource() instanceof MapView) {
+                MainFrame.getInstance().getRightPanel().misKliknut(e.getX(), e.getY(), ((MapView) e.getSource()).getMapa());
             }
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
             if (e.getButton() == MouseEvent.BUTTON1) {
-                System.out.println("otpusten levi klik na mestu " + e.getX() + " " + e.getY());
             }
         }
     }

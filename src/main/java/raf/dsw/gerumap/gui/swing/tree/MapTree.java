@@ -107,5 +107,11 @@ public class MapTree implements IMapTree {
         return child;
     }
 
+    public MapTreeItem getOpenedNode() {
+        return openedNode;
+    }
 
+    public void setOpenedNode(MapTreeItem openedNode) {
+        this.openedNode = openedNode;
+    }
 }
