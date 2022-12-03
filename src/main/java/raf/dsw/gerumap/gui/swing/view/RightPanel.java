@@ -9,9 +9,9 @@ import raf.dsw.gerumap.state.StateManager;
 import javax.swing.*;
 
 public class RightPanel extends JPanel implements ISubscriber {
-    private JLabel projectNameLabel;
-    private JLabel authorNameLabel;
-    private TabbedPane tabbedPane;
+    private final JLabel projectNameLabel;
+    private final JLabel authorNameLabel;
+    private final TabbedPane tabbedPane;
     private StateManager stateManager;
 
     public RightPanel() {
@@ -30,25 +30,6 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        // ne radi nista sad
-//        if (notification instanceof Project) {
-//            Project project = (Project) notification;
-//            this.authorNameLabel.setText(project.getAuthor());
-//            this.projectNameLabel.setText(project.getName());
-//
-//            this.tabbedPane.removeAll();
-//
-//            System.out.println((project.getChildren().size()));
-//            for (MapNode mindMap : project.getChildren()) {
-//                this.tabbedPane.addTab(mindMap.getName(), new JLabel(mindMap.getName()));
-//                System.out.println("HERE");
-//            }
-//        }
-//
-//        if (notification instanceof MindMap) {
-//            MindMap mindMap = (MindMap) notification;
-//            mindMap.getParent().notifySubscribers(mindMap.getParent());
-//        }
     }
     // State metode
     public void startBrisanjeState() {
@@ -97,7 +78,7 @@ public class RightPanel extends JPanel implements ISubscriber {
     @Override
     public void updateMindMapDeleted(String name) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-            if (tabbedPane.getTitleAt(i) == name) {
+            if (tabbedPane.getTitleAt(i).equals(name)) {
                 tabbedPane.removeTabAt(i);
                 return;
             }
@@ -106,8 +87,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateProjectOpened(Object project) {
-        if (!(project instanceof Project)) return;
-        Project openedProject = (Project) project;
+        if (!(project instanceof Project openedProject)) return;
         this.authorNameLabel.setText(openedProject.getAuthor());
         this.projectNameLabel.setText(openedProject.getName());
 
