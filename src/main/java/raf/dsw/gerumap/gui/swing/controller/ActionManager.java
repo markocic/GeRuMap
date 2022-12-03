@@ -21,6 +21,8 @@ public class ActionManager {
     private SelekcijaAction selekcijaAction;
     private ZumiranjeAction zumiranjeAction;
 
+    private PodesavanjaAction podesavanjaAction;
+
     public ActionManager() {
         initActions();
     }
@@ -40,6 +42,15 @@ public class ActionManager {
         pomeranjeAction = new PomeranjeAction();
         selekcijaAction = new SelekcijaAction();
         zumiranjeAction = new ZumiranjeAction();
+        podesavanjaAction = new PodesavanjaAction();
+    }
+
+    public PodesavanjaAction getPodesavanjaAction() {
+        return podesavanjaAction;
+    }
+
+    public void setPodesavanjaAction(PodesavanjaAction podesavanjaAction) {
+        this.podesavanjaAction = podesavanjaAction;
     }
 
     public DeleteAction getDeleteAction() {

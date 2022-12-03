@@ -1,9 +1,6 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import raf.dsw.gerumap.AppCore;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class Paleta extends JToolBar {
 
@@ -17,7 +14,7 @@ public class Paleta extends JToolBar {
         this.add(MainFrame.getInstance().getActionManager().getDodajPojamAction());
         this.add(MainFrame.getInstance().getActionManager().getNapraviVezuAction());
         this.add(MainFrame.getInstance().getActionManager().getBrisanjeAction());
-
+        this.add(MainFrame.getInstance().getActionManager().getPodesavanjaAction());
 
 
     }

@@ -74,6 +74,9 @@ public class RightPanel extends JPanel implements ISubscriber {
     public void startZumiranjeState() {
         this.stateManager.setZumiranjeState();
     }
+    public void startPodesavanjaState() {
+        this.stateManager.setPodesavanjaState();
+    }
 
     // Observer metode
     @Override

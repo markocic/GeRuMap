@@ -10,6 +10,7 @@ public class StateManager {
     private PomeranjeState pomeranjeState;
     private SelekcijaState selekcijaState;
     private ZumiranjeState zumiranjeState;
+    private PodesavanjaState podesavanjaState;
 
     public StateManager() {
         brisanjeState = new BrisanjeState();
@@ -18,6 +19,7 @@ public class StateManager {
         napraviVezuState = new NapraviVezuState();
         selekcijaState = new SelekcijaState();
         zumiranjeState = new ZumiranjeState();
+        podesavanjaState = new PodesavanjaState();
 
         currentState = selekcijaState;
     }
@@ -56,6 +58,11 @@ public class StateManager {
     public void setZumiranjeState() {
         System.out.println("zumiranje");
         currentState = zumiranjeState;
+    }
+
+    public void setPodesavanjaState() {
+        System.out.println("podesavanja");
+        currentState = podesavanjaState;
     }
 
 }
