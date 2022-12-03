@@ -8,8 +8,6 @@ import raf.dsw.gerumap.logger.FileLogger;
 import raf.dsw.gerumap.logger.MessageGenerator;
 import raf.dsw.gerumap.repository.MapRepository;
 
-import java.io.IOException;
-
 
 public class AppCore extends ApplicationFramework {
 

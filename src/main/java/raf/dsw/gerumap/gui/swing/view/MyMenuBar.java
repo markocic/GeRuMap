@@ -1,12 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import raf.dsw.gerumap.gui.swing.controller.ExitAction;
-import raf.dsw.gerumap.gui.swing.controller.InfoAction;
-import raf.dsw.gerumap.gui.swing.controller.NewProjectAction;
-
 import javax.swing.*;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class MyMenuBar extends JMenuBar {

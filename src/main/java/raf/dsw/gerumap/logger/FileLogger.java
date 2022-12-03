@@ -1,12 +1,7 @@
 package raf.dsw.gerumap.logger;
 
-import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ResourceBundle;
 
 public class FileLogger implements Logger{
 

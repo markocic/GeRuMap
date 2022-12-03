@@ -2,14 +2,11 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.AuthorModal;
-import raf.dsw.gerumap.gui.swing.view.InfoModal;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.implementation.Project;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 public class AuthorAction extends AbstractGerumapAction {
 

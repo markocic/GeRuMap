@@ -1,11 +1,9 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import com.sun.tools.javac.Main;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

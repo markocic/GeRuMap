@@ -2,12 +2,9 @@ package raf.dsw.gerumap.gui.swing.tree.controller;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
-import raf.dsw.gerumap.gui.swing.tree.view.MapTreeCellRenderer;
 import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
-import raf.dsw.gerumap.repository.implementation.Element;
-import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import javax.swing.*;
