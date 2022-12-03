@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import com.sun.tools.javac.Main;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
@@ -7,13 +9,23 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MapView extends JPanel {
+public class MapView extends JInternalFrame{
+
+    //List<Painter> painters;
+    private JPanel radnaPovrsina;
 
 
 
     public MapView() {
-        this.setBackground(Color.lightGray); // trenutno postavljeno radi razlikovanja
+        super(" ",true,true,true,true);
+        //this.setBackground(Color.lightGray); // trenutno postavljeno radi razlikovanja
         this.addMouseListener(new MouseController());
+        setIconifiable(true);
+        setClosable(true);
+        setSize(400,400);
+        setVisible(true);
+        this.setDefaultCloseOperation(2);
+
     }
 
     public class MouseController extends MouseAdapter {

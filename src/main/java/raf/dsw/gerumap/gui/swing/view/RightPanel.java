@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;
 
@@ -139,4 +140,9 @@ public class RightPanel extends JPanel implements ISubscriber {
     public void setStateManager(StateManager stateManager) {
         this.stateManager = stateManager;
     }
+
+
+
+
+
 }
