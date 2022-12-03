@@ -13,12 +13,12 @@ public class MapView extends JInternalFrame{
 
     //List<Painter> painters;
     private JPanel radnaPovrsina;
+    private MindMap mapa;
 
 
 
     public MapView() {
-        super(" ",true,true,true,true);
-        //this.setBackground(Color.lightGray); // trenutno postavljeno radi razlikovanja
+        super(" ",false,false,false,true);
         this.addMouseListener(new MouseController());
         setIconifiable(true);
         setClosable(true);
@@ -26,6 +26,11 @@ public class MapView extends JInternalFrame{
         setVisible(true);
         this.setDefaultCloseOperation(2);
 
+    }
+
+    public MapView(MindMap map) {
+        this();
+        this.mapa = map;
     }
 
     public class MouseController extends MouseAdapter {
@@ -48,4 +53,19 @@ public class MapView extends JInternalFrame{
         }
     }
 
+    public JPanel getRadnaPovrsina() {
+        return radnaPovrsina;
+    }
+
+    public void setRadnaPovrsina(JPanel radnaPovrsina) {
+        this.radnaPovrsina = radnaPovrsina;
+    }
+
+    public MindMap getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(MindMap mapa) {
+        this.mapa = mapa;
+    }
 }

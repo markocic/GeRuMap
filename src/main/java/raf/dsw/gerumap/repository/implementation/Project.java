@@ -23,8 +23,8 @@ public class Project extends MapNodeComposite {
             if (!this.getChildren().contains(mindMap)) {
                 this.getChildren().add(mindMap);
             }
+            this.notifyMindMapCreated(mindMap);
         }
-        this.notifyMindMapCreated(child.getName());
     }
 
     @Override

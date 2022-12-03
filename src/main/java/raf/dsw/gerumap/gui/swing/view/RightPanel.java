@@ -90,8 +90,8 @@ public class RightPanel extends JPanel implements ISubscriber {
     }
 
     @Override
-    public void updateMindMapCreated(String mindMapName) {
-        this.tabbedPane.addTab(mindMapName, new MapView());
+    public void updateMindMapCreated(MindMap mindMap) {
+        this.tabbedPane.addTab(mindMap.getName(), new MapView(mindMap));
     }
 
     @Override
@@ -115,7 +115,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
         System.out.println((openedProject.getChildren().size()));
         for (MapNode mindMap : openedProject.getChildren()) {
-            this.tabbedPane.addTab(mindMap.getName(), new MapView());
+            this.tabbedPane.addTab(mindMap.getName(), new MapView((MindMap) mindMap));
         }
     }
 

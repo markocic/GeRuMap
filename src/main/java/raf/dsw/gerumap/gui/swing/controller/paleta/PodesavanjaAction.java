@@ -15,7 +15,7 @@ public class PodesavanjaAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MainFrame.getInstance().getRightPanel().getStateManager().setPodesavanjaState();
-        setActive(this); 
+        MainFrame.getInstance().getRightPanel().startPodesavanjaState();
+        setActive(this);
     }
 }
