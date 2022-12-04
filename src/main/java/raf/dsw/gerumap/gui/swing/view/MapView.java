@@ -6,6 +6,7 @@ import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -24,6 +25,8 @@ public class MapView extends JInternalFrame{
         setClosable(true);
         setSize(400,400);
         setVisible(true);
+        setMaximizable(true);
+        radnaPovrsina.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.setDefaultCloseOperation(2);
 
     }
