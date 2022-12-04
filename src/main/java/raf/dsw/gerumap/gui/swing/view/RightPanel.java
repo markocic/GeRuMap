@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.gui.swing.grafika.RadnaPovrsina;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.MindMap;

@@ -1,10 +1,12 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
+import java.awt.*;
+
 public class ElementView {
     int stroke;
-    int color;
+    Color color;
 
-    public ElementView(int stroke, int color) {
+    public ElementView(int stroke, Color color) {
         this.stroke = stroke;
         this.color = color;
     }
@@ -17,11 +19,11 @@ public class ElementView {
         this.stroke = stroke;
     }
 
-    public int getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setColor(Color color) {
+       this.color = color;
     }
 }

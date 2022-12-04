@@ -1,22 +1,24 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.gui.swing.grafika.RadnaPovrsina;
+import raf.dsw.gerumap.gui.swing.grafika.painters.ElementPainter;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class MapView extends JInternalFrame{
 
-    //List<Painter> painters;
-    private JPanel radnaPovrsina;
+    List<ElementPainter> painters;
+    private RadnaPovrsina radnaPovrsina = new RadnaPovrsina();
     private MindMap mapa;
-
-
 
     public MapView() {
         super(" ",false,false,false,true);
+        this.add(radnaPovrsina);
         this.addMouseListener(new MouseController());
         setIconifiable(true);
         setClosable(true);
@@ -26,9 +28,21 @@ public class MapView extends JInternalFrame{
 
     }
 
+    public List<ElementPainter> getPainters() {
+        return painters;
+    }
+
+    public void setPainters(List<ElementPainter> painters) {
+        this.painters = painters;
+    }
+
     public MapView(MindMap map) {
         this();
         this.mapa = map;
+    }
+
+    public void setRadnaPovrsina(RadnaPovrsina radnaPovrsina) {
+        this.radnaPovrsina = radnaPovrsina;
     }
 
     public class MouseController extends MouseAdapter {
@@ -50,9 +64,7 @@ public class MapView extends JInternalFrame{
         return radnaPovrsina;
     }
 
-    public void setRadnaPovrsina(JPanel radnaPovrsina) {
-        this.radnaPovrsina = radnaPovrsina;
-    }
+
 
     public MindMap getMapa() {
         return mapa;
