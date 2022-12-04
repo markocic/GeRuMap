@@ -2,7 +2,7 @@ package raf.dsw.gerumap.gui.swing.grafika.model;
 
 import java.awt.*;
 
-public class ElementView {
+public abstract class ElementView {
     int stroke;
     Color color;
 
