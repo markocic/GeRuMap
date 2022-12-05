@@ -24,16 +24,17 @@ public class BrisanjeState extends State {
         if (map.getSelectedPainters().contains(selected)) map.deleteSelectedPainters();
         else return;
 
-        // brisanje pojma iz JTree
-        MapTreeItem mindMapTreeItem = getMindMapTreeItem(map.getMapa());
-        Enumeration<TreeNode> elements = mindMapTreeItem.children();
-        MapTreeItem element;
-        while (elements.hasMoreElements()) {
-            element = (MapTreeItem) elements.nextElement();
-            if (element.getMapNode().getName().equals( ((PojamModel) selected.getElement()).getName())) {
-                MainFrame.getInstance().getMapTree().deleteChild(element);
-            }
-        }
+
+//        // brisanje pojma iz JTree
+//        MapTreeItem mindMapTreeItem = getMindMapTreeItem(map.getMapa());
+//        Enumeration<TreeNode> elements = mindMapTreeItem.children();
+//        MapTreeItem element;
+//        while (elements.hasMoreElements()) {
+//            element = (MapTreeItem) elements.nextElement();
+//            if (element.getMapNode().getName().equals( ((PojamModel) selected.getElement()).getName())) {
+//                MainFrame.getInstance().getMapTree().deleteChild(element);
+//            }
+//        }
     }
 
     public MapTreeItem getMindMapTreeItem(MindMap map) {
