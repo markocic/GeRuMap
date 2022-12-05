@@ -17,11 +17,4 @@ public class SelekcijaState  extends State {
         map.addSelectedPainter(clicked);
     }
 
-    public ElementPainter getPainterAtClickedLocation(Point point, MapView map) {
-        for (ElementPainter painter : map.getPainters()) {
-            if (painter.elementAt(point)) return painter;
-        }
-
-        return null;
-    }
 }

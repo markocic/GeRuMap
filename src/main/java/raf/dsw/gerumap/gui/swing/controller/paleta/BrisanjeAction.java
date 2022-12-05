@@ -16,6 +16,6 @@ public class BrisanjeAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         MainFrame.getInstance().getRightPanel().startBrisanjeState();
-        setActive(null);
+        setActive(this);
     }
 }
