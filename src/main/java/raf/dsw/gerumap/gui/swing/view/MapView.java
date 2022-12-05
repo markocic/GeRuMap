@@ -13,6 +13,7 @@ import java.util.List;
 public class MapView extends JPanel{
 
     List<ElementPainter> painters;
+    List<ElementPainter> selectedPainters;
     private MindMap mapa;
 
     public MapView() {
@@ -20,6 +21,7 @@ public class MapView extends JPanel{
         setSize(400,400);
         this.setBackground(Color.WHITE);
         this.painters = new ArrayList<>();
+        this.selectedPainters = new ArrayList<>();
     }
 
     protected void paintComponent(Graphics g) {
@@ -40,6 +42,43 @@ public class MapView extends JPanel{
         if (painter == null) return;
         painters.add(painter);
         repaint();
+    }
+
+    public void addSelectedPainter(ElementPainter painter) {
+        if (painter == null) return;
+        selectedPainters.add(painter);
+        recolorSelected();
+        repaint();
+    }
+
+    public void removeSelectedPainter(ElementPainter painter) {
+        if (painter == null && !selectedPainters.isEmpty()) return;
+        selectedPainters.remove(painter); // remove vec proverava da li element postoji u nizu
+        recolorSelected();
+        repaint();
+    }
+
+    public void deselectAll() {
+        selectedPainters.clear();
+        recolorSelected();
+        repaint();
+    }
+
+    public void recolorSelected() {
+        for (ElementPainter painter : painters) {
+            painter.getElement().setColor(Color.BLACK);
+        }
+        for (ElementPainter painter : selectedPainters) {
+            painter.getElement().setColor(Color.RED);
+        }
+    }
+
+    public List<ElementPainter> getSelectedPainters() {
+        return selectedPainters;
+    }
+
+    public void setSelectedPainters(List<ElementPainter> selectedPainters) {
+        this.selectedPainters = selectedPainters;
     }
 
     public void setPainters(List<ElementPainter> painters) {

@@ -61,18 +61,16 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     // mis eventovi
     public void mousePressedMediator(int x, int y, MapView map) {
-        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
         this.stateManager.getCurrentState().mousePressedState(x, y, map);
     }
 
     public void mouseReleasedMediator(int x, int y, MapView map) {
-        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
         this.stateManager.getCurrentState().mouseReleasedState(x, y, map);
     }
 
 
     public void mouseDraggedMediator(int x, int y, MapView map) {
-        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
+        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getMapa().getName());
         this.stateManager.getCurrentState().mouseDraggedState(x, y, map);
     }
 
