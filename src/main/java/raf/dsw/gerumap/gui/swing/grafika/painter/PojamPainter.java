@@ -24,7 +24,15 @@ public class PojamPainter extends ElementPainter{
         // crtanje elipse ovde
         g.setPaint(this.getElement().getColor());
         g.setStroke(new BasicStroke(this.getElement().getStroke()));
-        g.drawString(((PojamModel)getElement()).getName(),((PojamModel) getElement()).getCoordinates().x + 10,((PojamModel) getElement()).getCoordinates().y+((PojamModel) getElement()).getSize().height/2);
+        drawCenteredString(g, ((PojamModel) getElement()).getName());
         g.draw(getShape());
+    }
+
+    public void drawCenteredString(Graphics2D g, String text) {
+        PojamModel element = (PojamModel) getElement();
+        FontMetrics metrics = g.getFontMetrics();
+        int x = (int) (element.getCoordinates().getX() + (element.getSize().getWidth() - metrics.stringWidth(text)) / 2);
+        int y = (int) (element.getCoordinates().getY() + ((element.getSize().getHeight() - metrics.getHeight()) / 2) + metrics.getAscent());
+        g.drawString(text, x, y);
     }
 }
