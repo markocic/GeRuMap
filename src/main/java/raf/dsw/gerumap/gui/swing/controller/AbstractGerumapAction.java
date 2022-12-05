@@ -30,6 +30,7 @@ public abstract class AbstractGerumapAction extends AbstractAction {
         MainFrame.getInstance().getActionManager().getZumiranjeAction().setEnabled(true);
         MainFrame.getInstance().getActionManager().getPodesavanjaAction().setEnabled(true);
 
+        if (action == null) return;
         action.setEnabled(false);
     }
 

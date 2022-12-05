@@ -58,6 +58,13 @@ public class MapView extends JPanel{
         repaint();
     }
 
+    public void deleteSelectedPainters() {
+        for (ElementPainter painter : selectedPainters) {
+            painters.remove(painter);
+        }
+        deselectAll();
+    }
+
     public void deselectAll() {
         selectedPainters.clear();
         recolorSelected();
