@@ -1,14 +1,14 @@
-package raf.dsw.gerumap.gui.swing.grafika.view;
+package raf.dsw.gerumap.gui.swing.grafika.model;
 
 import java.awt.*;
 
-public class PojamView extends ElementView{
+public class PojamModel extends ElementModel {
 
     private String name;
     private Point coordinates;
     private Dimension size;
 
-    public PojamView(String name, Point coordinates, Dimension size, int stroke, Color color) {
+    public PojamModel(String name, Point coordinates, Dimension size, int stroke, Color color) {
         super(color, stroke);
         this.name = name;
         this.coordinates = coordinates;

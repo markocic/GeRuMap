@@ -1,8 +1,8 @@
-package raf.dsw.gerumap.gui.swing.grafika.painters;
+package raf.dsw.gerumap.gui.swing.grafika.painter;
 
 
 
-import raf.dsw.gerumap.gui.swing.grafika.ElementModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 
 import java.awt.*;
 

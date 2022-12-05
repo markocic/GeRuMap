@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.grafika.painters;
+package raf.dsw.gerumap.gui.swing.grafika.painter;
 
 import java.awt.*;
 

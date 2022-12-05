@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.state.concrete;
 
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
@@ -26,5 +27,7 @@ public class DodajPojamState extends State {
         }
 
         // TODO: sada treba nacrtati novi element, pre toga pitati za naziv u oblacicu, mozemo proslediti taj naziv elementu tako da ime bude odmah postavljeno
+        PojamPainter pojamPainter = new PojamPainter();
+//        pojamPainter.draw()
     }
 }

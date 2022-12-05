@@ -1,6 +1,6 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import raf.dsw.gerumap.gui.swing.grafika.painters.ElementPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import javax.swing.*;
