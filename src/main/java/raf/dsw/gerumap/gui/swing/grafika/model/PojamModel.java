@@ -15,4 +15,27 @@ public class PojamModel extends ElementModel {
         this.size = size;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Dimension getSize() {
+        return size;
+    }
+
+    public void setSize(Dimension size) {
+        this.size = size;
+    }
 }

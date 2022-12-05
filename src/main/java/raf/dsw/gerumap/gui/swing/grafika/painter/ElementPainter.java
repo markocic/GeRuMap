@@ -10,11 +10,20 @@ public abstract class ElementPainter {
     private ElementModel element;
     private Shape shape;
 
-    public void draw(Graphics2D graphics2D) {}
+    public ElementPainter(ElementModel elementModel) {
+        this.element = elementModel;
+    }
 
-    public boolean elementAt(int x,int y) {
-        return shape.contains(x,y);
-    };
+    public ElementPainter(ElementModel element, Shape shape) {
+        this.element = element;
+        this.shape = shape;
+    }
+
+    public void draw(Graphics2D g) {}
+
+    public boolean elementAt(Point point) {
+        return shape.contains(point);
+    }
 
     public ElementModel getElement() {
         return element;
