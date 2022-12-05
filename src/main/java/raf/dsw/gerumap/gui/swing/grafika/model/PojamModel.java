@@ -38,4 +38,9 @@ public class PojamModel extends ElementModel {
     public void setSize(Dimension size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
