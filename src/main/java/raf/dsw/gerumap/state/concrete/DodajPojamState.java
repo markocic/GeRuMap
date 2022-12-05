@@ -9,6 +9,7 @@ import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.State;
 
+import javax.swing.*;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -27,8 +28,11 @@ public class DodajPojamState extends State {
                 MainFrame.getInstance().getMapTree().addChild(childMap);
             }
         }
+        String s = JOptionPane.showInputDialog("Unesi ime novog pojma: ","Novi pojam");
+        System.out.println(s);
+        //treba ga ubaciti da se crta unutar elipse i pojavljuje u project view
         // TODO: treba dodati da pita za naziv elementa, taj naziv ispisati unutar elementa i postaviti to ime u project exploreru levo.
-        PojamModel pojamModel = new PojamModel("Default", new Point(x, y), new Dimension(80, 40), 2, Color.BLACK);
+        PojamModel pojamModel = new PojamModel(s, new Point(x, y), new Dimension(80, 40), 2, Color.BLACK);
         Ellipse2D elipsa = new Ellipse2D.Double(pojamModel.getCoordinates().getX(), pojamModel.getCoordinates().getY(), pojamModel.getSize().getWidth(), pojamModel.getSize().getHeight());
         PojamPainter pojamPainter = new PojamPainter(pojamModel, elipsa);
         map.addPainter(pojamPainter);

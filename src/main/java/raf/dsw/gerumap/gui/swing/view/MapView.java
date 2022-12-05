@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.repository.implementation.MindMap;
+import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
 import java.awt.*;
