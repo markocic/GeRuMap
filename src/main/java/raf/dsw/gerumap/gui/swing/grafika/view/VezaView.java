@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.grafika.model;
+package raf.dsw.gerumap.gui.swing.grafika.view;
 
 import java.awt.*;
 
@@ -6,8 +6,8 @@ public class VezaView extends ElementView{
     private PojamView odPojma;
     private PojamView doPojma;
 
-    public VezaView(int stroke, Color color, PojamView odPojma, PojamView doPojma) {
-        super(stroke, color);
+    public VezaView(Color color, int stroke, PojamView odPojma, PojamView doPojma) {
+        super(color, stroke);
         this.odPojma = odPojma;
         this.doPojma = doPojma;
     }

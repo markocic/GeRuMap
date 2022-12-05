@@ -1,6 +1,5 @@
 package raf.dsw.gerumap.gui.swing.view;
 
-import raf.dsw.gerumap.gui.swing.grafika.RadnaPovrsina;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.MindMap;
@@ -61,10 +60,22 @@ public class RightPanel extends JPanel implements ISubscriber {
     }
 
     // mis eventovi
-    public void misKliknut(int x, int y, MindMap map) {
+    public void mousePressedMediator(int x, int y, MindMap map) {
         System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
-        this.stateManager.getCurrentState().performAction(x, y, map);
+        this.stateManager.getCurrentState().mousePressedState(x, y, map);
     }
+
+    public void mouseReleasedMediator(int x, int y, MindMap map) {
+        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
+        this.stateManager.getCurrentState().mouseReleasedState(x, y, map);
+    }
+
+
+    public void mouseDraggedMediator(int x, int y, MindMap map) {
+        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getName());
+        this.stateManager.getCurrentState().mouseDraggedState(x, y, map);
+    }
+
 
     // Observer metode
     @Override

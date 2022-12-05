@@ -11,7 +11,7 @@ import java.util.Enumeration;
 
 public class DodajPojamState extends State {
     @Override
-    public void performAction(int x, int y, MindMap map) {
+    public void mousePressedState(int x, int y, MindMap map) {
         System.out.println("dodaj pojam state, implementirati crtanje ovde");
         // pravljenje novog objekta instance Element i povezivanje sa mapom
         Enumeration<TreeNode> children = ((MapTree)MainFrame.getInstance().getMapTree()).getOpenedNode().children();

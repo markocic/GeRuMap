@@ -1,4 +1,4 @@
 package raf.dsw.gerumap.gui.swing.observer;
 
-public interface GrafikaSubscirber {
+public interface GrafikaSubscriber {
 }
