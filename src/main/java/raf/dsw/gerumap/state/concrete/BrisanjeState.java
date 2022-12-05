@@ -22,6 +22,7 @@ public class BrisanjeState extends State {
 
         // brisanje pojma sa radne povrsine
         if (map.getSelectedPainters().contains(selected)) map.deleteSelectedPainters();
+        else return;
 
         // brisanje pojma iz JTree
         MapTreeItem mindMapTreeItem = getMindMapTreeItem(map.getMapa());
