@@ -29,7 +29,7 @@ public class NewProjectAction extends AbstractGerumapAction {
             AppCore.getInstance().getMsgGenerator().generateMsg("Ne mozete dodati 'decu' na elemente", TipPoruke.GRESKA);
             return;
         }
-        MainFrame.getInstance().getMapTree().addChild(selected);
+        MainFrame.getInstance().getMapTree().addChild(selected, null);
     }
 
 }

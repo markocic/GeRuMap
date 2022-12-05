@@ -32,13 +32,14 @@ public class MapTree implements IMapTree {
     }
 
     @Override
-    public void addChild(MapTreeItem parent) {
+    public void addChild(MapTreeItem parent, String name) {
         if(!((parent.getMapNode()) instanceof MapNodeComposite))return;
 
         MapNode child = createChild(parent.getMapNode());
         if (child.getParent() instanceof Project && openedNode != null &&child.getParent() == openedNode.getMapNode()) {
             child.addSubscriber(MainFrame.getInstance().getRightPanel());
         }
+        if (name != null) child.setName(name);
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());

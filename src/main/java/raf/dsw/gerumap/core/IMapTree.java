@@ -6,7 +6,7 @@ import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 public interface IMapTree {
     MapTreeView generateTree(ProjectExplorer projectExplorer);
-    void addChild(MapTreeItem parent);
+    void addChild(MapTreeItem parent, String name);
 
     void deleteChild(MapTreeItem child);
 
