@@ -10,6 +10,8 @@ public abstract class ElementPainter {
     private ElementModel element;
     private Shape shape;
 
+    private boolean selected;
+
     public ElementPainter(ElementModel elementModel) {
         this.element = elementModel;
     }
@@ -17,6 +19,7 @@ public abstract class ElementPainter {
     public ElementPainter(ElementModel element, Shape shape) {
         this.element = element;
         this.shape = shape;
+        this.selected = false;
     }
 
     public void draw(Graphics2D g) {}
@@ -39,5 +42,13 @@ public abstract class ElementPainter {
 
     public void setShape(Shape shape) {
         this.shape = shape;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

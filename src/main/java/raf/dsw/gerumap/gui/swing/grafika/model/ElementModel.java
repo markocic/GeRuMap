@@ -5,6 +5,7 @@ import java.awt.*;
 // publisher
 public abstract class ElementModel {
     private Color color;
+    private Color customColor;
     private int stroke;
 
     public ElementModel(Color color, int stroke) {
@@ -26,5 +27,13 @@ public abstract class ElementModel {
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
+    }
+
+    public Color getCustomColor() {
+        return customColor;
+    }
+
+    public void setCustomColor(Color customColor) {
+        this.customColor = customColor;
     }
 }

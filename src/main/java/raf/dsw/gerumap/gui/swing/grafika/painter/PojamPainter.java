@@ -22,7 +22,8 @@ public class PojamPainter extends ElementPainter{
     @Override
     public void draw(Graphics2D g) {
         // crtanje elipse ovde
-        g.setPaint(this.getElement().getColor());
+        if (getElement().getCustomColor() != null && !isSelected()) g.setPaint(this.getElement().getCustomColor());
+        else g.setPaint(getElement().getColor());
         g.setStroke(new BasicStroke(this.getElement().getStroke()));
         drawCenteredString(g, ((PojamModel) getElement()).getName());
         g.draw(getShape());

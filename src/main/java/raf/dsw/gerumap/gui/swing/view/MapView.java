@@ -48,13 +48,15 @@ public class MapView extends JPanel{
 
     public void addSelectedPainter(ElementPainter painter) {
         if (painter == null) return;
+        painter.setSelected(true);
         selectedPainters.add(painter);
         recolorSelected();
         repaint();
     }
 
     public void removeSelectedPainter(ElementPainter painter) {
-        if (painter == null && !selectedPainters.isEmpty()) return;
+        if (painter == null || !selectedPainters.isEmpty()) return;
+        painter.setSelected(false);
         selectedPainters.remove(painter); // remove vec proverava da li element postoji u nizu
         recolorSelected();
         repaint();
@@ -68,6 +70,9 @@ public class MapView extends JPanel{
     }
 
     public void deselectAll() {
+        for (ElementPainter painter : selectedPainters) {
+            painter.setSelected(false);
+        }
         selectedPainters.clear();
         recolorSelected();
         repaint();
