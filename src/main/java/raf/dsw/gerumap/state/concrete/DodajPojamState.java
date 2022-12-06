@@ -19,8 +19,13 @@ import java.util.Enumeration;
 public class DodajPojamState extends State {
     @Override
     public void mousePressedState(int x, int y, MapView map) {
-        String pojamName = JOptionPane.showInputDialog("Unesi ime novog pojma: ","Novi pojam");
-        System.out.println(pojamName);
+        // ne dozvoljava korisniku da napravi "blank" pojam
+        String pojamName = "";
+        do {
+            pojamName = JOptionPane.showInputDialog("Unesi ime novog pojma: ","Novi pojam");
+
+        } while (pojamName.isBlank());
+
         // izgleda da ne moraju elementi da se reflektuju u JTree tako da sam dosta vremena bacio u vodu al bar necu morati jos koji sat :)
 //        // pravljenje novog objekta instance Element i povezivanje sa mapom
 //        Enumeration<TreeNode> children = ((MapTree)MainFrame.getInstance().getMapTree()).getOpenedNode().children();

@@ -70,7 +70,6 @@ public class RightPanel extends JPanel implements ISubscriber {
 
 
     public void mouseDraggedMediator(int x, int y, MapView map) {
-        System.out.println("x: " + x + " y: " + y + " mapa ime: " + map.getMapa().getName());
         this.stateManager.getCurrentState().mouseDraggedState(x, y, map);
     }
 

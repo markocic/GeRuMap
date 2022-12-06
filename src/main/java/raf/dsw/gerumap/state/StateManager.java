@@ -29,39 +29,30 @@ public class StateManager {
     }
 
     public void setBrisanjeState() {
-        System.out.println("brisanje");
         currentState = brisanjeState;
     }
 
     public void setDodajPojamState() {
-        System.out.println("dodaj pojam");
-
         currentState = dodajPojamState;
     }
 
     public void setPomeranjeState() {
-        System.out.println("pomeranje");
-
         currentState = pomeranjeState;
     }
 
     public void setSelekcijaState() {
-        System.out.println("selekcija");
         currentState = selekcijaState;
     }
 
     public void setNapraviVezuState() {
-        System.out.println("napravi vezu");
         currentState = napraviVezuState;
     }
 
     public void setZumiranjeState() {
-        System.out.println("zumiranje");
         currentState = zumiranjeState;
     }
 
     public void setPodesavanjaState() {
-        System.out.println("podesavanja");
         currentState = podesavanjaState;
     }
 

@@ -7,17 +7,11 @@ import raf.dsw.gerumap.repository.implementation.MindMap;
 import java.awt.*;
 
 public abstract class State {
-    public void mousePressedState(int x, int y, MapView map) {
-//        System.out.println("placeholder mouse pressed, need to be overridden");
-    }
+    public void mousePressedState(int x, int y, MapView map) {}
 
-    public void mouseReleasedState(int x, int y, MapView map) {
-//        System.out.println("placeholder mouse released, need to be overridden");
-    }
+    public void mouseReleasedState(int x, int y, MapView map) {}
 
-    public void mouseDraggedState(int x, int y, MapView map) {
-//        System.out.println("placeholder mouse dragged, need to be overridden");
-    }
+    public void mouseDraggedState(int x, int y, MapView map) {}
 
     public ElementPainter getPainterAtClickedLocation(Point point, MapView map) {
         for (ElementPainter painter : map.getPainters()) {

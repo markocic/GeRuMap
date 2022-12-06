@@ -18,7 +18,7 @@ public class NapraviVezuState extends State {
     public void mousePressedState(int x, int y, MapView map) {
         // ovde postaviti prvi point za liniju
         // objekat na x i y koordinati predstavlja od pojam
-        vezaPainter = new VezaPainter(new VezaModel(Color.GRAY, 2, new Point(x, y), new Point(x,y)));
+        vezaPainter = new VezaPainter(new VezaModel(Color.lightGray, 2, new Point(x, y), new Point(x,y)));
         map.addPainterAtIndex(vezaPainter, 0);
 
     }
