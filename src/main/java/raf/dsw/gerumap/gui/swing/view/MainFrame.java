@@ -35,6 +35,8 @@ public class MainFrame extends JFrame{
 
 
 
+
+
     private MainFrame() {
     }
 
@@ -84,6 +86,7 @@ public class MainFrame extends JFrame{
 
         paleta = new Paleta();
         this.getContentPane().add(paleta,BorderLayout.EAST);
+
 
 
 
