@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.state;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.repository.implementation.MindMap;
@@ -36,5 +38,17 @@ public abstract class State {
             }
         }
         return vezaPainterList;
+    }
+
+
+    public boolean pojamNameExists(String name, MapView map) {
+
+        for (ElementPainter painter : map.getPainters()) {
+            if (painter instanceof PojamPainter && name.equals(((PojamModel) painter.getElement()).getName())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

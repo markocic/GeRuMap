@@ -2,6 +2,7 @@ package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
@@ -26,8 +27,12 @@ public class DodajPojamState extends State {
         boolean check = true;
         do {
             pojamName = JOptionPane.showInputDialog("Unesi ime novog pojma: ","Novi pojam");
+            if (pojamName == null) return; // kliknuo je na cancel dugme
             if (pojamName.isBlank()) {
                 AppCore.getInstance().getMsgGenerator().generateMsg("Ime ne moze da bude prazno", TipPoruke.GRESKA);
+            }
+            else if (pojamNameExists(pojamName, map)) {
+                AppCore.getInstance().getMsgGenerator().generateMsg("Pojam sa imenom '" + pojamName +"' vec postoji", TipPoruke.GRESKA);
             }
             else check = false;
 
