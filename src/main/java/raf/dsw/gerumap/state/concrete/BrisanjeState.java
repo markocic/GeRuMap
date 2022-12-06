@@ -21,25 +21,19 @@ public class BrisanjeState extends State {
             return;
         }
 
-        // brisanje pojma sa radne povrsine
-        if (map.getSelectedPainters().contains(selected)) map.deleteSelectedPainters();
-        else {
+        // provera da je korisnik kliknuo na jedan od selektovanih pojmova
+        if (!map.getSelectedPainters().contains(selected)) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Pojam na koji ste kliknuli nije selektovan", TipPoruke.OBAVJESTENJE);
             return;
         }
 
-        // brisanje veza koje su povezane sa pojmom koji brisemo
-        ArrayList<ElementPainter> vezaPainterList = new ArrayList<>();
-        for (ElementPainter painter : map.getPainters()) {
-            if (painter instanceof VezaPainter) {
-                VezaModel vezaModel = (VezaModel) painter.getElement();
-                if (vezaModel.getOdPojma().equals(selected.getElement()) || vezaModel.getDoPojma().equals(selected.getElement())) {
-                    vezaPainterList.add(painter);
-                }
-            }
+        // brisanje svih veza koje su povezane sa selektovanim pojmovima
+        for (ElementPainter painter : map.getSelectedPainters()) {
+            map.removeAllPainters(getVezePojma(painter, map));
         }
 
-        map.removeAllPainters(vezaPainterList);
+        // brisanje svih selektovanih pojmova sa radne povrsine
+        map.deleteSelectedPainters();
     }
 
 }
