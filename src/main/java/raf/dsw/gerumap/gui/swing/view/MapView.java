@@ -48,6 +48,12 @@ public class MapView extends JPanel{
         repaint();
     }
 
+    public void removePainter(ElementPainter painter) {
+        if (painter == null || painters.isEmpty()) return;
+        painters.remove(painter);
+        repaint();
+    }
+
     public void addSelectedPainter(ElementPainter painter) {
         if (painter == null) return;
         painter.setSelected(true);

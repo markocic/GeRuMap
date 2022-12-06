@@ -25,6 +25,7 @@ public abstract class ElementPainter {
     public void draw(Graphics2D g) {}
 
     public boolean elementAt(Point point) {
+        if (shape == null) return false;
         return shape.contains(point);
     }
 

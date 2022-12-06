@@ -14,7 +14,9 @@ public class VezaPainter extends ElementPainter{
     @Override
     public void draw(Graphics2D g) {
             VezaModel vezaModel = (VezaModel) getElement();
-            g.drawLine(vezaModel.getOdPojma().getCoordinates().x,vezaModel.getOdPojma().getCoordinates().y,
-                    vezaModel.getDoPojma().getCoordinates().x,vezaModel.getDoPojma().getCoordinates().y);
+            g.setStroke(new BasicStroke(vezaModel.getStroke()));
+            g.setColor(vezaModel.getColor());
+            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
+                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
     }
 }
