@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
@@ -62,10 +64,20 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
 
     public void saveActionPerformed(ActionEvent e) {
         // kod za save dugme
-        confirmed = true;
         this.name = nameField.getText();
         this.color = colorChooser.getColor();
-        this.stroke = Integer.parseInt(strokeField.getText());
+        if (name.isBlank()) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Ime ne moze da bude prazno", TipPoruke.GRESKA);
+            return;
+        }
+        try {
+            this.stroke = Integer.parseInt(strokeField.getText());
+
+        } catch (NumberFormatException numberFormatException) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Stroke mora da bude ceo broj", TipPoruke.GRESKA);
+            return;
+        }
+        confirmed = true;
         setVisible(false);
         dispose();
     }
