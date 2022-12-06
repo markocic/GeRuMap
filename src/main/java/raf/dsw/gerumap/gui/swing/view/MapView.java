@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class MapView extends JPanel{
 
     public MapView() {
         this.addMouseListener(new MouseController());
+        this.addMouseMotionListener(new MouseMotionController());
         setSize(400,400);
         this.setBackground(Color.WHITE);
         this.painters = new ArrayList<>();
@@ -119,12 +121,12 @@ public class MapView extends JPanel{
                 MainFrame.getInstance().getRightPanel().mouseReleasedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
             }
         }
+    }
 
+    public class MouseMotionController extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent e) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                MainFrame.getInstance().getRightPanel().mouseDraggedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
-            }
+            MainFrame.getInstance().getRightPanel().mouseDraggedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
         }
     }
 
