@@ -1,8 +1,10 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
@@ -12,6 +14,7 @@ import raf.dsw.gerumap.state.State;
 
 import javax.swing.tree.TreeNode;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class BrisanjeState extends State {
@@ -23,6 +26,18 @@ public class BrisanjeState extends State {
         // brisanje pojma sa radne povrsine
         if (map.getSelectedPainters().contains(selected)) map.deleteSelectedPainters();
         else return;
+
+        ArrayList<ElementPainter> vezaPainterList = new ArrayList<>();
+        for (ElementPainter painter : map.getPainters()) {
+            if (painter instanceof VezaPainter) {
+                VezaModel vezaModel = (VezaModel) painter.getElement();
+                if (vezaModel.getOdPojma().equals(selected.getElement()) || vezaModel.getDoPojma().equals(selected.getElement())) {
+                    vezaPainterList.add(painter);
+                }
+            }
+        }
+
+        map.removeAllPainters(vezaPainterList);
 
 
 //        // brisanje pojma iz JTree

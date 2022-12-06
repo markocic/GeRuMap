@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+
 import java.awt.*;
 
 public class PojamModel extends ElementModel {
@@ -13,6 +15,16 @@ public class PojamModel extends ElementModel {
         this.name = name;
         this.coordinates = coordinates;
         this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PojamModel)) return false;
+
+        // 2 pojma su jednaka ukoliko imaju isto ime, velicinu i koordinate
+        return this.getName().equals(((PojamModel) obj).getName()) &&
+                this.getSize().equals(((PojamModel) obj).getSize()) &&
+                this.getCoordinates().equals(((PojamModel) obj).getCoordinates());
     }
 
     public String getName() {
