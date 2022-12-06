@@ -22,19 +22,22 @@ public class PojamPainter extends ElementPainter{
 
     @Override
     public void draw(Graphics2D g) {
-        // postavljamo boju
-        if (getElement().getCustomColor() != null && !isSelected()) g.setPaint(this.getElement().getCustomColor());
-        else g.setPaint(getElement().getColor());
         // debljina linije
         g.setStroke(new BasicStroke(this.getElement().getStroke()));
-
         PojamModel pojam = ((PojamModel) getElement());
         String name = pojam.getName();
         // racunamo velicinu elipse na osnovu imena
         pojam.setSize(getSizeBasedOnText(g, name));
         setShape(new Ellipse2D.Double(pojam.getCoordinates().getX(), pojam.getCoordinates().getY(), pojam.getSize().getWidth(), pojam.getSize().getHeight()));
-        drawCenteredString(g, name);
+        g.setPaint(Color.WHITE);
+        g.fill(getShape());
+
+        // postavljamo boju
+        if (getElement().getCustomColor() != null && !isSelected()) g.setPaint(this.getElement().getCustomColor());
+        else g.setPaint(getElement().getColor());
+
         g.draw(getShape());
+        drawCenteredString(g, name);
     }
 
     public void drawCenteredString(Graphics2D g, String text) {

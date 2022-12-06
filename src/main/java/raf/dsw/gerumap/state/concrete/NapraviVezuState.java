@@ -9,6 +9,7 @@ import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class NapraviVezuState extends State {
     private VezaPainter vezaPainter;
@@ -18,7 +19,7 @@ public class NapraviVezuState extends State {
         // ovde postaviti prvi point za liniju
         // objekat na x i y koordinati predstavlja od pojam
         vezaPainter = new VezaPainter(new VezaModel(Color.GRAY, 2, new Point(x, y), new Point(x,y)));
-        map.addPainter(vezaPainter);
+        map.addPainterAtIndex(vezaPainter, 0);
 
     }
 
@@ -41,8 +42,14 @@ public class NapraviVezuState extends State {
         PojamModel pocetniPojamModel = (PojamModel) pocetniPojam.getElement();
         PojamModel krajnjiPojamModel = (PojamModel) krajnjiPojam.getElement();
 
-        ((VezaModel) vezaPainter.getElement()).setPocetnaTacka(pocetniPojamModel.getCoordinates());
-        ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(krajnjiPojamModel.getCoordinates());
+        Ellipse2D pocetnaElipsa = (Ellipse2D) pocetniPojam.getShape();
+        Ellipse2D krajnjaElipsa = (Ellipse2D) krajnjiPojam.getShape();
+
+        Point pocetnaTacka = new Point((int) pocetnaElipsa.getCenterX(), (int) pocetnaElipsa.getCenterY());
+        Point krajnjaTacka = new Point((int) krajnjaElipsa.getCenterX(), (int) krajnjaElipsa.getCenterY());
+
+        ((VezaModel) vezaPainter.getElement()).setPocetnaTacka(pocetnaTacka);
+        ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(krajnjaTacka);
         ((VezaModel) vezaPainter.getElement()).setDoPojma(pocetniPojamModel);
         ((VezaModel) vezaPainter.getElement()).setOdPojma(krajnjiPojamModel);
 
