@@ -16,7 +16,7 @@ public class PodesavanjaState extends State {
         ElementPainter selected = getPainterAtClickedLocation(new Point(x, y), map);
         if (!(selected instanceof PojamPainter)) return;
         String name = ((PojamModel)selected.getElement()).getName();
-        Color color = (selected.getElement().getCustomColor() != null) ? selected.getElement().getCustomColor() : selected.getElement().getColor();
+        Color color = (selected.getElement().getCustomColor() != null && !selected.isSelected()) ? selected.getElement().getCustomColor() : selected.getElement().getColor();
         int stroke = selected.getElement().getStroke();
         PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke);
 

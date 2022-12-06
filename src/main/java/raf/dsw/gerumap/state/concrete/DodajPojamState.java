@@ -34,8 +34,7 @@ public class DodajPojamState extends State {
 //            }
 //        }
         PojamModel pojamModel = new PojamModel(pojamName, new Point(x, y), new Dimension(80, 40), 2, Color.BLACK);
-        Ellipse2D elipsa = new Ellipse2D.Double(pojamModel.getCoordinates().getX(), pojamModel.getCoordinates().getY(), pojamModel.getSize().getWidth(), pojamModel.getSize().getHeight());
-        PojamPainter pojamPainter = new PojamPainter(pojamModel, elipsa);
+        PojamPainter pojamPainter = new PojamPainter(pojamModel);
         map.addPainter(pojamPainter);
     }
 
