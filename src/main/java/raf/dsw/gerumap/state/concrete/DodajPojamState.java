@@ -40,6 +40,8 @@ public class DodajPojamState extends State {
 
         PojamModel pojamModel = new PojamModel(pojamName, new Point(x, y), new Dimension(80, 40), 2, Color.BLACK);
         PojamPainter pojamPainter = new PojamPainter(pojamModel);
+        map.getMapa().addModel(pojamModel);
+        pojamModel.addGrafikaSubscriber(map);
         map.addPainter(pojamPainter);
     }
 

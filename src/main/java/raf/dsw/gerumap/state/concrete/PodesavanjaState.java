@@ -22,7 +22,7 @@ public class PodesavanjaState extends State {
         int stroke = selected.getElement().getStroke();
         PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke);
 
-        while (pojamNameExists(modal.getName(), map) && !modal.getName().equals(name)) {
+        while (modal.getName() != null && pojamNameExists(modal.getName(), map) && !modal.getName().equals(name)) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Pojam sa imenom '" + modal.getName() +"' vec postoji", TipPoruke.GRESKA);
             modal.setVisible(true);
         }

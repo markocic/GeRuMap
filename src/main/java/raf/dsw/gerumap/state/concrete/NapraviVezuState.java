@@ -3,7 +3,6 @@ package raf.dsw.gerumap.state.concrete;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
-import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
@@ -19,7 +18,9 @@ public class NapraviVezuState extends State {
         // ovde postaviti prvi point za liniju
         // objekat na x i y koordinati predstavlja od pojam
         vezaPainter = new VezaPainter(new VezaModel(Color.lightGray, 2, new Point(x, y), new Point(x,y)));
+        map.getMapa().addModelAtIndex(vezaPainter.getElement(), 0);
         map.addPainterAtIndex(vezaPainter, 0);
+        vezaPainter.getElement().addGrafikaSubscriber(map);
 
     }
 
@@ -35,6 +36,7 @@ public class NapraviVezuState extends State {
 
         if (pocetniPojam == null || krajnjiPojam == null) {
             // korisnik nije povezao 2 pojma, izbaciti error
+            map.getMapa().removeModel(vezaModel);
             map.removePainter(vezaPainter);
             return;
         }
@@ -52,9 +54,6 @@ public class NapraviVezuState extends State {
         ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(krajnjaTacka);
         ((VezaModel) vezaPainter.getElement()).setDoPojma(pocetniPojamModel);
         ((VezaModel) vezaPainter.getElement()).setOdPojma(krajnjiPojamModel);
-
-
-        map.repaint();
     }
 
     @Override
@@ -62,6 +61,5 @@ public class NapraviVezuState extends State {
         // za svaki dogadjaj uraditi update da trenutno mesto misa bude drugi point linije
         ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(new Point(x,y));
 
-        map.repaint();
     }
 }

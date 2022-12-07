@@ -1,9 +1,18 @@
 package raf.dsw.gerumap.repository.implementation;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
-public class MindMap extends MapNodeComposite {
+import java.util.ArrayList;
+
+public class MindMap extends MapNodeComposite implements GrafikaPublisher {
+
+    private ArrayList<GrafikaSubscriber> subscribers = new ArrayList<>();
+    private ArrayList<ElementModel> models = new ArrayList<>();
     private boolean template;
     private static int counter = 0;
 
@@ -13,8 +22,7 @@ public class MindMap extends MapNodeComposite {
 
     @Override
     public void addChild(MapNode child) {
-        if (child != null && child instanceof Element) {
-            Element element = (Element) child;
+        if (child instanceof Element element) {
             if (!this.getChildren().contains(element)) {
                 this.getChildren().add(element);
             }
@@ -25,11 +33,8 @@ public class MindMap extends MapNodeComposite {
 
     @Override
     public void deleteChild(MapNode child) {
-        if (child != null && child instanceof Element) {
-            Element element = (Element) child;
-            if (this.getChildren().contains(element)) {
-                this.getChildren().remove(element);
-            }
+        if (child instanceof Element element) {
+            this.getChildren().remove(element);
         }
 
         this.notifySubscribers(this);
@@ -53,5 +58,45 @@ public class MindMap extends MapNodeComposite {
 
     public void setTemplate(boolean template) {
         this.template = template;
+    }
+
+    @Override
+    public void addGrafikaSubscriber(GrafikaSubscriber sub) {
+        if (sub == null) return;
+        if (this.subscribers == null) this.subscribers = new ArrayList<>();
+        if (this.subscribers.contains(sub)) return;
+        this.subscribers.add(sub);
+    }
+
+    @Override
+    public void removeGrafikaSubscriber(GrafikaSubscriber sub) {
+        if(sub == null || this.subscribers == null || !this.subscribers.contains(sub)) return;
+        this.subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifyGrafikaSubscribers() {
+        if (this.subscribers == null || this.subscribers.isEmpty()) return;
+        for (GrafikaSubscriber sub : this.subscribers) {
+            sub.update();
+        }
+    }
+
+    public void addModel(ElementModel model) {
+        if (model == null) return;
+        models.add(model);
+        notifyGrafikaSubscribers();
+    }
+
+    public void addModelAtIndex(ElementModel model, int index) {
+        if (model == null) return;
+        models.add(index, model);
+        notifyGrafikaSubscribers();
+    }
+
+    public void removeModel(ElementModel model) {
+        if (model == null) return;
+        models.remove(model);
+        notifyGrafikaSubscribers();
     }
 }

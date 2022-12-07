@@ -18,5 +18,4 @@ public interface IPublisher {
     void notifyMindMapNameChanged(String oldName, String newName);
 
 
-
 }

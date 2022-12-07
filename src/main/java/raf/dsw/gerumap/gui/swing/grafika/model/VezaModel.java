@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+
 import java.awt.*;
 
 public class VezaModel extends ElementModel {
@@ -26,6 +28,7 @@ public class VezaModel extends ElementModel {
 
     public void setOdPojma(PojamModel odPojma) {
         this.odPojma = odPojma;
+        notifyGrafikaSubscribers();
     }
 
     public PojamModel getDoPojma() {
@@ -34,6 +37,7 @@ public class VezaModel extends ElementModel {
 
     public void setDoPojma(PojamModel doPojma) {
         this.doPojma = doPojma;
+        notifyGrafikaSubscribers();
     }
 
     public Point getPocetnaTacka() {
@@ -42,6 +46,7 @@ public class VezaModel extends ElementModel {
 
     public void setPocetnaTacka(Point pocetnaTacka) {
         this.pocetnaTacka = pocetnaTacka;
+        notifyGrafikaSubscribers();
     }
 
     public Point getKrajnjaTacka() {
@@ -50,5 +55,6 @@ public class VezaModel extends ElementModel {
 
     public void setKrajnjaTacka(Point krajnjaTacka) {
         this.krajnjaTacka = krajnjaTacka;
+        notifyGrafikaSubscribers();
     }
 }

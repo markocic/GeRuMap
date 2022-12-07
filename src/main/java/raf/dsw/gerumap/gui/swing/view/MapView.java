@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.view;
 
 
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
@@ -13,7 +14,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapView extends JPanel{
+public class MapView extends JPanel implements GrafikaSubscriber{
 
     List<ElementPainter> painters;
     List<ElementPainter> selectedPainters;
@@ -26,6 +27,13 @@ public class MapView extends JPanel{
         this.setBackground(Color.WHITE);
         this.painters = new ArrayList<>();
         this.selectedPainters = new ArrayList<>();
+
+    }
+
+    public MapView(MindMap map) {
+        this();
+        this.mapa = map;
+        this.mapa.addGrafikaSubscriber(this);
     }
 
     protected void paintComponent(Graphics g) {
@@ -45,25 +53,24 @@ public class MapView extends JPanel{
     public void addPainter(ElementPainter painter) {
         if (painter == null) return;
         painters.add(painter);
-        repaint();
     }
 
     public void addPainterAtIndex(ElementPainter painter, int index) {
         if (painter == null) return;
         painters.add(index, painter);
-        repaint();
     }
 
     public void removePainter(ElementPainter painter) {
         if (painter == null || painters.isEmpty()) return;
         painters.remove(painter);
-        repaint();
     }
 
     public void removeAllPainters(ArrayList<ElementPainter> paintersList) {
         if (paintersList.isEmpty() || painters.isEmpty()) return;
         painters.removeAll(paintersList);
-        repaint();
+        for (ElementPainter painter : paintersList) {
+            mapa.removeModel(painter.getElement());
+        }
     }
 
     public void addSelectedPainter(ElementPainter painter) {
@@ -71,7 +78,6 @@ public class MapView extends JPanel{
         painter.setSelected(true);
         selectedPainters.add(painter);
         recolorSelected();
-        repaint();
     }
 
     public void removeSelectedPainter(ElementPainter painter) {
@@ -79,12 +85,12 @@ public class MapView extends JPanel{
         painter.setSelected(false);
         selectedPainters.remove(painter); // remove vec proverava da li element postoji u nizu
         recolorSelected();
-        repaint();
     }
 
     public void deleteSelectedPainters() {
         for (ElementPainter painter : selectedPainters) {
             painters.remove(painter);
+            mapa.removeModel(painter.getElement());
         }
         deselectAll();
     }
@@ -95,7 +101,6 @@ public class MapView extends JPanel{
         }
         selectedPainters.clear();
         recolorSelected();
-        repaint();
     }
 
     public void recolorSelected() {
@@ -119,9 +124,9 @@ public class MapView extends JPanel{
         this.painters = painters;
     }
 
-    public MapView(MindMap map) {
-        this();
-        this.mapa = map;
+    @Override
+    public void update() {
+        repaint();
     }
 
 

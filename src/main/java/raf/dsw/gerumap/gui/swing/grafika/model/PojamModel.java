@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 
 import java.awt.*;
 
@@ -33,6 +34,7 @@ public class PojamModel extends ElementModel {
 
     public void setName(String name) {
         this.name = name;
+        notifyGrafikaSubscribers();
     }
 
     public Point getCoordinates() {
@@ -41,6 +43,7 @@ public class PojamModel extends ElementModel {
 
     public void setCoordinates(Point coordinates) {
         this.coordinates = coordinates;
+        notifyGrafikaSubscribers();
     }
 
     public Dimension getSize() {
@@ -49,6 +52,7 @@ public class PojamModel extends ElementModel {
 
     public void setSize(Dimension size) {
         this.size = size;
+        notifyGrafikaSubscribers();
     }
 
     @Override
