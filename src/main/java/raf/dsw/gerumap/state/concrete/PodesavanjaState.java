@@ -20,20 +20,37 @@ public class PodesavanjaState extends State {
         String name = ((PojamModel)selected.getElement()).getName();
         Color color = selected.getElement().getColor();
         int stroke = selected.getElement().getStroke();
-        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke);
 
-        while (modal.getName() != null && pojamNameExists(modal.getName(), map) && !modal.getName().equals(name)) {
-            AppCore.getInstance().getMsgGenerator().generateMsg("Pojam sa imenom '" + modal.getName() +"' vec postoji", TipPoruke.GRESKA);
-            modal.setVisible(true);
+        boolean viseSelektovanih = map.getSelectedPainters().size() > 1;
+
+        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke, viseSelektovanih);
+
+        // dalja validacija imena, takodje se preskace ako je selektovano vise elemenata
+        if (!viseSelektovanih) {
+            while (modal.getName() != null && pojamNameExists(modal.getName(), map) && !modal.getName().equals(name)) {
+                AppCore.getInstance().getMsgGenerator().generateMsg("Pojam sa imenom '" + modal.getName() +"' vec postoji", TipPoruke.GRESKA);
+                modal.setVisible(true);
+            }
+
         }
 
-        if (modal.isConfirmed()) {
-            selected.getElement().setColor(modal.getColor());
-            selected.getElement().setStroke(modal.getStroke());
-            ((PojamModel) selected.getElement()).setName(modal.getName());
+        if (!modal.isConfirmed()) return;
+
+        if (viseSelektovanih) multiSelectChange(map, modal.getColor(), modal.getStroke());
+        else singleSelectChange(selected, modal.getName(), modal.getColor(), modal.getStroke());
+
+    }
+
+    public void multiSelectChange(MapView map, Color color, int stroke) {
+        for (ElementPainter painter : map.getSelectedPainters()) {
+            painter.getElement().setColor(color);
+            painter.getElement().setStroke(stroke);
         }
+    }
 
-        map.repaint();
-
+    public void singleSelectChange(ElementPainter painter, String name, Color color, int stroke) {
+        painter.getElement().setStroke(stroke);
+        painter.getElement().setColor(color);
+        ((PojamModel) painter.getElement()).setName(name);
     }
 }

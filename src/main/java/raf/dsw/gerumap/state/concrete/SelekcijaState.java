@@ -25,8 +25,6 @@ public class SelekcijaState  extends State {
 
     @Override
     public void mouseReleasedState(int x, int y, MapView map) {
-        updateSelectionRect(map, x, y);
-
         map.setSelekcijaRect(new Rectangle2D.Double());
 
     }

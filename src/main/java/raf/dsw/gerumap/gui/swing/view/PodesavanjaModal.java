@@ -15,12 +15,14 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
     private Color color;
     private int stroke;
     private boolean confirmed;
+    private boolean viseSelektovanih;
     private JTextField nameField;
     private JColorChooser colorChooser;
     private JTextField strokeField;
 
-    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke) {
+    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke, boolean viseSelektovanih) {
         super(parent, "Settings", true);
+        this.viseSelektovanih = viseSelektovanih;
         confirmed = false;
         if (parent != null) {
             Dimension parentSize = parent.getSize();
@@ -29,9 +31,12 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
             setSize(parentSize.width / 4, parentSize.height / 4);
         }
         JPanel messagePane = new JPanel();
-        messagePane.add(new JLabel("Ime: "));
-        this.nameField = new JTextField(name, 12);
-        messagePane.add(nameField);
+        if (!viseSelektovanih) {
+            messagePane.add(new JLabel("Ime: "));
+            this.nameField = new JTextField(name, 12);
+            messagePane.add(nameField);
+
+        }
 
         this.colorChooser = new JColorChooser(color);
         messagePane.add(colorChooser);
@@ -64,12 +69,19 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
 
     public void saveActionPerformed(ActionEvent e) {
         // kod za save dugme
-        this.name = nameField.getText();
         this.color = colorChooser.getColor();
-        if (name.isBlank()) {
-            AppCore.getInstance().getMsgGenerator().generateMsg("Ime ne moze da bude prazno", TipPoruke.GRESKA);
-            return;
+
+        // validacija imena, samo ako je selektovan 1 element
+        if (!viseSelektovanih) {
+            this.name = nameField.getText();
+            if (name.isBlank()) {
+                AppCore.getInstance().getMsgGenerator().generateMsg("Ime ne moze da bude prazno", TipPoruke.GRESKA);
+                return;
+            }
+
         }
+
+
         try {
             this.stroke = Integer.parseInt(strokeField.getText());
 
