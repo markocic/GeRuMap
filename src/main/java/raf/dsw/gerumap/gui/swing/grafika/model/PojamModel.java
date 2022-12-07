@@ -1,8 +1,5 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
-import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
-import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
-
 import java.awt.*;
 
 public class PojamModel extends ElementModel {
@@ -52,7 +49,7 @@ public class PojamModel extends ElementModel {
 
     public void setSize(Dimension size) {
         this.size = size;
-        notifyGrafikaSubscribers();
+//        notifyGrafikaSubscribers(); moramo da uklonimo jer stvara beskonacnu petlju update poziva
     }
 
     @Override
