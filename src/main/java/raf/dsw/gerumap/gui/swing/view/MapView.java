@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     List<ElementPainter> painters;
     List<ElementPainter> selectedPainters;
+    private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
     public MapView() {
@@ -39,6 +41,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
         for (ElementPainter painter : painters) {
@@ -122,6 +125,15 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     public void setPainters(List<ElementPainter> painters) {
         this.painters = painters;
+    }
+
+    public Rectangle2D getSelekcijaRect() {
+        return selekcijaRect;
+    }
+
+    public void setSelekcijaRect(Rectangle2D selekcijaRect) {
+        this.selekcijaRect = selekcijaRect;
+        this.repaint();
     }
 
     @Override

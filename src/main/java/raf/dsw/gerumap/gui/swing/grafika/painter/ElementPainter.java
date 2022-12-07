@@ -43,6 +43,7 @@ public abstract class ElementPainter {
 
     public void setShape(Shape shape) {
         this.shape = shape;
+
     }
 
     public boolean isSelected() {
