@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public abstract class ElementModel implements GrafikaPublisher {
     private ArrayList<GrafikaSubscriber> subscribers = new ArrayList<>();
     private Color color;
-    private Color customColor;
     private int stroke;
 
     public ElementModel(Color color, int stroke) {
@@ -33,15 +32,6 @@ public abstract class ElementModel implements GrafikaPublisher {
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
-        notifyGrafikaSubscribers();
-    }
-
-    public Color getCustomColor() {
-        return customColor;
-    }
-
-    public void setCustomColor(Color customColor) {
-        this.customColor = customColor;
         notifyGrafikaSubscribers();
     }
 

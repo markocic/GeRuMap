@@ -33,8 +33,8 @@ public class PojamPainter extends ElementPainter{
         g.fill(getShape());
 
         // postavljamo boju
-        if (getElement().getCustomColor() != null && !isSelected()) g.setPaint(this.getElement().getCustomColor());
-        else g.setPaint(getElement().getColor());
+        if (isSelected()) g.setPaint(Color.RED);
+        else g.setPaint(pojam.getColor());
 
         g.draw(getShape());
         drawCenteredString(g, name);

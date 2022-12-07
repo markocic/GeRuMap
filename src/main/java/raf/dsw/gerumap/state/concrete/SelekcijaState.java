@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 
@@ -15,13 +16,8 @@ public class SelekcijaState  extends State {
     private int startY;
     @Override
     public void mousePressedState(int x, int y, MapView map) {
-        map.deselectAll();
-//        ElementPainter clicked = getPainterAtClickedLocation(new Point(x, y), map);
-//        if (!(clicked instanceof PojamPainter)) return;
-//
-//        map.addSelectedPainter(clicked);
-        selekcijaShape = map.getSelekcijaRect();
-        map.setSelekcijaRect(new Rectangle2D.Double(x, y, 1, 1));
+        selekcijaShape = new Rectangle2D.Double(x, y, 1 ,1);
+        map.setSelekcijaRect(selekcijaShape);
         startX = x;
         startY = y;
         checkSelection(map);
@@ -47,7 +43,7 @@ public class SelekcijaState  extends State {
         map.deselectAll();
         ArrayList<ElementPainter> results = new ArrayList<>();
         for (ElementPainter painter : map.getPainters()) {
-            if (map.getSelekcijaRect().intersects(painter.getShape().getBounds())) {
+            if (painter instanceof PojamPainter && map.getSelekcijaRect().intersects(painter.getShape().getBounds())) {
                 results.add(painter);
             }
         }
