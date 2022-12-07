@@ -84,15 +84,15 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     public void addSelectedPainter(ElementPainter painter) {
         if (painter == null) return;
         painter.setSelected(true);
+        painter.getElement().setColor(Color.RED);
         selectedPainters.add(painter);
-        recolorSelected();
     }
 
     public void removeSelectedPainter(ElementPainter painter) {
         if (painter == null || !selectedPainters.isEmpty()) return;
         painter.setSelected(false);
+        painter.getElement().setColor(Color.BLACK);
         selectedPainters.remove(painter); // remove vec proverava da li element postoji u nizu
-        recolorSelected();
     }
 
     public void deleteSelectedPainters() {
@@ -106,20 +106,10 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     public void deselectAll() {
         for (ElementPainter painter : selectedPainters) {
             painter.setSelected(false);
-        }
-        selectedPainters.clear();
-        recolorSelected();
-    }
-
-    public void recolorSelected() {
-        for (ElementPainter painter : painters) {
             painter.getElement().setColor(Color.BLACK);
         }
-        for (ElementPainter painter : selectedPainters) {
-            painter.getElement().setColor(Color.RED);
-        }
+        selectedPainters.clear();
     }
-
 
 
     public List<ElementPainter> getSelectedPainters() {
