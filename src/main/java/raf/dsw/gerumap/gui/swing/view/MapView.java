@@ -4,13 +4,13 @@ package raf.dsw.gerumap.gui.swing.view;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.implementation.MindMap;
+import raf.dsw.gerumap.state.StateManager;
 import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
+import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,10 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     List<ElementPainter> selectedPainters;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
+
+    private static final double ZOOM_IN_FAKTOR = 1.1;
+    private static final double ZOOM_OUT_FAKTOR = 1 / ZOOM_IN_FAKTOR;
+    private AffineTransform transform = new AffineTransform();
 
     public MapView() {
         this.addMouseListener(new MouseController());
@@ -41,6 +45,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        g2.transform(transform); //ovo mora biti tu
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
@@ -115,6 +120,8 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         }
     }
 
+
+
     public List<ElementPainter> getSelectedPainters() {
         return selectedPainters;
     }
@@ -142,7 +149,21 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     }
 
 
+
+
     public class MouseController extends MouseAdapter {
+
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            if(e.getWheelRotation() < 0){
+                transform.scale(ZOOM_IN_FAKTOR,ZOOM_IN_FAKTOR);
+            }else{
+                transform.scale(ZOOM_OUT_FAKTOR,ZOOM_OUT_FAKTOR);
+            }
+            repaint();
+        }
+
+
         @Override
         public void mousePressed(MouseEvent e) {
             if (e.getButton() == MouseEvent.BUTTON1 && e.getSource() instanceof MapView) {
