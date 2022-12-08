@@ -4,8 +4,6 @@ package raf.dsw.gerumap.gui.swing.view;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.implementation.MindMap;
-import raf.dsw.gerumap.state.StateManager;
-import raf.dsw.gerumap.state.concrete.DodajPojamState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +15,8 @@ import java.util.List;
 
 public class MapView extends JPanel implements GrafikaSubscriber{
 
-    List<ElementPainter> painters;
-    List<ElementPainter> selectedPainters;
+    ArrayList<ElementPainter> painters;
+    ArrayList<ElementPainter> selectedPainters;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
@@ -110,15 +108,15 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     }
 
 
-    public List<ElementPainter> getSelectedPainters() {
+    public ArrayList<ElementPainter> getSelectedPainters() {
         return selectedPainters;
     }
 
-    public void setSelectedPainters(List<ElementPainter> selectedPainters) {
+    public void setSelectedPainters(ArrayList<ElementPainter> selectedPainters) {
         this.selectedPainters = selectedPainters;
     }
 
-    public void setPainters(List<ElementPainter> painters) {
+    public void setPainters(ArrayList<ElementPainter> painters) {
         this.painters = painters;
     }
 

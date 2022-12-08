@@ -97,4 +97,13 @@ public class PojamModel extends ElementModel {
         this.dolazeceVeze = dolazeceVeze;
     }
 
+    public void updateVeze(Point point) {
+        for (VezaModel veza : odlazeceVeze) {
+            veza.setPocetnaTacka(point);
+        }
+
+        for (VezaModel veza : dolazeceVeze) {
+            veza.setKrajnjaTacka(point);
+        }
+    }
 }
