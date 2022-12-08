@@ -52,8 +52,6 @@ public class NapraviVezuState extends State {
 
         ((VezaModel) vezaPainter.getElement()).setPocetnaTacka(pocetnaTacka);
         ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(krajnjaTacka);
-        ((VezaModel) vezaPainter.getElement()).setDoPojma(pocetniPojamModel);
-        ((VezaModel) vezaPainter.getElement()).setOdPojma(krajnjiPojamModel);
 
         pocetniPojamModel.addOdlazecaVeza(vezaModel);
         krajnjiPojamModel.addDolazecaVeza(vezaModel);
