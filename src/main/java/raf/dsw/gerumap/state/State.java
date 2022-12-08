@@ -10,6 +10,7 @@ import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public abstract class State {
     public void mousePressedState(int x, int y, MapView map) {}
@@ -29,14 +30,15 @@ public abstract class State {
     public ArrayList<ElementPainter> getVezePojma(ElementPainter pojam, MapView map) {
         ArrayList<ElementPainter> vezaPainterList = new ArrayList<>();
 
-        for (ElementPainter painter : map.getPainters()) {
-            if (painter instanceof VezaPainter) {
-                VezaModel vezaModel = (VezaModel) painter.getElement();
-                if (vezaModel.getOdPojma().equals(pojam.getElement()) || vezaModel.getDoPojma().equals(pojam.getElement())) {
-                    vezaPainterList.add(painter);
-                }
-            }
+        PojamModel pojamModel = (PojamModel) pojam.getElement();
+        for (VezaModel veza : pojamModel.getDolazeceVeze()) {
+            vezaPainterList.add(new VezaPainter(veza));
         }
+
+        for (VezaModel veza : pojamModel.getOdlazeceVeze()) {
+            vezaPainterList.add(new VezaPainter(veza));
+        }
+
         return vezaPainterList;
     }
 

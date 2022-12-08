@@ -19,4 +19,13 @@ public class VezaPainter extends ElementPainter{
             g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
                     (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof VezaPainter)) return false;
+        VezaModel vezaModel = (VezaModel) ((VezaPainter) obj).getElement();
+        // 2 veza paintera su jednaka ako njihovi modeli imaju jednake krajnje i pocetne tacke (povezuju iste pojmove)
+        return vezaModel.getPocetnaTacka().equals(((VezaModel) this.getElement()).getPocetnaTacka())
+                && vezaModel.getKrajnjaTacka().equals(((VezaModel) this.getElement()).getKrajnjaTacka());
+    }
 }
