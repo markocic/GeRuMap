@@ -108,7 +108,6 @@ public class RightPanel extends JPanel implements ISubscriber {
 
         this.tabbedPane.removeAll();
 
-        System.out.println((openedProject.getChildren().size()));
         for (MapNode mindMap : openedProject.getChildren()) {
             this.tabbedPane.addTab(mindMap.getName(), new MapView((MindMap) mindMap));
         }

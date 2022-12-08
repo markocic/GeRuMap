@@ -48,7 +48,6 @@ public class AuthorModal extends JDialog implements ActionListener {
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) return;
         Project currentProject = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         currentProject.setAuthor(this.authorField.getText());
-        System.out.println(currentProject.getAuthor());
         setVisible(false);
         dispose();
     }
