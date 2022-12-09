@@ -3,6 +3,7 @@ package raf.dsw.gerumap.state.concrete;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
@@ -33,8 +34,8 @@ public class NapraviVezuState extends State {
         vezaPainter.getElement().setColor(Color.black);
         VezaModel vezaModel = (VezaModel) vezaPainter.getElement();
 
-        ElementPainter pocetniPojam = getPainterAtClickedLocation(vezaModel.getPocetnaTacka(), map);
-        ElementPainter krajnjiPojam = getPainterAtClickedLocation(vezaModel.getKrajnjaTacka(), map);
+        PojamPainter pocetniPojam = getPojamPainterAtClickedLocation(vezaModel.getPocetnaTacka(), map);
+        PojamPainter krajnjiPojam = getPojamPainterAtClickedLocation(vezaModel.getKrajnjaTacka(), map);
 
         if (pocetniPojam == null || krajnjiPojam == null) {
             // korisnik nije povezao 2 pojma, izbaciti error

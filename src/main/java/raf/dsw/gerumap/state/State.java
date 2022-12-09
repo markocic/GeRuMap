@@ -27,6 +27,14 @@ public abstract class State {
         return null;
     }
 
+    public PojamPainter getPojamPainterAtClickedLocation(Point point, MapView map) {
+        for (ElementPainter painter : map.getPainters()) {
+            if (painter instanceof PojamPainter && painter.elementAt(point)) return (PojamPainter) painter;
+        }
+
+        return null;
+    }
+
     public ArrayList<ElementPainter> getVezePojma(ElementPainter pojam, MapView map) {
         ArrayList<ElementPainter> vezaPainterList = new ArrayList<>();
 

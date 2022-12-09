@@ -26,7 +26,7 @@ public abstract class ElementPainter {
 
     public boolean elementAt(Point point) {
         if (shape == null) return false;
-        return shape.contains(point);
+        return shape.contains(point) || shape.getBounds().contains(point);
     }
 
     public ElementModel getElement() {

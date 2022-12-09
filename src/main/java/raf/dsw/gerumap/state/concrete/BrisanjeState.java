@@ -16,7 +16,6 @@ public class BrisanjeState extends State {
     @Override
     public void mousePressedState(int x, int y, MapView map) {
         ElementPainter selected = getPainterAtClickedLocation(new Point(x, y), map);
-        // TODO: Postoji bag koji ne detektuje klik na vezu
         if (selected == null) {
             AppCore.getInstance().getMsgGenerator().generateMsg("Kliknite na selektovani pojam ili vezu koji zelite da obrisete", TipPoruke.OBAVJESTENJE);
             return;
