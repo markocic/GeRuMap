@@ -15,14 +15,14 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
     private Color color;
     private int stroke;
     private boolean confirmed;
-    private boolean viseSelektovanih;
+    private boolean imePrompt;
     private JTextField nameField;
     private JColorChooser colorChooser;
     private JTextField strokeField;
 
-    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke, boolean viseSelektovanih) {
+    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke, boolean imePrompt) {
         super(parent, "Settings", true);
-        this.viseSelektovanih = viseSelektovanih;
+        this.imePrompt = imePrompt;
         confirmed = false;
         if (parent != null) {
             Dimension parentSize = parent.getSize();
@@ -31,7 +31,7 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
             setSize(parentSize.width / 4, parentSize.height / 4);
         }
         JPanel messagePane = new JPanel();
-        if (!viseSelektovanih) {
+        if (imePrompt) {
             messagePane.add(new JLabel("Ime: "));
             this.nameField = new JTextField(name, 12);
             messagePane.add(nameField);
@@ -72,7 +72,7 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
         this.color = colorChooser.getColor();
 
         // validacija imena, samo ako je selektovan 1 element
-        if (!viseSelektovanih) {
+        if (imePrompt) {
             this.name = nameField.getText();
             if (name.isBlank()) {
                 AppCore.getInstance().getMsgGenerator().generateMsg("Ime ne moze da bude prazno", TipPoruke.GRESKA);

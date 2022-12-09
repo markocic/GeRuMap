@@ -15,18 +15,21 @@ import java.awt.*;
 public class PodesavanjaState extends State {
     @Override
     public void mousePressedState(int x, int y, MapView map) {
+        // TODO: postoji bag da ne primeni podesavanja ukoliko se klikne samo na vezu bez da se pre toga selektuje ista
         ElementPainter selected = getPainterAtClickedLocation(new Point(x, y), map);
-        if (!(selected instanceof PojamPainter)) return;
-        String name = ((PojamModel)selected.getElement()).getName();
+
+        boolean imePrompt = map.getSelectedPainters().size() < 2 && selected instanceof PojamPainter;
+        System.out.println(map.getSelectedPainters().size());
+
+        String name = (imePrompt) ? ((PojamModel) selected.getElement()).getName() : null;
         Color color = selected.getElement().getColor();
         int stroke = selected.getElement().getStroke();
 
-        boolean viseSelektovanih = map.getSelectedPainters().size() > 1;
 
-        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke, viseSelektovanih);
+        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke, imePrompt);
 
         // dalja validacija imena, takodje se preskace ako je selektovano vise elemenata
-        if (!viseSelektovanih) {
+        if (imePrompt) {
             while (modal.getName() != null && pojamNameExists(modal.getName(), map) && !modal.getName().equals(name)) {
                 AppCore.getInstance().getMsgGenerator().generateMsg("Pojam sa imenom '" + modal.getName() +"' vec postoji", TipPoruke.GRESKA);
                 modal.setVisible(true);
@@ -36,7 +39,7 @@ public class PodesavanjaState extends State {
 
         if (!modal.isConfirmed()) return;
 
-        if (viseSelektovanih) multiSelectChange(map, modal.getColor(), modal.getStroke());
+        if (!imePrompt) multiSelectChange(map, modal.getColor(), modal.getStroke());
         else singleSelectChange(selected, modal.getName(), modal.getColor(), modal.getStroke());
 
     }

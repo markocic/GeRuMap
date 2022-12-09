@@ -49,7 +49,6 @@ public class SelekcijaState  extends State {
         if (results.isEmpty()) return;
 
         for (ElementPainter selected : results) {
-            if (selected instanceof PojamPainter) map.addAllSelectedPainters(getVezePojma(selected, map));
             map.addSelectedPainter(selected);
         }
     }
