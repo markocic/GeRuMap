@@ -5,19 +5,23 @@ import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class VezaPainter extends ElementPainter{
 
     public VezaPainter(ElementModel elementModel) {
         super(elementModel);
+        setShape(new Line2D.Double(((VezaModel) elementModel).getPocetnaTacka(), ((VezaModel) elementModel).getKrajnjaTacka()));
     }
     @Override
     public void draw(Graphics2D g) {
             VezaModel vezaModel = (VezaModel) getElement();
             g.setStroke(new BasicStroke(vezaModel.getStroke()));
-            g.setColor(vezaModel.getColor());
-            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
-                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
+            if (isSelected()) g.setColor(Color.RED);
+            else g.setColor(vezaModel.getColor());
+            g.draw(getShape());
+//            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
+//                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
     }
 
     @Override

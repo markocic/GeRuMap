@@ -80,9 +80,19 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     }
 
     public void addSelectedPainter(ElementPainter painter) {
-        if (painter == null) return;
+        if (painter == null || selectedPainters.contains(painter)) return;
         painter.setSelected(true);
         selectedPainters.add(painter);
+    }
+
+    public void addAllSelectedPainters(ArrayList<ElementPainter> paintersList) {
+        if (paintersList.isEmpty()) return;
+        for (ElementPainter painter : paintersList) {
+            if (selectedPainters.contains(painter)) continue;
+
+            painter.setSelected(true);
+            selectedPainters.add(painter);
+        }
     }
 
     public void removeSelectedPainter(ElementPainter painter) {

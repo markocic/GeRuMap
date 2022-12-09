@@ -9,6 +9,7 @@ import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 public class NapraviVezuState extends State {
     private VezaPainter vezaPainter;
@@ -18,6 +19,7 @@ public class NapraviVezuState extends State {
         // ovde postaviti prvi point za liniju
         // objekat na x i y koordinati predstavlja od pojam
         vezaPainter = new VezaPainter(new VezaModel(Color.lightGray, 2, new Point(x, y), new Point(x,y)));
+        vezaPainter.setShape(new Line2D.Double(new Point(x, y), new Point(x, y)));
         map.getMapa().addModelAtIndex(vezaPainter.getElement(), 0);
         map.addPainterAtIndex(vezaPainter, 0);
         vezaPainter.getElement().addGrafikaSubscriber(map);
@@ -53,6 +55,8 @@ public class NapraviVezuState extends State {
         ((VezaModel) vezaPainter.getElement()).setPocetnaTacka(pocetnaTacka);
         ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(krajnjaTacka);
 
+        vezaPainter.setShape(new Line2D.Double(pocetnaTacka, krajnjaTacka));
+
         pocetniPojamModel.addOdlazecaVeza(vezaModel);
         krajnjiPojamModel.addDolazecaVeza(vezaModel);
     }
@@ -61,6 +65,8 @@ public class NapraviVezuState extends State {
     public void mouseDraggedState(int x, int y, MapView map) {
         // za svaki dogadjaj uraditi update da trenutno mesto misa bude drugi point linije
         ((VezaModel) vezaPainter.getElement()).setKrajnjaTacka(new Point(x,y));
+
+        vezaPainter.setShape(new Line2D.Double(((VezaModel) vezaPainter.getElement()).getPocetnaTacka(), new Point(x, y)));
 
     }
 }

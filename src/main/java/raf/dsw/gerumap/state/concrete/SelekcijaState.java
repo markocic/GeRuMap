@@ -41,7 +41,7 @@ public class SelekcijaState  extends State {
         map.deselectAll();
         ArrayList<ElementPainter> results = new ArrayList<>();
         for (ElementPainter painter : map.getPainters()) {
-            if (painter instanceof PojamPainter && map.getSelekcijaRect().intersects(painter.getShape().getBounds())) {
+            if (map.getSelekcijaRect().intersects(painter.getShape().getBounds())) {
                 results.add(painter);
             }
         }
@@ -49,6 +49,7 @@ public class SelekcijaState  extends State {
         if (results.isEmpty()) return;
 
         for (ElementPainter selected : results) {
+            if (selected instanceof PojamPainter) map.addAllSelectedPainters(getVezePojma(selected, map));
             map.addSelectedPainter(selected);
         }
     }
