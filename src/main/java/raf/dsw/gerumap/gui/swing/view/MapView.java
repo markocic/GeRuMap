@@ -171,11 +171,13 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (e.getWheelRotation() > 0) {
+            zoomFaktor = 1;
             zoomFaktor /=1.01;
             System.out.println("ZOOM OUT");
             update();
         }
         if(e.getWheelRotation() < 0){
+            zoomFaktor = 1;
             zoomFaktor *= 1.01;
             System.out.println("ZOOM IN");
             update();
