@@ -13,19 +13,26 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapView extends JPanel implements GrafikaSubscriber{
+public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListener{
 
     ArrayList<ElementPainter> painters;
     ArrayList<ElementPainter> selectedPainters;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
-    private static final double ZOOM_IN_FAKTOR = 1.1;
-    private static final double ZOOM_OUT_FAKTOR = 1 / ZOOM_IN_FAKTOR;
+    private  int zoomFaktor = 1;
+    private  int prevZoomFaktor = 1;
+    private double xOff = 0;
+    private double yOff = 0;
+    private int xDif;
+    private int yDif;
+    private Point start;
+
     private AffineTransform transform = new AffineTransform();
 
     public MapView() {
         this.addMouseListener(new MouseController());
+        this.addMouseWheelListener(this);
         this.addMouseMotionListener(new MouseMotionController());
         setSize(400,400);
         this.setBackground(Color.WHITE);
@@ -43,7 +50,19 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.transform(transform); //ovo mora biti tu
+
+        double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
+        double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
+        double zoomDiv = zoomFaktor / prevZoomFaktor;
+        xOff = (zoomDiv) * (xOff) + (1-zoomDiv) * xRel;
+        yOff = (zoomDiv) * (yOff) + (1 - zoomDiv) * yRel;
+
+        transform.translate(xOff,yOff);
+        transform.scale(zoomFaktor,zoomFaktor);
+        prevZoomFaktor = zoomFaktor;
+
+        g2.transform(transform);
+
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
@@ -144,21 +163,22 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         repaint();
     }
 
-
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (e.getWheelRotation() < 0) {
+            zoomFaktor *=1.1;
+            System.out.println("ZOOM in");
+            update();
+        }
+        if(e.getWheelRotation() > 0){
+            zoomFaktor /= 1.1;
+            System.out.println("ZOOM out");
+            update();
+        }
+    }
 
 
     public class MouseController extends MouseAdapter {
-
-        @Override
-        public void mouseWheelMoved(MouseWheelEvent e) {
-            if(e.getWheelRotation() < 0){
-                transform.scale(ZOOM_IN_FAKTOR,ZOOM_IN_FAKTOR);
-            }else{
-                transform.scale(ZOOM_OUT_FAKTOR,ZOOM_OUT_FAKTOR);
-            }
-            repaint();
-        }
-
 
         @Override
         public void mousePressed(MouseEvent e) {
