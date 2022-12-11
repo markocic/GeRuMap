@@ -20,8 +20,8 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
-    private  int zoomFaktor = 1;
-    private  int prevZoomFaktor = 1;
+    private  double zoomFaktor = 1;
+    private  double prevZoomFaktor = 1;
     private double xOff = 0;
     private double yOff = 0;
     private int xDif;
@@ -165,14 +165,14 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        if (e.getWheelRotation() < 0) {
-            zoomFaktor *=1.1;
-            System.out.println("ZOOM in");
+        if (e.getWheelRotation() > 0) {
+            zoomFaktor *=1.01;
+            System.out.println("ZOOM OUT");
             update();
         }
-        if(e.getWheelRotation() > 0){
-            zoomFaktor /= 1.1;
-            System.out.println("ZOOM out");
+        if(e.getWheelRotation() < 0){
+            zoomFaktor /= 1.01;
+            System.out.println("ZOOM IN");
             update();
         }
     }
