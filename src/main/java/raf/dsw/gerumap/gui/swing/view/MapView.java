@@ -1,9 +1,11 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.implementation.MindMap;
+import raf.dsw.gerumap.state.concrete.ZumiranjeState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +29,8 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
     private int xDif;
     private int yDif;
     private Point start;
+    private RightPanel rightPanel;
+    private boolean flagZumiranja = true;
 
     private AffineTransform transform = new AffineTransform();
 
@@ -51,18 +55,19 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
-        double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
-        double zoomDiv = zoomFaktor / prevZoomFaktor;
-        xOff = (zoomDiv) * (xOff) + (1-zoomDiv) * xRel;
-        yOff = (zoomDiv) * (yOff) + (1 - zoomDiv) * yRel;
+        if(flagZumiranja) {
+            double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
+            double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
+            double zoomDiv = zoomFaktor / prevZoomFaktor;
+            xOff = (zoomDiv) * (xOff) + (1 - zoomDiv) * xRel;
+            yOff = (zoomDiv) * (yOff) + (1 - zoomDiv) * yRel;
 
-        transform.translate(xOff,yOff);
-        transform.scale(zoomFaktor,zoomFaktor);
-        prevZoomFaktor = zoomFaktor;
+            transform.translate(xOff, yOff);
+            transform.scale(zoomFaktor, zoomFaktor);
+            prevZoomFaktor = zoomFaktor;
 
-        g2.transform(transform);
-
+            g2.transform(transform);
+        }
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
@@ -166,12 +171,12 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (e.getWheelRotation() > 0) {
-            zoomFaktor *=1.01;
+            zoomFaktor /=1.01;
             System.out.println("ZOOM OUT");
             update();
         }
         if(e.getWheelRotation() < 0){
-            zoomFaktor /= 1.01;
+            zoomFaktor *= 1.01;
             System.out.println("ZOOM IN");
             update();
         }
@@ -208,5 +213,13 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
 
     public void setMapa(MindMap mapa) {
         this.mapa = mapa;
+    }
+
+    public boolean isFlagZumiranja() {
+        return flagZumiranja;
+    }
+
+    public void setFlagZumiranja(boolean flagZumiranja) {
+        this.flagZumiranja = flagZumiranja;
     }
 }
