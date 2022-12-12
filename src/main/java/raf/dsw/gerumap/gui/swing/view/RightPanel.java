@@ -87,7 +87,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateMindMapCreated(MindMap mindMap) {
-        this.tabbedPane.addTab(mindMap.getName(), new MapView(mindMap));
+        this.tabbedPane.addTab(mindMap.getName(),new JScrollPane( new MapView(mindMap),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
     }
 
     @Override
@@ -109,7 +109,7 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.tabbedPane.removeAll();
 
         for (MapNode mindMap : openedProject.getChildren()) {
-            this.tabbedPane.addTab(mindMap.getName(), new MapView((MindMap) mindMap));
+            this.tabbedPane.addTab(mindMap.getName(), new JScrollPane(new MapView((MindMap) mindMap),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
         }
     }
 
