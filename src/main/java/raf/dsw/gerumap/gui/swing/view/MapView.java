@@ -1,11 +1,9 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 
-import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.implementation.MindMap;
-import raf.dsw.gerumap.state.concrete.ZumiranjeState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +17,8 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     ArrayList<ElementPainter> painters;
     ArrayList<ElementPainter> selectedPainters;
+    double anchorx = 0;
+    double anchory = 0;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
@@ -53,7 +53,8 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        g2.transform(transform);
+        g2.setTransform(transform);
+//        g2.transform(transform);
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
@@ -195,4 +196,19 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         this.mapa = mapa;
     }
 
+    public double getAnchorx() {
+        return anchorx;
+    }
+
+    public void setAnchorx(double anchorx) {
+        this.anchorx = anchorx;
+    }
+
+    public double getAnchory() {
+        return anchory;
+    }
+
+    public void setAnchory(double anchory) {
+        this.anchory = anchory;
+    }
 }
