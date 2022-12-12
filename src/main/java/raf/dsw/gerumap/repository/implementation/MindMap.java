@@ -7,6 +7,7 @@ import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class MindMap extends MapNodeComposite implements GrafikaPublisher {
@@ -81,6 +82,9 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
             sub.update();
         }
     }
+
+    @Override
+    public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {}
 
     public void addModel(ElementModel model) {
         if (model == null) return;
