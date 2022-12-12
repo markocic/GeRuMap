@@ -9,15 +9,16 @@ import java.awt.geom.AffineTransform;
 
 public class ZumiranjeState  extends State{
 
-    private  double zoom = 1;
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         MapView map = (MapView) e.getSource();
-
+        double zoom = map.getZoom();
         if (e.getPreciseWheelRotation() > 0) zoom = zoom + 0.01;
         else zoom -= 0.01;
 
         if (zoom < 0.01) zoom = 0.01;
+
+        map.setZoom(zoom);
 
         double width = map.getWidth();
         double height = map.getHeight();
@@ -30,8 +31,11 @@ public class ZumiranjeState  extends State{
         map.getTransform().scale(zoom, zoom);
         map.getTransform().translate(-width / 2, -height / 2);
 
-        map.setSize(new Dimension((int) zoomWidth, (int) zoomHeight));
+        map.setPreferredSize(new Dimension((int) zoomWidth, (int) zoomHeight));
 
+        System.out.println("JScroll: " + map.getjScrollPane().getPreferredSize().toString());
+        System.out.println("Map: " + map.getPreferredSize().toString());
+        map.getjScrollPane().updateUI();
         map.repaint();
     }
 }

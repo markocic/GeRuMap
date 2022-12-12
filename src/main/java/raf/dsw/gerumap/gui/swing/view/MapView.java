@@ -20,6 +20,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     ArrayList<ElementPainter> painters;
     ArrayList<ElementPainter> selectedPainters;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
+    private double zoom = 1;
     private MindMap mapa;
     private JScrollPane jScrollPane;
     private AffineTransform transform = new AffineTransform();
@@ -50,6 +51,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        System.out.println("here");
         Graphics2D g2 = (Graphics2D) g;
         g2.transform(transform);
         g2.draw(selekcijaRect);
@@ -155,7 +157,6 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     @Override
     public void updateShape(Point pocetnaTacka, Point krajnjaTacka) {}
 
-
     public class MouseController extends MouseAdapter implements MouseWheelListener{
 
         @Override
@@ -210,5 +211,13 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     public void setjScrollPane(JScrollPane jScrollPane) {
         this.jScrollPane = jScrollPane;
+    }
+
+    public double getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
     }
 }

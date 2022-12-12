@@ -95,9 +95,11 @@ public class RightPanel extends JPanel implements ISubscriber {
     public void updateMindMapCreated(MindMap mindMap) {
 
         MapView mapView = new MapView(mindMap);
+        mapView.setPreferredSize(new Dimension(800, 400));
+
         JScrollPane jScrollPane = new JScrollPane(mapView,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
         );
         jScrollPane.setSize(mapView.getSize());
         mapView.setjScrollPane(jScrollPane);
@@ -126,9 +128,10 @@ public class RightPanel extends JPanel implements ISubscriber {
         for (MapNode mindMap : openedProject.getChildren()) {
 
             MapView mapView = new MapView((MindMap) mindMap);
+            mapView.setPreferredSize(new Dimension(800, 400));
             JScrollPane jScrollPane = new JScrollPane(mapView,
-                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+                    JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
                     );
             jScrollPane.setSize(mapView.getSize());
             mapView.setjScrollPane(jScrollPane);
