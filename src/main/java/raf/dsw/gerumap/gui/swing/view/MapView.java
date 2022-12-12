@@ -15,7 +15,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListener{
+public class MapView extends JPanel implements GrafikaSubscriber{
 
     ArrayList<ElementPainter> painters;
     ArrayList<ElementPainter> selectedPainters;
@@ -29,14 +29,14 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
     private int xDif;
     private int yDif;
     private Point start;
-    private RightPanel rightPanel;
+
     private boolean flagZumiranja = true;
 
     private AffineTransform transform = new AffineTransform();
 
     public MapView() {
         this.addMouseListener(new MouseController());
-        this.addMouseWheelListener(this);
+        this.addMouseWheelListener(new MouseController());
         this.addMouseMotionListener(new MouseMotionController());
         setSize(400,400);
         this.setBackground(Color.WHITE);
@@ -59,8 +59,9 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
             double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
             double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
             double zoomDiv = zoomFaktor / prevZoomFaktor;
-            xOff = (zoomDiv) * (xOff) + (1 - zoomDiv) * xRel;
+            //xOff = (zoomDiv) * (xOff) + (1 - zoomDiv) * xRel;
             yOff = (zoomDiv) * (yOff) + (1 - zoomDiv) * yRel;
+            xOff = (zoomDiv) * (xOff);
 
             transform.translate(xOff, yOff);
             transform.scale(zoomFaktor, zoomFaktor);
@@ -168,24 +169,24 @@ public class MapView extends JPanel implements GrafikaSubscriber,MouseWheelListe
         repaint();
     }
 
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        if (e.getWheelRotation() > 0) {
-            zoomFaktor = 1;
-            zoomFaktor /=1.01;
-            System.out.println("ZOOM OUT");
-            update();
-        }
-        if(e.getWheelRotation() < 0){
-            zoomFaktor = 1;
-            zoomFaktor *= 1.01;
-            System.out.println("ZOOM IN");
-            update();
-        }
-    }
 
+    public class MouseController extends MouseAdapter implements MouseWheelListener{
 
-    public class MouseController extends MouseAdapter {
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            if (e.getWheelRotation() > 0) {
+                zoomFaktor = 1;
+                zoomFaktor /=1.01;
+                System.out.println("ZOOM OUT");
+                update();
+            }
+            if(e.getWheelRotation() < 0){
+                zoomFaktor = 1;
+                zoomFaktor *= 1.01;
+                System.out.println("ZOOM IN");
+                update();
+            }
+        }
 
         @Override
         public void mousePressed(MouseEvent e) {
