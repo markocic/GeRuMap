@@ -3,6 +3,7 @@ package raf.dsw.gerumap.state.concrete;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 
+import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 
@@ -46,8 +47,12 @@ public class ZumiranjeState  extends State{
         map.setAnchorx(anchorx);
 
         map.setTransform(new AffineTransform());
-        map.getTransform().translate(anchorx, anchory);
+        map.getTransform().translate(width / 2, height / 2);
         map.getTransform().scale(zoomFaktor, zoomFaktor);
+        map.getTransform().translate(-width / 2, -height / 2);
+
+        map.setPreferredSize(new Dimension((int) zoomWidth, (int) zoomHeight));
+
 //        map.getTransform().translate(-100, -100);
 //        double xRel = e.getX();
 //        double yRel = e.getY();
