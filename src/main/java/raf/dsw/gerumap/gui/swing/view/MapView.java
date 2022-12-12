@@ -169,6 +169,9 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         repaint();
     }
 
+    @Override
+    public void updateShape(Point pocetnaTacka, Point krajnjaTacka) {}
+
 
     public class MouseController extends MouseAdapter implements MouseWheelListener{
 
