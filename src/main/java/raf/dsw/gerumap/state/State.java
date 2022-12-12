@@ -9,6 +9,7 @@ import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -18,6 +19,8 @@ public abstract class State {
     public void mouseReleasedState(int x, int y, MapView map) {}
 
     public void mouseDraggedState(int x, int y, MapView map) {}
+
+    public void mouseWheelMoved(MouseWheelEvent e) {}
 
     public ElementPainter getPainterAtClickedLocation(Point point, MapView map) {
         for (ElementPainter painter : map.getPainters()) {

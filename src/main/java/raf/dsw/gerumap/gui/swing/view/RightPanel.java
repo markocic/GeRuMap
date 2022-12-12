@@ -7,6 +7,7 @@ import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
+import java.awt.event.MouseWheelEvent;
 
 public class RightPanel extends JPanel implements ISubscriber {
     private final JLabel projectNameLabel;
@@ -71,6 +72,10 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     public void mouseDraggedMediator(int x, int y, MapView map) {
         this.stateManager.getCurrentState().mouseDraggedState(x, y, map);
+    }
+
+    public void mouseWheelMovedMediator(MouseWheelEvent e) {
+        this.stateManager.getCurrentState().mouseWheelMoved(e);
     }
 
 

@@ -22,16 +22,6 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
 
-    private  double zoomFaktor = 1;
-    private  double prevZoomFaktor = 1;
-    private double xOff = 0;
-    private double yOff = 0;
-    private int xDif;
-    private int yDif;
-    private Point start;
-
-    private boolean flagZumiranja = true;
-
     private AffineTransform transform = new AffineTransform();
 
     public MapView() {
@@ -51,24 +41,19 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         this.mapa.addGrafikaSubscriber(this);
     }
 
+    public AffineTransform getTransform() {
+        return transform;
+    }
+
+    public void setTransform(AffineTransform transform) {
+        this.transform = transform;
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(flagZumiranja) {
-            double xRel = MouseInfo.getPointerInfo().getLocation().getX() - getLocationOnScreen().getX();
-            double yRel = MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY();
-            double zoomDiv = zoomFaktor / prevZoomFaktor;
-            //xOff = (zoomDiv) * (xOff) + (1 - zoomDiv) * xRel;
-            yOff = (zoomDiv) * (yOff) + (1 - zoomDiv) * yRel;
-            xOff = (zoomDiv) * (xOff);
-
-            transform.translate(xOff, yOff);
-            transform.scale(zoomFaktor, zoomFaktor);
-            prevZoomFaktor = zoomFaktor;
-
-            g2.transform(transform);
-        }
+        g2.transform(transform);
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
@@ -177,18 +162,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
-            if (e.getWheelRotation() > 0) {
-                zoomFaktor = 1;
-                zoomFaktor /=1.01;
-                System.out.println("ZOOM OUT");
-                update();
-            }
-            if(e.getWheelRotation() < 0){
-                zoomFaktor = 1;
-                zoomFaktor *= 1.01;
-                System.out.println("ZOOM IN");
-                update();
-            }
+            MainFrame.getInstance().getRightPanel().mouseWheelMovedMediator(e);
         }
 
         @Override
@@ -221,11 +195,4 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         this.mapa = mapa;
     }
 
-    public boolean isFlagZumiranja() {
-        return flagZumiranja;
-    }
-
-    public void setFlagZumiranja(boolean flagZumiranja) {
-        this.flagZumiranja = flagZumiranja;
-    }
 }
