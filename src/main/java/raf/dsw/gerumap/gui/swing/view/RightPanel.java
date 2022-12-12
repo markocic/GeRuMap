@@ -7,6 +7,7 @@ import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
 public class RightPanel extends JPanel implements ISubscriber {
@@ -92,7 +93,16 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateMindMapCreated(MindMap mindMap) {
-        this.tabbedPane.addTab(mindMap.getName(),new JScrollPane( new MapView(mindMap),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
+
+        MapView mapView = new MapView(mindMap);
+        JScrollPane jScrollPane = new JScrollPane(mapView,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+        );
+        jScrollPane.setSize(mapView.getSize());
+        mapView.setjScrollPane(jScrollPane);
+
+        this.tabbedPane.addTab(mindMap.getName(),jScrollPane);
     }
 
     @Override
@@ -114,7 +124,16 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.tabbedPane.removeAll();
 
         for (MapNode mindMap : openedProject.getChildren()) {
-            this.tabbedPane.addTab(mindMap.getName(), new JScrollPane(new MapView((MindMap) mindMap),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
+
+            MapView mapView = new MapView((MindMap) mindMap);
+            JScrollPane jScrollPane = new JScrollPane(mapView,
+                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
+                    );
+            jScrollPane.setSize(mapView.getSize());
+            mapView.setjScrollPane(jScrollPane);
+
+            this.tabbedPane.addTab(mindMap.getName(), jScrollPane);
         }
     }
 

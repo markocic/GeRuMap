@@ -9,61 +9,29 @@ import java.awt.geom.AffineTransform;
 
 public class ZumiranjeState  extends State{
 
-    private  double zoomFaktor = 1;
-    private  double prevZoomFaktor = 1;
-    private double xOff = 0;
-    private double yOff = 0;
+    private  double zoom = 1;
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        if (e.getPreciseWheelRotation() > 0) {
-            zoomFaktor = zoomFaktor + 0.01;
-            System.out.println(zoomFaktor);
-            System.out.println("ZOOM IN");
-        }
-        else {
-            zoomFaktor -= 0.01;
-            System.out.println(zoomFaktor);
-            System.out.println("ZOOM OUT");
-        }
-
-        if (zoomFaktor < 0.01) {
-            zoomFaktor = 0.01;
-        }
-
         MapView map = (MapView) e.getSource();
+
+        if (e.getPreciseWheelRotation() > 0) zoom = zoom + 0.01;
+        else zoom -= 0.01;
+
+        if (zoom < 0.01) zoom = 0.01;
 
         double width = map.getWidth();
         double height = map.getHeight();
 
-        double zoomWidth = width * zoomFaktor;
-        double zoomHeight = height * zoomFaktor;
-
-        double anchorx = (width - zoomWidth) / 2;
-        double anchory = (height - zoomHeight) / 2;
-
-        System.out.println(anchorx);
-        System.out.println(anchory);
-        map.setAnchory(anchory);
-        map.setAnchorx(anchorx);
+        double zoomWidth = width * zoom;
+        double zoomHeight = height * zoom;
 
         map.setTransform(new AffineTransform());
         map.getTransform().translate(width / 2, height / 2);
-        map.getTransform().scale(zoomFaktor, zoomFaktor);
+        map.getTransform().scale(zoom, zoom);
         map.getTransform().translate(-width / 2, -height / 2);
 
-        map.setPreferredSize(new Dimension((int) zoomWidth, (int) zoomHeight));
+        map.setSize(new Dimension((int) zoomWidth, (int) zoomHeight));
 
-//        map.getTransform().translate(-100, -100);
-//        double xRel = e.getX();
-//        double yRel = e.getY();
-//        double zoomDiv = zoomFaktor / prevZoomFaktor;
-//        //xOff = (zoomDiv) * (xOff) + (1 - zoomDiv) * xRel;
-//        yOff = (zoomDiv) * (yOff);
-//        xOff = (zoomDiv) * (xOff);
-//
-//        map.getTransform().translate(xOff, yOff);
-//        map.getTransform().scale(zoomFaktor, zoomFaktor);
-//        prevZoomFaktor = zoomFaktor;
         map.repaint();
     }
 }

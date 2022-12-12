@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +19,15 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     ArrayList<ElementPainter> painters;
     ArrayList<ElementPainter> selectedPainters;
-    double anchorx = 0;
-    double anchory = 0;
     private Rectangle2D selekcijaRect = new Rectangle2D.Double();
     private MindMap mapa;
-
+    private JScrollPane jScrollPane;
     private AffineTransform transform = new AffineTransform();
 
     public MapView() {
         this.addMouseListener(new MouseController());
         this.addMouseWheelListener(new MouseController());
         this.addMouseMotionListener(new MouseMotionController());
-        setSize(400,400);
         this.setBackground(Color.WHITE);
         this.painters = new ArrayList<>();
         this.selectedPainters = new ArrayList<>();
@@ -52,12 +51,10 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        g2.setTransform(transform);
-//        g2.transform(transform);
+        g2.transform(transform);
         g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
-        // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih sve
+        // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih
         for (ElementPainter painter : painters) {
             painter.draw(g2);
         }
@@ -168,23 +165,22 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if (e.getButton() == MouseEvent.BUTTON1 && e.getSource() instanceof MapView) {
-                MainFrame.getInstance().getRightPanel().mousePressedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
-            }
+            Point2D point = getMousePoint(e.getX(), e.getY());
+            MainFrame.getInstance().getRightPanel().mousePressedMediator((int) point.getX(), (int) point.getY(), ((MapView) e.getSource()));
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                MainFrame.getInstance().getRightPanel().mouseReleasedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
-            }
+            Point2D point = getMousePoint(e.getX(), e.getY());
+            MainFrame.getInstance().getRightPanel().mouseReleasedMediator((int) point.getX(), (int) point.getY(), ((MapView) e.getSource()));
         }
     }
 
     public class MouseMotionController extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent e) {
-            MainFrame.getInstance().getRightPanel().mouseDraggedMediator(e.getX(), e.getY(), ((MapView) e.getSource()));
+            Point2D point = getMousePoint(e.getX(), e.getY());
+            MainFrame.getInstance().getRightPanel().mouseDraggedMediator((int) point.getX(), (int) point.getY(), ((MapView) e.getSource()));
         }
     }
 
@@ -196,19 +192,23 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         this.mapa = mapa;
     }
 
-    public double getAnchorx() {
-        return anchorx;
+    public Point2D getMousePoint(int x, int y) {
+        Point2D oldPoint = new Point(x, y);
+        Point2D point = null;
+        try {
+            point = transform.inverseTransform(oldPoint, oldPoint);
+        } catch (NoninvertibleTransformException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        return point;
     }
 
-    public void setAnchorx(double anchorx) {
-        this.anchorx = anchorx;
+    public JScrollPane getjScrollPane() {
+        return jScrollPane;
     }
 
-    public double getAnchory() {
-        return anchory;
-    }
-
-    public void setAnchory(double anchory) {
-        this.anchory = anchory;
+    public void setjScrollPane(JScrollPane jScrollPane) {
+        this.jScrollPane = jScrollPane;
     }
 }
