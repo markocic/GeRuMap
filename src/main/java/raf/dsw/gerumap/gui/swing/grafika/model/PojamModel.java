@@ -106,4 +106,7 @@ public class PojamModel extends ElementModel {
             veza.setKrajnjaTacka(point);
         }
     }
+    
+    @Override
+    public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {}
 }

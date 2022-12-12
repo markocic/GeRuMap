@@ -1,13 +1,13 @@
 package raf.dsw.gerumap.gui.swing.grafika.painter;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
-import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
 
-public class VezaPainter extends ElementPainter{
+public class VezaPainter extends ElementPainter implements GrafikaSubscriber {
 
     public VezaPainter(ElementModel elementModel) {
         super(elementModel);
@@ -19,9 +19,9 @@ public class VezaPainter extends ElementPainter{
             g.setStroke(new BasicStroke(vezaModel.getStroke()));
             if (isSelected()) g.setColor(Color.RED);
             else g.setColor(vezaModel.getColor());
-            g.draw(getShape());
-//            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
-//                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
+//            g.draw(getShape());
+            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
+                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
     }
 
     @Override
@@ -32,4 +32,11 @@ public class VezaPainter extends ElementPainter{
         return vezaModel.getPocetnaTacka().equals(((VezaModel) this.getElement()).getPocetnaTacka())
                 && vezaModel.getKrajnjaTacka().equals(((VezaModel) this.getElement()).getKrajnjaTacka());
     }
+
+    public void updateShape(Point pocetnaTacka, Point krajnjaTacka) {
+        setShape(new Line2D.Double(pocetnaTacka, krajnjaTacka));
+    }
+
+    @Override
+    public void update() {}
 }

@@ -56,4 +56,12 @@ public abstract class ElementModel implements GrafikaPublisher {
             sub.update();
         }
     }
+
+    public ArrayList<GrafikaSubscriber> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(ArrayList<GrafikaSubscriber> subscribers) {
+        this.subscribers = subscribers;
+    }
 }
