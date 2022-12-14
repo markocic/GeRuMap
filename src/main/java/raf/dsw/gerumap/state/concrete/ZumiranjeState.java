@@ -1,13 +1,18 @@
 package raf.dsw.gerumap.state.concrete;
 
+import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 public class ZumiranjeState  extends State{
+
+    private int startX;
+    private int startY;
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
@@ -23,8 +28,8 @@ public class ZumiranjeState  extends State{
         double width = map.getWidth();
         double height = map.getHeight();
 
-        double zoomWidth = width * zoom;
-        double zoomHeight = height * zoom;
+        double zoomWidth = 800 * zoom;
+        double zoomHeight = 400 * zoom;
 
         map.setTransform(new AffineTransform());
         map.getTransform().translate(width / 2, height / 2);
@@ -32,10 +37,29 @@ public class ZumiranjeState  extends State{
         map.getTransform().translate(-width / 2, -height / 2);
 
         map.setPreferredSize(new Dimension((int) zoomWidth, (int) zoomHeight));
+        map.getjScrollPane().setPreferredSize(new Dimension(826, 422));
 
-        System.out.println("JScroll: " + map.getjScrollPane().getPreferredSize().toString());
-        System.out.println("Map: " + map.getPreferredSize().toString());
-        map.getjScrollPane().updateUI();
-        map.repaint();
+        map.getjScrollPane().getViewport().revalidate();
+        map.getjScrollPane().getViewport().repaint();
+
+    }
+
+    @Override
+    public void mousePressedState(int x, int y, MapView map) {
+        startX = x;
+        startY = y;
+    }
+
+    @Override
+    public void mouseReleasedState(int x, int y, MapView map) {
+        updateSelectedPainters((ArrayList<ElementPainter>) map.getPainters(), x - startX, y - startY);
+    }
+
+    @Override
+    public void mouseDraggedState(int x, int y, MapView map) {
+        updateSelectedPainters((ArrayList<ElementPainter>) map.getPainters(), x - startX, y - startY);
+
+        startX = x;
+        startY = y;
     }
 }

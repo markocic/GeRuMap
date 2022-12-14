@@ -97,10 +97,11 @@ public class RightPanel extends JPanel implements ISubscriber {
         MapView mapView = new MapView(mindMap);
         mapView.setPreferredSize(new Dimension(800, 400));
 
-        JScrollPane jScrollPane = new JScrollPane(mapView,
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
-        );
+        JScrollPane jScrollPane = new JScrollPane();
+        jScrollPane.setViewportView(mapView);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         jScrollPane.setSize(mapView.getSize());
         mapView.setjScrollPane(jScrollPane);
 
@@ -129,10 +130,11 @@ public class RightPanel extends JPanel implements ISubscriber {
 
             MapView mapView = new MapView((MindMap) mindMap);
             mapView.setPreferredSize(new Dimension(800, 400));
-            JScrollPane jScrollPane = new JScrollPane(mapView,
-                    JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
-                    );
+            JScrollPane jScrollPane = new JScrollPane();
+            jScrollPane.setViewportView(mapView);
+            jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
             jScrollPane.setSize(mapView.getSize());
             mapView.setjScrollPane(jScrollPane);
 
@@ -166,7 +168,7 @@ public class RightPanel extends JPanel implements ISubscriber {
     }
 
 
-
-
-
+    public TabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
 }
