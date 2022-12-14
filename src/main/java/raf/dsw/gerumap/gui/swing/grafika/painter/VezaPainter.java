@@ -19,9 +19,7 @@ public class VezaPainter extends ElementPainter implements GrafikaSubscriber {
             g.setStroke(new BasicStroke(vezaModel.getStroke()));
             if (isSelected()) g.setColor(Color.RED);
             else g.setColor(vezaModel.getColor());
-//            g.draw(getShape());
-            g.drawLine((int) vezaModel.getPocetnaTacka().getX(), (int) vezaModel.getPocetnaTacka().getY(),
-                    (int) vezaModel.getKrajnjaTacka().getX(), (int) vezaModel.getKrajnjaTacka().getY());
+            g.draw(getShape());
     }
 
     @Override

@@ -51,7 +51,6 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("here");
         Graphics2D g2 = (Graphics2D) g;
         g2.transform(transform);
         g2.draw(selekcijaRect);
