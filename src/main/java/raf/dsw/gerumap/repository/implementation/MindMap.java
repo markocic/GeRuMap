@@ -3,7 +3,6 @@ package raf.dsw.gerumap.repository.implementation;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
-import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 
 public class MindMap extends MapNodeComposite implements GrafikaPublisher {
 
-    private ArrayList<GrafikaSubscriber> subscribers = new ArrayList<>();
+    private transient ArrayList<GrafikaSubscriber> grafikaSubscribers = new ArrayList<>();
     private ArrayList<ElementModel> models = new ArrayList<>();
     private boolean template;
     private static int counter = 0;
@@ -64,21 +63,21 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     @Override
     public void addGrafikaSubscriber(GrafikaSubscriber sub) {
         if (sub == null) return;
-        if (this.subscribers == null) this.subscribers = new ArrayList<>();
-        if (this.subscribers.contains(sub)) return;
-        this.subscribers.add(sub);
+        if (this.grafikaSubscribers == null) this.grafikaSubscribers = new ArrayList<>();
+        if (this.grafikaSubscribers.contains(sub)) return;
+        this.grafikaSubscribers.add(sub);
     }
 
     @Override
     public void removeGrafikaSubscriber(GrafikaSubscriber sub) {
-        if(sub == null || this.subscribers == null || !this.subscribers.contains(sub)) return;
-        this.subscribers.remove(sub);
+        if(sub == null || this.grafikaSubscribers == null || !this.grafikaSubscribers.contains(sub)) return;
+        this.grafikaSubscribers.remove(sub);
     }
 
     @Override
     public void notifyGrafikaSubscribers() {
-        if (this.subscribers == null || this.subscribers.isEmpty()) return;
-        for (GrafikaSubscriber sub : this.subscribers) {
+        if (this.grafikaSubscribers == null || this.grafikaSubscribers.isEmpty()) return;
+        for (GrafikaSubscriber sub : this.grafikaSubscribers) {
             sub.update();
         }
     }
@@ -102,5 +101,13 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
         if (model == null) return;
         models.remove(model);
         notifyGrafikaSubscribers();
+    }
+
+    public ArrayList<ElementModel> getModels() {
+        return models;
+    }
+
+    public void setModels(ArrayList<ElementModel> models) {
+        this.models = models;
     }
 }

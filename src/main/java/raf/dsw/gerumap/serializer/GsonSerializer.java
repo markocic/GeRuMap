@@ -3,8 +3,10 @@ package raf.dsw.gerumap.serializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import raf.dsw.gerumap.core.Serializer;
+import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.serializer.adapters.ColorAdapter;
+import raf.dsw.gerumap.serializer.custom.MapNodeSerializer;
 
 import java.awt.*;
 import java.io.File;
@@ -19,6 +21,7 @@ public class GsonSerializer implements Serializer {
 
     public GsonSerializer() {
         gsonBuilder.registerTypeAdapter(Color.class, new ColorAdapter());
+        gsonBuilder.registerTypeAdapter(MapNode.class, new MapNodeSerializer());
         gson = gsonBuilder.create();
     }
 

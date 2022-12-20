@@ -11,9 +11,9 @@ import java.util.List;
 public abstract class MapNode implements IPublisher {
 
     private String name;
-    private MapNode parent;
+    private transient MapNode parent;
 
-    private List<ISubscriber> subscribers;
+    private transient List<ISubscriber> subscribers;
 
     public MapNode(String name, MapNode parent) {
         this.name = name;

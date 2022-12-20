@@ -123,6 +123,9 @@ public class MapTree implements IMapTree {
         MapNodeComposite mapNode = (MapNodeComposite) ((MapTreeItem) treeModel.getRoot()).getMapNode();
         mapNode.addChild(project);
 
+        for (MapNode map : project.getChildren()) {
+            loadedProject.add(new MapTreeItem(map));
+        }
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
