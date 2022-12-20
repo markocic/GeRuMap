@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileView;
 import java.awt.event.ActionEvent;
@@ -15,5 +17,9 @@ public class SaveAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         //otvara modal sa filechooserom
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showSaveDialog(MainFrame.getInstance());
+
+
     }
 }
