@@ -5,6 +5,15 @@ import raf.dsw.gerumap.gui.swing.controller.paleta.*;
 
 public class ActionManager {
 
+
+    private SaveAction saveAction;
+
+    private LoadAction loadAction;
+
+    private UndoAction undoAction;
+
+    private RedoAction redoAction;
+
     private DeleteAction deleteAction;
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
@@ -29,6 +38,12 @@ public class ActionManager {
 
 
     private void initActions(){
+
+        saveAction = new SaveAction();
+        loadAction = new LoadAction();
+        redoAction = new RedoAction();
+        undoAction = new UndoAction();
+
         deleteAction = new DeleteAction();
         exitAction = new ExitAction();
         newProjectAction = new NewProjectAction();
@@ -43,6 +58,38 @@ public class ActionManager {
         selekcijaAction = new SelekcijaAction();
         zumiranjeAction = new ZumiranjeAction();
         podesavanjaAction = new PodesavanjaAction();
+    }
+
+    public SaveAction getSaveAction() {
+        return saveAction;
+    }
+
+    public void setSaveAction(SaveAction saveAction) {
+        this.saveAction = saveAction;
+    }
+
+    public LoadAction getLoadAction() {
+        return loadAction;
+    }
+
+    public void setLoadAction(LoadAction loadAction) {
+        this.loadAction = loadAction;
+    }
+
+    public UndoAction getUndoAction() {
+        return undoAction;
+    }
+
+    public void setUndoAction(UndoAction undoAction) {
+        this.undoAction = undoAction;
+    }
+
+    public RedoAction getRedoAction() {
+        return redoAction;
+    }
+
+    public void setRedoAction(RedoAction redoAction) {
+        this.redoAction = redoAction;
     }
 
     public PodesavanjaAction getPodesavanjaAction() {

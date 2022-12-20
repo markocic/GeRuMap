@@ -20,6 +20,7 @@ public class PojamPainter extends ElementPainter{
         super(element, shape);
     }
 
+
     @Override
     public void draw(Graphics2D g) {
         // debljina linije
