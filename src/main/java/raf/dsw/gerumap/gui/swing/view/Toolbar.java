@@ -12,12 +12,12 @@ public class Toolbar extends JToolBar {
         setFloatable(false);
         this.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
         this.add(MainFrame.getInstance().getActionManager().getOpenProjectAction());
-        this.add(MainFrame.getInstance().getActionManager().getAuthorAction());
-        this.add(MainFrame.getInstance().getActionManager().getDeleteAction());
-        this.add(MainFrame.getInstance().getActionManager().getExitAction());
         this.add(MainFrame.getInstance().getActionManager().getSaveAction());
         this.add(MainFrame.getInstance().getActionManager().getLoadAction());
+        this.add(MainFrame.getInstance().getActionManager().getAuthorAction());
+        this.add(MainFrame.getInstance().getActionManager().getDeleteAction());
         this.add(MainFrame.getInstance().getActionManager().getUndoAction());
         this.add(MainFrame.getInstance().getActionManager().getRedoAction());
+        this.add(MainFrame.getInstance().getActionManager().getExitAction());
     }
 }

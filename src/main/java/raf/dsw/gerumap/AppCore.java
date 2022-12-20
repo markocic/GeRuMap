@@ -7,6 +7,7 @@ import raf.dsw.gerumap.logger.ConsoleLogger;
 import raf.dsw.gerumap.logger.FileLogger;
 import raf.dsw.gerumap.logger.MessageGenerator;
 import raf.dsw.gerumap.repository.MapRepository;
+import raf.dsw.gerumap.serializer.GsonSerializer;
 
 
 public class AppCore extends ApplicationFramework {
@@ -16,6 +17,7 @@ public class AppCore extends ApplicationFramework {
 
     private static AppCore instance;
     private MessageGenerator msgGenerator = new MessageGenerator();
+    private GsonSerializer gsonSerializer = new GsonSerializer();
 
     private AppCore(){
     }
@@ -51,5 +53,13 @@ public class AppCore extends ApplicationFramework {
 
     public void setMsgGenerator(MessageGenerator msgGenerator) {
         this.msgGenerator = msgGenerator;
+    }
+
+    public GsonSerializer getGsonSerializer() {
+        return gsonSerializer;
+    }
+
+    public void setGsonSerializer(GsonSerializer gsonSerializer) {
+        this.gsonSerializer = gsonSerializer;
     }
 }

@@ -115,4 +115,15 @@ public class MapTree implements IMapTree {
     public void setOpenedNode(MapTreeItem openedNode) {
         this.openedNode = openedNode;
     }
+
+    public void loadProject(Project project) {
+        MapTreeItem loadedProject = new MapTreeItem(project);
+        ((MapTreeItem) treeModel.getRoot()).add(loadedProject);
+
+        MapNodeComposite mapNode = (MapNodeComposite) ((MapTreeItem) treeModel.getRoot()).getMapNode();
+        mapNode.addChild(project);
+
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
 }

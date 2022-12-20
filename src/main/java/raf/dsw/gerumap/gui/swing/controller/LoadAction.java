@@ -1,9 +1,12 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 public class LoadAction extends AbstractGerumapAction{
 
@@ -18,7 +21,17 @@ public class LoadAction extends AbstractGerumapAction{
     public void actionPerformed(ActionEvent e) {
         //pravi novi modal za file chooser
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.showOpenDialog(MainFrame.getInstance());
+
+        if (fileChooser.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
+            try {
+                File file = fileChooser.getSelectedFile();
+                Project p = AppCore.getInstance().getGsonSerializer().loadProject(file);
+                MainFrame.getInstance().getMapTree().loadProject(p);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 }
