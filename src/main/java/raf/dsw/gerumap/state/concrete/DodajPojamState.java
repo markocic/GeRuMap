@@ -44,5 +44,4 @@ public class DodajPojamState extends State {
         pojamModel.addGrafikaSubscriber(map);
         map.addPainter(pojamPainter);
     }
-
 }

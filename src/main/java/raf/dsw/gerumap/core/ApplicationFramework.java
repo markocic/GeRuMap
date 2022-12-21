@@ -8,6 +8,7 @@ public abstract class ApplicationFramework {
     protected Logger logger;
     protected MapRepository mapRepository;
 
+
     public ApplicationFramework() {
     }
 
