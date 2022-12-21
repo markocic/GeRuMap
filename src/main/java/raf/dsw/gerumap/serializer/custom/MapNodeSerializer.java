@@ -21,7 +21,7 @@ public class MapNodeSerializer implements JsonSerializer<MapNode>, JsonDeseriali
         JsonArray models = new JsonArray();
         for (ElementModel model : map.getModels()) {
             // za sad ovako, treba sacuvati sve informacije u vezi modela
-            models.add(new JsonPrimitive(model.toString()));
+            models.add(jsonSerializationContext.serialize(model));
         }
 
         result.add("models", models);

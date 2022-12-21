@@ -3,9 +3,15 @@ package raf.dsw.gerumap.serializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import raf.dsw.gerumap.core.Serializer;
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.serializer.adapters.ColorAdapter;
+import raf.dsw.gerumap.serializer.adapters.DimensionAdapter;
+import raf.dsw.gerumap.serializer.adapters.PointAdapter;
+import raf.dsw.gerumap.serializer.custom.ElementModelSerializer;
 import raf.dsw.gerumap.serializer.custom.MapNodeSerializer;
 
 import java.awt.*;
@@ -23,6 +29,11 @@ public class GsonSerializer implements Serializer {
     public GsonSerializer() {
         gsonBuilder.registerTypeAdapter(Color.class, new ColorAdapter());
         gsonBuilder.registerTypeAdapter(MapNode.class, new MapNodeSerializer());
+        gsonBuilder.registerTypeAdapter(ElementModel.class, new ElementModelSerializer());
+        gsonBuilder.registerTypeAdapter(PojamModel.class, new ElementModelSerializer());
+        gsonBuilder.registerTypeAdapter(VezaModel.class, new ElementModelSerializer());
+        gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
+        gsonBuilder.registerTypeAdapter(Dimension.class, new DimensionAdapter());
         gson = gsonBuilder.create();
     }
 

@@ -1,7 +1,13 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
+import raf.dsw.gerumap.repository.implementation.Element;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;
@@ -139,6 +145,13 @@ public class RightPanel extends JPanel implements ISubscriber {
             mapView.setjScrollPane(jScrollPane);
 
             this.tabbedPane.addTab(mindMap.getName(), jScrollPane);
+
+            for (ElementModel model : ((MindMap) mindMap).getModels()) {
+                if (model instanceof PojamModel) mapView.addPainter(new PojamPainter(model));
+                else if (model instanceof VezaModel) mapView.addPainter(new VezaPainter(model));
+
+                model.addGrafikaSubscriber(mapView);
+            }
         }
     }
 

@@ -17,7 +17,8 @@ public class ColorAdapter extends TypeAdapter<Color> {
             jsonWriter.nullValue();
             return;
         }
-        jsonWriter.value(color.toString());
+        String colorString = color.getRed() + "," + color.getGreen() + ","+ color.getBlue();
+        jsonWriter.value(colorString);
     }
 
     @Override
@@ -27,6 +28,10 @@ public class ColorAdapter extends TypeAdapter<Color> {
             return null;
         }
         String color = jsonReader.nextString();
-        return Color.getColor(color);
+        String[] colorRGB = color.split(",");
+        int red = Integer.parseInt(colorRGB[0]);
+        int green = Integer.parseInt(colorRGB[1]);
+        int blue = Integer.parseInt(colorRGB[2]);
+        return new Color(red, green, blue);
     }
 }
