@@ -11,7 +11,9 @@ public class VezaPainter extends ElementPainter implements GrafikaSubscriber {
 
     public VezaPainter(ElementModel elementModel) {
         super(elementModel);
-        setShape(new Line2D.Double(((VezaModel) elementModel).getPocetnaTacka(), ((VezaModel) elementModel).getKrajnjaTacka()));
+        Line2D line = new Line2D.Double(((VezaModel) elementModel).getPocetnaTacka(), ((VezaModel) elementModel).getKrajnjaTacka());
+        getElement().addGrafikaSubscriber(this);
+        setShape(line);
     }
     @Override
     public void draw(Graphics2D g) {
