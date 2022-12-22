@@ -53,6 +53,7 @@ public class MapTree implements IMapTree {
 
         if (child.getMapNode().getParent() instanceof Project) {
             // ako brisemo mapu
+            System.out.println("here");
             Project parent = (Project) child.getMapNode().getParent();
             child.getMapNode().notifyMindMapDeleted(child.getMapNode().getName());
             parent.deleteChild(child.getMapNode());
@@ -117,6 +118,7 @@ public class MapTree implements IMapTree {
     }
 
     public void loadProject(Project project) {
+        project.setParent(((MapTreeItem) treeModel.getRoot()).getMapNode());
         MapTreeItem loadedProject = new MapTreeItem(project);
         ((MapTreeItem) treeModel.getRoot()).add(loadedProject);
 
@@ -124,7 +126,9 @@ public class MapTree implements IMapTree {
         mapNode.addChild(project);
 
         for (MapNode map : project.getChildren()) {
-            loadedProject.add(new MapTreeItem(map));
+            map.setParent(project);
+            MapTreeItem mapTreeItem = new MapTreeItem(map);
+            loadedProject.add(mapTreeItem);
         }
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
