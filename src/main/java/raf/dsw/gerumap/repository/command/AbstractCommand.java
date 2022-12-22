@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.gui.swing.command;
+package raf.dsw.gerumap.repository.command;
 
 public abstract class AbstractCommand {
     public abstract void doCommand();

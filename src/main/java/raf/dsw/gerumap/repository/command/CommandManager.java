@@ -1,11 +1,7 @@
-package raf.dsw.gerumap.gui.swing.command;
+package raf.dsw.gerumap.repository.command;
 
-import com.sun.tools.javac.Main;
-import raf.dsw.gerumap.AppCore;
-import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +16,6 @@ public class CommandManager {
     public void addCommand(AbstractCommand command){
         while(currentCommand < komande.size()){
             komande.remove(currentCommand);
-
         }
         komande.add(command);
         doCommand();
@@ -28,7 +23,7 @@ public class CommandManager {
 
     public void doCommand(){
         if(currentCommand < komande.size()){
-          //  komande.get(currentCommand++),doCommand();
+            komande.get(currentCommand++).doCommand();
             //unutar ovoga se pozvia ono sto se tacno trazi da se desi
             MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
         }else if(currentCommand == komande.size()){
@@ -39,6 +34,7 @@ public class CommandManager {
     public void undoCommand(){
         if(currentCommand > 0){
             MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+            komande.get(--currentCommand).undoCommand();
         }else if(currentCommand == komande.size()){
             MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
         }

@@ -1,6 +1,6 @@
-package raf.dsw.gerumap.gui.swing.command.concreteCommands;
+package raf.dsw.gerumap.repository.command.concrete;
 
-import raf.dsw.gerumap.gui.swing.command.AbstractCommand;
+import raf.dsw.gerumap.repository.command.AbstractCommand;
 
 public class SelectCommand extends AbstractCommand {
     @Override

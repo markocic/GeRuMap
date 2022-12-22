@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.repository.implementation;
 
+import raf.dsw.gerumap.repository.command.CommandManager;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
@@ -15,9 +16,11 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     private ArrayList<ElementModel> models = new ArrayList<>();
     private boolean template;
     private static int counter = 0;
+    private transient CommandManager commandManager;
 
     public MindMap(String name, MapNode parent) {
         super(name, parent);
+        commandManager = new CommandManager();
     }
 
     @Override
@@ -109,5 +112,13 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
 
     public void setModels(ArrayList<ElementModel> models) {
         this.models = models;
+    }
+
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    public void setCommandManager(CommandManager commandManager) {
+        this.commandManager = commandManager;
     }
 }
