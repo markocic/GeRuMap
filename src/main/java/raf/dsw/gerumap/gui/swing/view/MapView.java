@@ -125,6 +125,16 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         selectedPainters.clear();
     }
 
+    public void deletePainterFromModel(ElementModel model) {
+        for (ElementPainter painter : painters) {
+            if (painter.getElement().equals(model)) {
+                painters.remove(painter);
+                return;
+            }
+
+        }
+    }
+
     public void deselectAll() {
         for (ElementPainter painter : selectedPainters) {
             painter.setSelected(false);
@@ -186,13 +196,17 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
         else if (commandType == CommandType.OBRISI_VEZU) {
             VezaModel vezaModel = (VezaModel) obj;
-            for (ElementPainter painter : painters) {
-                if (vezaModel.equals(painter.getElement())) {
-                    removeSelectedPainter(painter);
-                    removePainter(painter);
-                    break;
-                }
+
+            deletePainterFromModel(vezaModel);
+        }
+
+        else if (commandType == CommandType.MULTI_BRISANJE) {
+            ArrayList<ElementModel> models = (ArrayList<ElementModel>) obj;
+
+            for (ElementModel model : models) {
+                deletePainterFromModel(model);
             }
+
         }
 
         repaint();

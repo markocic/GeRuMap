@@ -7,6 +7,8 @@ import java.awt.*;
 public class VezaModel extends ElementModel {
     private Point pocetnaTacka;
     private Point krajnjaTacka;
+    private PojamModel odPojma;
+    private PojamModel doPojma;
 
     public VezaModel(Color color, int stroke, Point pocetnaTacka, Point krajnjaTacka) {
         super(color, stroke);
@@ -49,5 +51,23 @@ public class VezaModel extends ElementModel {
         VezaModel veza = (VezaModel) obj;
 
         return veza.krajnjaTacka.equals(this.krajnjaTacka) && veza.pocetnaTacka.equals(this.pocetnaTacka);
+    }
+
+    public PojamModel getOdPojma() {
+        return odPojma;
+    }
+
+    public void setOdPojma(PojamModel odPojma) {
+        this.odPojma = odPojma;
+        notifyGrafikaSubscribers(null, null);
+    }
+
+    public PojamModel getDoPojma() {
+        return doPojma;
+    }
+
+    public void setDoPojma(PojamModel doPojma) {
+        this.doPojma = doPojma;
+        notifyGrafikaSubscribers(null, null);
     }
 }

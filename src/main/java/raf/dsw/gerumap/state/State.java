@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.state;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
@@ -37,19 +38,15 @@ public abstract class State {
         return null;
     }
 
-    public ArrayList<ElementPainter> getVezePojma(ElementPainter pojam, MapView map) {
-        ArrayList<ElementPainter> vezaPainterList = new ArrayList<>();
+    public ArrayList<ElementModel> getVezePojma(ElementPainter pojam, MapView map) {
+        ArrayList<ElementModel> vezaModelList = new ArrayList<>();
 
         PojamModel pojamModel = (PojamModel) pojam.getElement();
-        for (VezaModel veza : pojamModel.getDolazeceVeze()) {
-            vezaPainterList.add(new VezaPainter(veza));
-        }
+        vezaModelList.addAll(pojamModel.getDolazeceVeze());
 
-        for (VezaModel veza : pojamModel.getOdlazeceVeze()) {
-            vezaPainterList.add(new VezaPainter(veza));
-        }
+        vezaModelList.addAll(pojamModel.getOdlazeceVeze());
 
-        return vezaPainterList;
+        return vezaModelList;
     }
 
 

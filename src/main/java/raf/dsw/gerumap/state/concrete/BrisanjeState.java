@@ -1,12 +1,15 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.command.AbstractCommand;
+import raf.dsw.gerumap.repository.command.concrete.DeleteCommand;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
@@ -27,13 +30,17 @@ public class BrisanjeState extends State {
             return;
         }
 
+        ArrayList<ElementModel> modelsToDelete = new ArrayList<>();
+
         // brisanje svih veza koje su povezane sa selektovanim pojmovima
         for (ElementPainter painter : map.getSelectedPainters()) {
-            if (painter instanceof PojamPainter) map.removeAllPainters(getVezePojma(painter, map));
+            modelsToDelete.add(painter.getElement());
+            if (painter instanceof PojamPainter) modelsToDelete.addAll(getVezePojma(painter, map));
         }
 
-        // brisanje svih selektovanih pojmova sa radne povrsine
-        map.deleteSelectedPainters();
+        AbstractCommand deleteCommand = new DeleteCommand(map.getMapa(), modelsToDelete);
+        map.getMapa().getCommandManager().addCommand(deleteCommand);
+
     }
 
 }

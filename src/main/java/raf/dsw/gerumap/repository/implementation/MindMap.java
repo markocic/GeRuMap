@@ -2,6 +2,7 @@ package raf.dsw.gerumap.repository.implementation;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
+import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.repository.command.CommandManager;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
@@ -100,15 +101,34 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     public void addModelAtIndex(ElementModel model, int index) {
         if (model == null) return;
         models.add(index, model);
+
         if (model instanceof PojamModel) notifyGrafikaSubscribers(CommandType.DODAJ_POJAM, model);
-        else if (model instanceof VezaModel)  notifyGrafikaSubscribers(CommandType.DODAJ_VEZU, model);
+        else if (model instanceof VezaModel) {
+            addVezaToPojamArrays(model);
+            notifyGrafikaSubscribers(CommandType.DODAJ_VEZU, model);
+        }
     }
 
     public void removeModel(ElementModel model) {
         if (model == null) return;
         models.remove(model);
         if (model instanceof PojamModel) notifyGrafikaSubscribers(CommandType.OBRISI_POJAM, model);
-        else if (model instanceof VezaModel) notifyGrafikaSubscribers(CommandType.OBRISI_VEZU, model);
+        else if (model instanceof VezaModel) {
+            removeVezaFromPojamArrays(model);
+            notifyGrafikaSubscribers(CommandType.OBRISI_VEZU, model);
+        }
+    }
+
+    public void addVezaToPojamArrays(ElementModel model) {
+        VezaModel vezaModel = (VezaModel) model;
+        if (vezaModel.getDoPojma() != null) vezaModel.getDoPojma().addDolazecaVeza(vezaModel);
+        if (vezaModel.getOdPojma() != null) vezaModel.getOdPojma().addOdlazecaVeza(vezaModel);
+
+    }
+    public void removeVezaFromPojamArrays(ElementModel model) {
+        VezaModel vezaModel = (VezaModel) model;
+        if (vezaModel.getDoPojma() != null) vezaModel.getDoPojma().removeDolazecaVeza(vezaModel);
+        if (vezaModel.getOdPojma() != null) vezaModel.getOdPojma().removeOdlazecaVeza(vezaModel);
     }
 
     public ArrayList<ElementModel> getModels() {
@@ -126,4 +146,12 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     public void setCommandManager(CommandManager commandManager) {
         this.commandManager = commandManager;
     }
+
+    public void removeModels(ArrayList<ElementModel> models) {
+        for (ElementModel model : models) {
+            removeModel(model);
+        }
+        notifyGrafikaSubscribers(CommandType.MULTI_BRISANJE, models);
+    }
+
 }

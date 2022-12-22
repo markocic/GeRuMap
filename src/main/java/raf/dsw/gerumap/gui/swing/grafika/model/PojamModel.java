@@ -33,6 +33,7 @@ public class PojamModel extends ElementModel {
 
     public void addDolazecaVeza(VezaModel veza) {
         if (veza == null) return;
+        if (dolazeceVeze.contains(veza)) return;
         dolazeceVeze.add(veza);
         notifyGrafikaSubscribers(null, null);
     }
@@ -45,6 +46,7 @@ public class PojamModel extends ElementModel {
 
     public void addOdlazecaVeza(VezaModel veza) {
         if (veza == null) return;
+        if (odlazeceVeze.contains(veza)) return;
         odlazeceVeze.add(veza);
         notifyGrafikaSubscribers(null, null);
     }

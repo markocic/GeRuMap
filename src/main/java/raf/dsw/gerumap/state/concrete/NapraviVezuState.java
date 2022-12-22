@@ -50,6 +50,9 @@ public class NapraviVezuState extends State {
         vezaModel.setPocetnaTacka(pocetnaTacka);
         vezaModel.setKrajnjaTacka(krajnjaTacka);
 
+        vezaModel.setOdPojma(pocetniPojamModel);
+        vezaModel.setDoPojma(krajnjiPojamModel);
+
         pocetniPojamModel.addOdlazecaVeza(vezaModel);
         krajnjiPojamModel.addDolazecaVeza(vezaModel);
     }
