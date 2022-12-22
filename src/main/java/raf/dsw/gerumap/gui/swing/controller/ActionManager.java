@@ -7,6 +7,7 @@ public class ActionManager {
 
 
     private SaveAction saveAction;
+    private SaveAsAction saveAsAction;
 
     private LoadAction loadAction;
 
@@ -40,6 +41,7 @@ public class ActionManager {
     private void initActions(){
 
         saveAction = new SaveAction();
+        saveAsAction = new SaveAsAction();
         loadAction = new LoadAction();
         redoAction = new RedoAction();
         undoAction = new UndoAction();
@@ -194,5 +196,13 @@ public class ActionManager {
 
     public void setZumiranjeAction(ZumiranjeAction zumiranjeAction) {
         this.zumiranjeAction = zumiranjeAction;
+    }
+
+    public SaveAsAction getSaveAsAction() {
+        return saveAsAction;
+    }
+
+    public void setSaveAsAction(SaveAsAction saveAsAction) {
+        this.saveAsAction = saveAsAction;
     }
 }
