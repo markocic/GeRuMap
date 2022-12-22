@@ -21,7 +21,7 @@ public class VezaModel extends ElementModel {
     public void setPocetnaTacka(Point pocetnaTacka) {
         this.pocetnaTacka = pocetnaTacka;
         notifyShape(pocetnaTacka, krajnjaTacka);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public Point getKrajnjaTacka() {
@@ -31,7 +31,7 @@ public class VezaModel extends ElementModel {
     public void setKrajnjaTacka(Point krajnjaTacka) {
         this.krajnjaTacka = krajnjaTacka;
         notifyShape(pocetnaTacka, krajnjaTacka);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
 

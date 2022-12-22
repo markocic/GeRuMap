@@ -1,8 +1,12 @@
 package raf.dsw.gerumap.gui.swing.view;
 
 
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+import raf.dsw.gerumap.repository.command.CommandType;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import javax.swing.*;
@@ -149,7 +153,25 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     }
 
     @Override
-    public void update() {
+    public void update(CommandType commandType, Object obj) {
+
+        if (commandType == CommandType.DODAJ_POJAM) {
+            ElementModel pojamModel = (PojamModel) obj;
+            pojamModel.addGrafikaSubscriber(this);
+
+            ElementPainter painter = new PojamPainter(pojamModel);
+            addPainter(painter);
+        } else if (commandType == CommandType.OBRISI_POJAM) {
+            ElementModel pojamModel = (PojamModel) obj;
+            for (ElementPainter painter : painters) {
+                if (pojamModel.equals(painter.getElement())) {
+                    removeSelectedPainter(painter);
+                    removePainter(painter);
+                    break;
+                }
+            }
+        }
+
         repaint();
     }
 

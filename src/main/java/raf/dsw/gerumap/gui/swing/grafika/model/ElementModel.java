@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.grafika.model;
 
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+import raf.dsw.gerumap.repository.command.CommandType;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public abstract class ElementModel implements GrafikaPublisher {
 
     public void setColor(Color color) {
         this.color = color;
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public int getStroke() {
@@ -32,7 +33,7 @@ public abstract class ElementModel implements GrafikaPublisher {
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     @Override
@@ -50,10 +51,10 @@ public abstract class ElementModel implements GrafikaPublisher {
     }
 
     @Override
-    public void notifyGrafikaSubscribers() {
+    public void notifyGrafikaSubscribers(CommandType commandType, Object obj) {
         if (this.subscribers == null || this.subscribers.isEmpty()) return;
         for (GrafikaSubscriber sub : this.subscribers) {
-            sub.update();
+            sub.update(commandType, obj);
         }
     }
 

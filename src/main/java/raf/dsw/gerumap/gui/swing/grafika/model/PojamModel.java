@@ -34,25 +34,25 @@ public class PojamModel extends ElementModel {
     public void addDolazecaVeza(VezaModel veza) {
         if (veza == null) return;
         dolazeceVeze.add(veza);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public void removeDolazecaVeza(VezaModel veza) {
         if (veza == null || dolazeceVeze.isEmpty()) return;
         dolazeceVeze.remove(veza);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public void addOdlazecaVeza(VezaModel veza) {
         if (veza == null) return;
         odlazeceVeze.add(veza);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public void removeOdlazecaVeza(VezaModel veza) {
         if (veza == null || dolazeceVeze.isEmpty()) return;
         odlazeceVeze.remove(veza);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public String getName() {
@@ -61,7 +61,7 @@ public class PojamModel extends ElementModel {
 
     public void setName(String name) {
         this.name = name;
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public Point getCoordinates() {
@@ -70,7 +70,7 @@ public class PojamModel extends ElementModel {
 
     public void setCoordinates(Point coordinates) {
         this.coordinates = coordinates;
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, null);
     }
 
     public Dimension getSize() {

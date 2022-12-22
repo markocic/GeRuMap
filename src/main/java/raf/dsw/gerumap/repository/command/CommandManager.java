@@ -26,7 +26,7 @@ public class CommandManager {
             komande.get(currentCommand++).doCommand();
             //unutar ovoga se pozvia ono sto se tacno trazi da se desi
             MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
-        }else if(currentCommand == komande.size()){
+        } if(currentCommand == komande.size()){
             MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
         }
     }
@@ -35,7 +35,7 @@ public class CommandManager {
         if(currentCommand > 0){
             MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
             komande.get(--currentCommand).undoCommand();
-        }else if(currentCommand == komande.size()){
+        } if(currentCommand == komande.size() || currentCommand == 0){
             MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
         }
     }

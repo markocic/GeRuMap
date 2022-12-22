@@ -4,6 +4,7 @@ import raf.dsw.gerumap.repository.command.CommandManager;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+import raf.dsw.gerumap.repository.command.CommandType;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
@@ -16,11 +17,10 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     private ArrayList<ElementModel> models = new ArrayList<>();
     private boolean template;
     private static int counter = 0;
-    private transient CommandManager commandManager;
+    private transient CommandManager commandManager = new CommandManager();
 
     public MindMap(String name, MapNode parent) {
         super(name, parent);
-        commandManager = new CommandManager();
     }
 
     @Override
@@ -78,10 +78,10 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     }
 
     @Override
-    public void notifyGrafikaSubscribers() {
+    public void notifyGrafikaSubscribers(CommandType commandType, Object obj) {
         if (this.grafikaSubscribers == null || this.grafikaSubscribers.isEmpty()) return;
         for (GrafikaSubscriber sub : this.grafikaSubscribers) {
-            sub.update();
+            sub.update(commandType, obj);
         }
     }
 
@@ -91,19 +91,19 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     public void addModel(ElementModel model) {
         if (model == null) return;
         models.add(model);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(CommandType.DODAJ_POJAM, model);
     }
 
     public void addModelAtIndex(ElementModel model, int index) {
         if (model == null) return;
         models.add(index, model);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(null, model);
     }
 
     public void removeModel(ElementModel model) {
         if (model == null) return;
         models.remove(model);
-        notifyGrafikaSubscribers();
+        notifyGrafikaSubscribers(CommandType.OBRISI_POJAM, model);
     }
 
     public ArrayList<ElementModel> getModels() {

@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.grafika.painter;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
+import raf.dsw.gerumap.repository.command.CommandType;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -38,5 +39,5 @@ public class VezaPainter extends ElementPainter implements GrafikaSubscriber {
     }
 
     @Override
-    public void update() {}
+    public void update(CommandType commandType, Object obj) {}
 }

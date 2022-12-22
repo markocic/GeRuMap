@@ -5,6 +5,8 @@ import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.logger.TipPoruke;
+import raf.dsw.gerumap.repository.command.AbstractCommand;
+import raf.dsw.gerumap.repository.command.concrete.PojamCommand;
 import raf.dsw.gerumap.state.State;
 
 import javax.swing.*;
@@ -29,10 +31,7 @@ public class DodajPojamState extends State {
 
         } while (check);
 
-        PojamModel pojamModel = new PojamModel(pojamName, new Point(x, y), new Dimension(80, 40), 2, Color.BLACK);
-        PojamPainter pojamPainter = new PojamPainter(pojamModel);
-        map.getMapa().addModel(pojamModel);
-        pojamModel.addGrafikaSubscriber(map);
-        map.addPainter(pojamPainter);
+        AbstractCommand pojamCommand = new PojamCommand(map.getMapa(), new PojamModel(pojamName, new Point(x, y), new Dimension(80, 40), 2, Color.BLACK));
+        map.getMapa().getCommandManager().addCommand(pojamCommand);
     }
 }
