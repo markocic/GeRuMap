@@ -38,6 +38,7 @@ public class ElementModelSerializer implements JsonSerializer<ElementModel>, Jso
             }
 
             jsonObject.add("dolazeceVeze", dolazeceVeze);
+            jsonObject.add("isCentralni", new JsonPrimitive(pojam.isCentralni()));
 
         } else if (elementModel instanceof VezaModel) {
             VezaModel veza = (VezaModel) elementModel;
@@ -70,9 +71,13 @@ public class ElementModelSerializer implements JsonSerializer<ElementModel>, Jso
             for (JsonElement element : jsonObject.getAsJsonArray("dolazeceVeze")) {
                 dolazeceVeze.add(jsonDeserializationContext.deserialize(element, VezaModel.class));
             }
+
+            boolean isCentralni = jsonObject.get("isCentralni").getAsBoolean();
+
             PojamModel pojam = new PojamModel(name, coords, dimension, stroke, color);
             pojam.setDolazeceVeze(dolazeceVeze);
             pojam.setOdlazeceVeze(odlazeceVeze);
+            pojam.setCentralni(isCentralni);
             return pojam;
 
         } else if (className.equals("VezaModel")) {
