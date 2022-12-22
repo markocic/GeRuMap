@@ -38,11 +38,14 @@ public class PojamPainter extends ElementPainter{
         else g.setPaint(pojam.getColor());
 
         g.draw(getShape());
-        drawCenteredString(g, name);
+//        drawCenteredString(g, name, true);
+        drawCenteredString(g, name, ((PojamModel) getElement()).isCentralni());
     }
 
-    public void drawCenteredString(Graphics2D g, String text) {
+    public void drawCenteredString(Graphics2D g, String text, boolean isCentralni) {
         PojamModel element = (PojamModel) getElement();
+        if (isCentralni) g.setFont(new Font("Dialog", Font.BOLD, 18));
+        else g.setFont(new Font("Dialog", Font.PLAIN, 12));
         FontMetrics metrics = g.getFontMetrics();
         int x = (int) (element.getCoordinates().getX() + (element.getSize().getWidth() - metrics.stringWidth(text)) / 2);
         int y = (int) (element.getCoordinates().getY() + ((element.getSize().getHeight() - metrics.getHeight()) / 2) + metrics.getAscent());

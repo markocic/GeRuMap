@@ -12,6 +12,7 @@ import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class PodesavanjaState extends State {
     @Override
@@ -47,7 +48,7 @@ public class PodesavanjaState extends State {
         if (!modal.isConfirmed()) return;
 
         if (multiChange) multiSelectChange(map, modal.getColor(), modal.getStroke());
-        else if (singlePojam) singlePojamChange(selected, modal.getName(), modal.getColor(), modal.getStroke(), modal.isCentralni());
+        else if (singlePojam) singlePojamChange(map, selected, modal.getName(), modal.getColor(), modal.getStroke(), modal.isCentralni());
         else singleVezaChange(selected, modal.getColor(), modal.getStroke());
 
     }
@@ -59,11 +60,22 @@ public class PodesavanjaState extends State {
         }
     }
 
-    public void singlePojamChange(ElementPainter painter, String name, Color color, int stroke, boolean isCentralni) {
-        painter.getElement().setStroke(stroke);
-        painter.getElement().setColor(color);
-        ((PojamModel) painter.getElement()).setName(name);
-        ((PojamModel) painter.getElement()).setCentralni(isCentralni);
+    public void singlePojamChange(MapView map, ElementPainter painter, String name, Color color, int stroke, boolean isCentralni) {
+        PojamModel pojam = (PojamModel) painter.getElement();
+        pojam.setStroke(stroke);
+        pojam.setColor(color);
+        pojam.setName(name);
+        pojam.setCentralni(isCentralni);
+        if (isCentralni) {
+            Point newPoint = new Point((int) ((map.getWidth() - pojam.getSize().getWidth()) / 2), (int) ((map.getHeight() - pojam.getSize().getHeight()) / 2));
+
+            pojam.setCoordinates(newPoint);
+
+            Ellipse2D elipsa = (Ellipse2D) painter.getShape();
+            elipsa.setFrame(newPoint, pojam.getSize());
+
+            pojam.updateVeze(new Point((int) elipsa.getCenterX(), (int) elipsa.getCenterY()));
+        }
     }
 
     public void singleVezaChange(ElementPainter painter, Color color, int stroke) {
