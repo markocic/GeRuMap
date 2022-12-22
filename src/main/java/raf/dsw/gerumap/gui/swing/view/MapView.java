@@ -3,8 +3,10 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 import raf.dsw.gerumap.repository.command.CommandType;
 import raf.dsw.gerumap.repository.implementation.MindMap;
@@ -161,10 +163,31 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
             ElementPainter painter = new PojamPainter(pojamModel);
             addPainter(painter);
-        } else if (commandType == CommandType.OBRISI_POJAM) {
+        }
+
+        else if (commandType == CommandType.OBRISI_POJAM) {
             ElementModel pojamModel = (PojamModel) obj;
             for (ElementPainter painter : painters) {
                 if (pojamModel.equals(painter.getElement())) {
+                    removeSelectedPainter(painter);
+                    removePainter(painter);
+                    break;
+                }
+            }
+        }
+
+        else if (commandType == CommandType.DODAJ_VEZU) {
+            VezaModel vezaModel = (VezaModel) obj;
+            vezaModel.addGrafikaSubscriber(this);
+
+            ElementPainter painter = new VezaPainter(vezaModel);
+            addPainterAtIndex(painter, 0);
+        }
+
+        else if (commandType == CommandType.OBRISI_VEZU) {
+            VezaModel vezaModel = (VezaModel) obj;
+            for (ElementPainter painter : painters) {
+                if (vezaModel.equals(painter.getElement())) {
                     removeSelectedPainter(painter);
                     removePainter(painter);
                     break;

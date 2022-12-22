@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.repository.implementation;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.repository.command.CommandManager;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
@@ -91,19 +93,22 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     public void addModel(ElementModel model) {
         if (model == null) return;
         models.add(model);
-        notifyGrafikaSubscribers(CommandType.DODAJ_POJAM, model);
+        if (model instanceof PojamModel) notifyGrafikaSubscribers(CommandType.DODAJ_POJAM, model);
+        else if (model instanceof VezaModel)  notifyGrafikaSubscribers(CommandType.DODAJ_VEZU, model);
     }
 
     public void addModelAtIndex(ElementModel model, int index) {
         if (model == null) return;
         models.add(index, model);
-        notifyGrafikaSubscribers(null, model);
+        if (model instanceof PojamModel) notifyGrafikaSubscribers(CommandType.DODAJ_POJAM, model);
+        else if (model instanceof VezaModel)  notifyGrafikaSubscribers(CommandType.DODAJ_VEZU, model);
     }
 
     public void removeModel(ElementModel model) {
         if (model == null) return;
         models.remove(model);
-        notifyGrafikaSubscribers(CommandType.OBRISI_POJAM, model);
+        if (model instanceof PojamModel) notifyGrafikaSubscribers(CommandType.OBRISI_POJAM, model);
+        else if (model instanceof VezaModel) notifyGrafikaSubscribers(CommandType.OBRISI_VEZU, model);
     }
 
     public ArrayList<ElementModel> getModels() {
