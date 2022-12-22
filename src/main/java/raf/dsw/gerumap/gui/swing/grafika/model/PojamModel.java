@@ -10,6 +10,7 @@ public class PojamModel extends ElementModel {
     private Dimension size;
     private ArrayList<VezaModel> odlazeceVeze;
     private ArrayList<VezaModel> dolazeceVeze;
+    private boolean isCentralni = false;
 
     public PojamModel(String name, Point coordinates, Dimension size, int stroke, Color color) {
         super(color, stroke);
@@ -106,7 +107,15 @@ public class PojamModel extends ElementModel {
             veza.setKrajnjaTacka(point);
         }
     }
-    
+
+    public boolean isCentralni() {
+        return isCentralni;
+    }
+
+    public void setCentralni(boolean centralni) {
+        isCentralni = centralni;
+    }
+
     @Override
     public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {}
 }

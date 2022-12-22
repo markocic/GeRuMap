@@ -28,11 +28,12 @@ public class PodesavanjaState extends State {
 
         ElementPainter selected = map.getSelectedPainters().get(0);
         String name = (singlePojam) ? ((PojamModel) selected.getElement()).getName() : null;
+        boolean isCentralni = singlePojam && ((PojamModel) selected.getElement()).isCentralni();
         Color color = selected.getElement().getColor();
         int stroke = selected.getElement().getStroke();
 
 
-        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke, singlePojam);
+        PodesavanjaModal modal = new PodesavanjaModal(MainFrame.getInstance(), name, color, stroke, singlePojam, isCentralni);
 
         // dalja validacija imena, takodje se preskace ako je selektovano vise elemenata
         if (singlePojam) {
@@ -46,7 +47,7 @@ public class PodesavanjaState extends State {
         if (!modal.isConfirmed()) return;
 
         if (multiChange) multiSelectChange(map, modal.getColor(), modal.getStroke());
-        else if (singlePojam) singlePojamChange(selected, modal.getName(), modal.getColor(), modal.getStroke());
+        else if (singlePojam) singlePojamChange(selected, modal.getName(), modal.getColor(), modal.getStroke(), modal.isCentralni());
         else singleVezaChange(selected, modal.getColor(), modal.getStroke());
 
     }
@@ -58,10 +59,11 @@ public class PodesavanjaState extends State {
         }
     }
 
-    public void singlePojamChange(ElementPainter painter, String name, Color color, int stroke) {
+    public void singlePojamChange(ElementPainter painter, String name, Color color, int stroke, boolean isCentralni) {
         painter.getElement().setStroke(stroke);
         painter.getElement().setColor(color);
         ((PojamModel) painter.getElement()).setName(name);
+        ((PojamModel) painter.getElement()).setCentralni(isCentralni);
     }
 
     public void singleVezaChange(ElementPainter painter, Color color, int stroke) {

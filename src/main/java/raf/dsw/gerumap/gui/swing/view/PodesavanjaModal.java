@@ -16,11 +16,13 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
     private int stroke;
     private boolean confirmed;
     private boolean imePrompt;
+    private boolean isCentralni;
+    private JCheckBox isCentralniCheckBox;
     private JTextField nameField;
     private JColorChooser colorChooser;
     private JTextField strokeField;
 
-    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke, boolean imePrompt) {
+    public PodesavanjaModal(JFrame parent, String name, Color color, int stroke, boolean imePrompt, boolean centralni) {
         super(parent, "Settings", true);
         this.imePrompt = imePrompt;
         confirmed = false;
@@ -35,7 +37,8 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
             messagePane.add(new JLabel("Ime: "));
             this.nameField = new JTextField(name, 12);
             messagePane.add(nameField);
-
+            isCentralniCheckBox = new JCheckBox("Centralni pojam", centralni);
+            messagePane.add(isCentralniCheckBox);
         }
 
         this.colorChooser = new JColorChooser(color);
@@ -89,6 +92,8 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
             AppCore.getInstance().getMsgGenerator().generateMsg("Stroke mora da bude ceo broj", TipPoruke.GRESKA);
             return;
         }
+
+        this.isCentralni = isCentralniCheckBox.isSelected();
         confirmed = true;
         setVisible(false);
         dispose();
@@ -126,5 +131,13 @@ public class PodesavanjaModal extends JDialog implements ActionListener {
 
     public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
+    }
+
+    public boolean isCentralni() {
+        return isCentralni;
+    }
+
+    public void setCentralni(boolean centralni) {
+        isCentralni = centralni;
     }
 }

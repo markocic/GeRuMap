@@ -24,7 +24,7 @@ public class NapraviVezuState extends State {
         map.getMapa().addModelAtIndex(vezaPainter.getElement(), 0);
         map.addPainterAtIndex(vezaPainter, 0);
         vezaPainter.getElement().addGrafikaSubscriber(map);
-        vezaPainter.getElement().addGrafikaSubscriber(vezaPainter);
+//        vezaPainter.getElement().addGrafikaSubscriber(vezaPainter);
 
     }
 
