@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.tree.controller;
 
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
@@ -24,8 +26,15 @@ public class MapTreeSelectionListener implements TreeSelectionListener {
 //        }
         if (SelektovaniTreeItem.getMapNode() instanceof MindMap) {
             System.out.println(((MindMap) SelektovaniTreeItem.getMapNode()).getModels());
+
+            for(ElementModel model : (((MindMap) SelektovaniTreeItem.getMapNode()).getModels())) {
+                if (model instanceof PojamModel) {
+                    System.out.println(((PojamModel) model).getName());
+                    System.out.println(((PojamModel) model).getOdlazeceVeze());
+                    System.out.println(((PojamModel) model).getDolazeceVeze());
+                }
+            }
         }
-        System.out.println();
 
         ((MapTree)MainFrame.getInstance().getMapTree()).setSelectedNode(SelektovaniTreeItem);
     }

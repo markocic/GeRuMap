@@ -27,11 +27,12 @@ public class GsonSerializer implements Serializer {
     private GsonBuilder gsonBuilder = new GsonBuilder();
 
     public GsonSerializer() {
+        ElementModelSerializer elementModelSerializer = new ElementModelSerializer();
         gsonBuilder.registerTypeAdapter(Color.class, new ColorAdapter());
         gsonBuilder.registerTypeAdapter(MapNode.class, new MapNodeSerializer());
-        gsonBuilder.registerTypeAdapter(ElementModel.class, new ElementModelSerializer());
-        gsonBuilder.registerTypeAdapter(PojamModel.class, new ElementModelSerializer());
-        gsonBuilder.registerTypeAdapter(VezaModel.class, new ElementModelSerializer());
+        gsonBuilder.registerTypeAdapter(ElementModel.class, elementModelSerializer);
+        gsonBuilder.registerTypeAdapter(PojamModel.class, elementModelSerializer);
+        gsonBuilder.registerTypeAdapter(VezaModel.class, elementModelSerializer);
         gsonBuilder.registerTypeAdapter(Point.class, new PointAdapter());
         gsonBuilder.registerTypeAdapter(Dimension.class, new DimensionAdapter());
         gson = gsonBuilder.create();

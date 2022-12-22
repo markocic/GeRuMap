@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class ElementModelSerializer implements JsonSerializer<ElementModel>, JsonDeserializer<ElementModel> {
 
+    private ArrayList<ElementModel> vezaModels = new ArrayList<>();
+
     @Override
     public JsonElement serialize(ElementModel elementModel, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
@@ -32,7 +34,7 @@ public class ElementModelSerializer implements JsonSerializer<ElementModel>, Jso
 
             JsonArray dolazeceVeze = new JsonArray();
             for (VezaModel veza : pojam.getDolazeceVeze()) {
-                odlazeceVeze.add(jsonSerializationContext.serialize(veza));
+                dolazeceVeze.add(jsonSerializationContext.serialize(veza));
             }
 
             jsonObject.add("dolazeceVeze", dolazeceVeze);
@@ -68,13 +70,25 @@ public class ElementModelSerializer implements JsonSerializer<ElementModel>, Jso
             for (JsonElement element : jsonObject.getAsJsonArray("dolazeceVeze")) {
                 dolazeceVeze.add(jsonDeserializationContext.deserialize(element, VezaModel.class));
             }
-            return new PojamModel(name, coords, dimension, stroke, color);
+            PojamModel pojam = new PojamModel(name, coords, dimension, stroke, color);
+            pojam.setDolazeceVeze(dolazeceVeze);
+            pojam.setOdlazeceVeze(odlazeceVeze);
+            return pojam;
 
         } else if (className.equals("VezaModel")) {
             Point pocetnaTacka = jsonDeserializationContext.deserialize(jsonObject.get("pocetnaTacka"), Point.class);
             Point krajnjaTacka = jsonDeserializationContext.deserialize(jsonObject.get("krajnjaTacka"), Point.class);
 
-            return new VezaModel(color, stroke, pocetnaTacka, krajnjaTacka);
+            // proverava da li smo vec napravili ovakvu vezu i ako jesmo, vraca nju
+            VezaModel veza = new VezaModel(color, stroke, pocetnaTacka, krajnjaTacka);
+            for (ElementModel model : vezaModels) {
+                if (veza.equals(model)) {
+                    return model;
+                }
+            }
+
+            vezaModels.add(veza);
+            return veza;
         }
         return null;
     }

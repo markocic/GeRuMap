@@ -42,4 +42,12 @@ public class VezaModel extends ElementModel {
             sub.updateShape(pocetnaTacka, krajnjaTacka);
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof VezaModel)) return false;
+        VezaModel veza = (VezaModel) obj;
+
+        return veza.krajnjaTacka.equals(this.krajnjaTacka) && veza.pocetnaTacka.equals(this.pocetnaTacka);
+    }
 }
