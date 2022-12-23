@@ -38,7 +38,7 @@ public class VezaModel extends ElementModel {
 
 
     @Override
-    public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {
+    public void notifyShape(Object pocetnaTacka, Object krajnjaTacka) {
         if (pocetnaTacka == null || krajnjaTacka == null) return;
         for (GrafikaSubscriber sub : getSubscribers()) {
             sub.updateShape(pocetnaTacka, krajnjaTacka);

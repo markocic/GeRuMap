@@ -213,7 +213,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     }
 
     @Override
-    public void updateShape(Point pocetnaTacka, Point krajnjaTacka) {}
+    public void updateShape(Object pocetnaTacka, Object krajnjaTacka) {}
 
     public class MouseController extends MouseAdapter implements MouseWheelListener{
 

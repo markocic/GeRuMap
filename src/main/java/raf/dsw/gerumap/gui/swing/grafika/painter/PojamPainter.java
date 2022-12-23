@@ -2,15 +2,12 @@ package raf.dsw.gerumap.gui.swing.grafika.painter;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.gui.swing.view.MapView;
-import raf.dsw.gerumap.repository.implementation.Element;
-import raf.dsw.gerumap.state.concrete.DodajPojamState;
+import raf.dsw.gerumap.repository.command.CommandType;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class PojamPainter extends ElementPainter{
+public class PojamPainter extends ElementPainter {
 
     public PojamPainter(ElementModel elementModel) {
         super(elementModel);
@@ -58,5 +55,13 @@ public class PojamPainter extends ElementPainter{
         int height = metrics.getHeight() * 2;
 
         return new Dimension(width, height);
+    }
+
+    @Override
+    public void update(CommandType commandType, Object obj) {}
+
+    @Override
+    public void updateShape(Object point, Object size) {
+        ((Ellipse2D) getShape()).setFrame((Point) point, (Dimension) size);
     }
 }

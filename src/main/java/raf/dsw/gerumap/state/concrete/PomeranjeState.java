@@ -1,6 +1,8 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.view.MapView;
+import raf.dsw.gerumap.repository.command.AbstractCommand;
+import raf.dsw.gerumap.repository.command.concrete.MoveCommand;
 import raf.dsw.gerumap.state.State;
 
 public class PomeranjeState  extends State {
@@ -14,14 +16,9 @@ public class PomeranjeState  extends State {
     }
 
     @Override
-    public void mouseReleasedState(int x, int y, MapView map) {
-        updateSelectedPainters(map.getSelectedPainters(), x - startX, y - startY);
-
-    }
-
-    @Override
     public void mouseDraggedState(int x, int y, MapView map) {
-        updateSelectedPainters(map.getSelectedPainters(), x - startX, y - startY);
+        AbstractCommand moveCommand = new MoveCommand(startX, startY, x, y, getSelectedModels(map.getSelectedPainters()));
+        map.getMapa().getCommandManager().addCommand(moveCommand);
 
         startX = x;
         startY = y;

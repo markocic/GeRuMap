@@ -6,5 +6,4 @@ public enum CommandType {
     DODAJ_VEZU,
     OBRISI_VEZU,
     MULTI_BRISANJE,
-    MULTI_DODAVANJE
 }

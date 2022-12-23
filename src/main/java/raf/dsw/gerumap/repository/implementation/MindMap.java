@@ -89,7 +89,7 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     }
 
     @Override
-    public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {}
+    public void notifyShape(Object obj1, Object obj2) {}
 
     public void addModel(ElementModel model) {
         if (model == null) return;

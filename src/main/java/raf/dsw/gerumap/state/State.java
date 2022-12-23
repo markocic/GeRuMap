@@ -79,4 +79,16 @@ public abstract class State {
         }
 
     }
+
+
+    public ArrayList<ElementModel> getSelectedModels(ArrayList<ElementPainter> selectedPainters) {
+
+        ArrayList<ElementModel> models = new ArrayList<>();
+
+        for (ElementPainter painter : selectedPainters) {
+            models.add(painter.getElement());
+        }
+
+        return models;
+    }
 }

@@ -3,10 +3,11 @@ package raf.dsw.gerumap.gui.swing.grafika.painter;
 
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
+import raf.dsw.gerumap.gui.swing.observer.GrafikaSubscriber;
 
 import java.awt.*;
 
-public abstract class ElementPainter {
+public abstract class ElementPainter implements GrafikaSubscriber {
     private ElementModel element;
     private Shape shape;
 
@@ -53,4 +54,5 @@ public abstract class ElementPainter {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
 }

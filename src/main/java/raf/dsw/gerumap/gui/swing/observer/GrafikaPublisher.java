@@ -10,6 +10,6 @@ public interface GrafikaPublisher {
     void removeGrafikaSubscriber(GrafikaSubscriber sub);
     void notifyGrafikaSubscribers(CommandType commandType, Object obj);
 
-    void notifyShape(Point pocetnaTacka, Point krajnjaTacka);
+    void notifyShape(Object obj1, Object obj2);
 
 }

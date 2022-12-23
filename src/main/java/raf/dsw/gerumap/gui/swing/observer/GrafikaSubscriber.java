@@ -6,5 +6,5 @@ import java.awt.*;
 
 public interface GrafikaSubscriber {
     void update(CommandType commandType, Object obj);
-    void updateShape(Point pocetnaTacka, Point krajnjaTacka);
+    void updateShape(Object obj1, Object obj2);
 }

@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
+import raf.dsw.gerumap.repository.command.CommandType;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -72,6 +74,7 @@ public class PojamModel extends ElementModel {
 
     public void setCoordinates(Point coordinates) {
         this.coordinates = coordinates;
+        notifyShape(coordinates, size);
         notifyGrafikaSubscribers(null, null);
     }
 
@@ -129,5 +132,7 @@ public class PojamModel extends ElementModel {
     }
 
     @Override
-    public void notifyShape(Point pocetnaTacka, Point krajnjaTacka) {}
+    public void notifyShape(Object point, Object size) {
+
+    }
 }
