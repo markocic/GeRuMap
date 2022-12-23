@@ -15,13 +15,13 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 public class NapraviVezuState extends State {
-    private VezaPainter vezaPainter;
     private VezaModel vezaModel;
+    private AbstractCommand vezaCommand;
 
     @Override
     public void mousePressedState(int x, int y, MapView map) {
         vezaModel = new VezaModel(Color.lightGray, 2, new Point(x, y), new Point(x,y));
-        AbstractCommand vezaCommand = new VezaCommand(map.getMapa(), vezaModel);
+        vezaCommand = new VezaCommand(map.getMapa(), vezaModel);
         map.getMapa().getCommandManager().addCommand(vezaCommand);
     }
 
@@ -41,20 +41,8 @@ public class NapraviVezuState extends State {
         PojamModel pocetniPojamModel = (PojamModel) pocetniPojam.getElement();
         PojamModel krajnjiPojamModel = (PojamModel) krajnjiPojam.getElement();
 
-        Ellipse2D pocetnaElipsa = (Ellipse2D) pocetniPojam.getShape();
-        Ellipse2D krajnjaElipsa = (Ellipse2D) krajnjiPojam.getShape();
-
-        Point pocetnaTacka = new Point((int) pocetnaElipsa.getCenterX(), (int) pocetnaElipsa.getCenterY());
-        Point krajnjaTacka = new Point((int) krajnjaElipsa.getCenterX(), (int) krajnjaElipsa.getCenterY());
-
-        vezaModel.setPocetnaTacka(pocetnaTacka);
-        vezaModel.setKrajnjaTacka(krajnjaTacka);
-
-        vezaModel.setOdPojma(pocetniPojamModel);
-        vezaModel.setDoPojma(krajnjiPojamModel);
-
-        pocetniPojamModel.addOdlazecaVeza(vezaModel);
-        krajnjiPojamModel.addDolazecaVeza(vezaModel);
+        ((VezaCommand) vezaCommand).setOdPojam(pocetniPojamModel);
+        ((VezaCommand) vezaCommand).setDoPojam(krajnjiPojamModel);
     }
 
     @Override

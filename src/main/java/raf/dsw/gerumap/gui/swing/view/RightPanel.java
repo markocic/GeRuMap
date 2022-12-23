@@ -41,6 +41,10 @@ public class RightPanel extends JPanel implements ISubscriber {
             @Override
             public void stateChanged(ChangeEvent e) {
                 JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+                if (sourceTabbedPane.getSelectedComponent() == null) {
+                    currentMapView = null;
+                    return;
+                }
                 currentMapView = (MapView) ((JScrollPane) sourceTabbedPane.getSelectedComponent()).getViewport().getView();
                 currentMapView.getMapa().getCommandManager().refreshButtons();
             }

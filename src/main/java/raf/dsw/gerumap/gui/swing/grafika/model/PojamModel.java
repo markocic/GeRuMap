@@ -41,7 +41,6 @@ public class PojamModel extends ElementModel {
     }
 
     public void removeDolazecaVeza(VezaModel veza) {
-        if (veza == null || dolazeceVeze.isEmpty()) return;
         dolazeceVeze.remove(veza);
         notifyGrafikaSubscribers(null, null);
     }
@@ -54,7 +53,6 @@ public class PojamModel extends ElementModel {
     }
 
     public void removeOdlazecaVeza(VezaModel veza) {
-        if (veza == null || dolazeceVeze.isEmpty()) return;
         odlazeceVeze.remove(veza);
         notifyGrafikaSubscribers(null, null);
     }
