@@ -50,6 +50,9 @@ public class CommandManager {
         } if(currentCommand == komande.size()){
             MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
             MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
+        } if (currentCommand == 0 && currentCommand == komande.size()) {
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
         }
     }
 
