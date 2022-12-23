@@ -40,6 +40,19 @@ public class CommandManager {
         }
     }
 
+    public void refreshButtons() {
+        if(currentCommand == 0){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+        } else if(currentCommand < komande.size()){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+        } if(currentCommand == komande.size()){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
+        }
+    }
+
     public List<AbstractCommand> getKomande() {
         return komande;
     }

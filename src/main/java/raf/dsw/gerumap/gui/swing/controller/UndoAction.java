@@ -16,6 +16,7 @@ public class UndoAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         //na panelu vraca desavanje nazad
-        ((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getCommandManager().undoCommand();
+        MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa().getCommandManager().undoCommand();
+//        ((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getCommandManager().undoCommand();
     }
 }

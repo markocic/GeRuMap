@@ -17,6 +17,6 @@ public class RedoAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         //omogucava vadjenje i brisanje iz "stack ili liste dogadjaja" desavanja
-        ((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode()).getCommandManager().doCommand();
+        MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa().getCommandManager().doCommand();
     }
 }

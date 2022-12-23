@@ -13,6 +13,8 @@ import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 
@@ -21,6 +23,7 @@ public class RightPanel extends JPanel implements ISubscriber {
     private final JLabel authorNameLabel;
     private final TabbedPane tabbedPane;
     private StateManager stateManager;
+    private MapView currentMapView;
 
     public RightPanel() {
         this.projectNameLabel = new JLabel("project name");
@@ -33,6 +36,17 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.add(projectNameLabel);
         this.add(authorNameLabel);
         this.add(tabbedPane);
+
+        ChangeListener changeListener = new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+                currentMapView = (MapView) ((JScrollPane) sourceTabbedPane.getSelectedComponent()).getViewport().getView();
+                currentMapView.getMapa().getCommandManager().refreshButtons();
+            }
+        };
+
+        tabbedPane.addChangeListener(changeListener);
 
     }
 
@@ -183,5 +197,13 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     public TabbedPane getTabbedPane() {
         return tabbedPane;
+    }
+
+    public MapView getCurrentMapView() {
+        return currentMapView;
+    }
+
+    public void setCurrentMapView(MapView currentMapView) {
+        this.currentMapView = currentMapView;
     }
 }
