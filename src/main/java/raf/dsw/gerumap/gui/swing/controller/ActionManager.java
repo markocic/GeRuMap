@@ -21,6 +21,7 @@ public class ActionManager {
 
     private InfoAction infoAction;
 
+    private SavePictureAction savePictureAction = new SavePictureAction();
     private AuthorAction authorAction;
     private OpenProjectAction openProjectAction;
 
@@ -45,6 +46,7 @@ public class ActionManager {
         loadAction = new LoadAction();
         redoAction = new RedoAction();
         undoAction = new UndoAction();
+        savePictureAction = new SavePictureAction();
 
         deleteAction = new DeleteAction();
         exitAction = new ExitAction();
@@ -60,6 +62,14 @@ public class ActionManager {
         selekcijaAction = new SelekcijaAction();
         zumiranjeAction = new ZumiranjeAction();
         podesavanjaAction = new PodesavanjaAction();
+    }
+
+    public SavePictureAction getSavePictureAction() {
+        return savePictureAction;
+    }
+
+    public void setSavePictureAction(SavePictureAction savePictureAction) {
+        this.savePictureAction = savePictureAction;
     }
 
     public SaveAction getSaveAction() {
