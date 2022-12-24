@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.repository.command;
 
+import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.gui.swing.SwingGui;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;
@@ -22,38 +24,15 @@ public class CommandManager {
     }
 
     public void doCommand(){
-        if(currentCommand < komande.size()){
-            komande.get(currentCommand++).doCommand();
-            //unutar ovoga se pozvia ono sto se tacno trazi da se desi
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
-        } if(currentCommand == komande.size()){
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
-        }
+        if(currentCommand < komande.size()) komande.get(currentCommand++).doCommand();
+
+        ((SwingGui) AppCore.getInstance().getGui()).refreshUndoRedoButtons();
     }
 
     public void undoCommand(){
-        if(currentCommand > 0){
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
-            komande.get(--currentCommand).undoCommand();
-        } if(currentCommand == komande.size() || currentCommand == 0){
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
-        }
-    }
+        if(currentCommand > 0) komande.get(--currentCommand).undoCommand();
 
-    public void refreshButtons() {
-        if(currentCommand == 0){
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
-        } else if(currentCommand < komande.size()){
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
-        } if(currentCommand == komande.size()){
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
-        } if (currentCommand == 0 && currentCommand == komande.size()) {
-            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
-            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
-        }
+        ((SwingGui) AppCore.getInstance().getGui()).refreshUndoRedoButtons();
     }
 
     public List<AbstractCommand> getKomande() {

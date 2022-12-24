@@ -1,5 +1,7 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.gui.swing.SwingGui;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
@@ -46,7 +48,7 @@ public class RightPanel extends JPanel implements ISubscriber {
                     return;
                 }
                 currentMapView = (MapView) ((JScrollPane) sourceTabbedPane.getSelectedComponent()).getViewport().getView();
-                currentMapView.getMapa().getCommandManager().refreshButtons();
+                ((SwingGui) AppCore.getInstance().getGui()).refreshUndoRedoButtons();
             }
         };
 

@@ -34,4 +34,23 @@ public class SwingGui implements Gui {
 
         }
     }
+    // int currentCommand, int komandeSize
+    public void refreshUndoRedoButtons() {
+        int currentCommand = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa().getCommandManager().getCurrentCommand();
+        int komandeSize = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa().getCommandManager().getKomande().size();
+
+        if(currentCommand == 0){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+        } else if(currentCommand < komandeSize){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+        } if(currentCommand == komandeSize){
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
+        } if (currentCommand == 0 && currentCommand == komandeSize) {
+            MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+            MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
+        }
+    }
 }

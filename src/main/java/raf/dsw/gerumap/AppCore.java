@@ -16,6 +16,8 @@ public class AppCore extends ApplicationFramework {
     ConsoleLogger consoleLogger = new ConsoleLogger();
 
     private static AppCore instance;
+    private Gui gui;
+    private MapRepository mapRepository;
     private MessageGenerator msgGenerator = new MessageGenerator();
     private GsonSerializer gsonSerializer = new GsonSerializer();
 
@@ -27,6 +29,12 @@ public class AppCore extends ApplicationFramework {
         msgGenerator.addSubscriber(gui);
         msgGenerator.addSubscriber(fileLogger);
         msgGenerator.addSubscriber(consoleLogger);
+
+        gui = new SwingGui();
+        mapRepository = new MapRepository();
+
+        instance.initialise(gui, mapRepository);
+
         this.gui.start();
     }
 
@@ -39,12 +47,8 @@ public class AppCore extends ApplicationFramework {
 
 
     public static void main(String[] args) {
-        Gui gui = new SwingGui();
-        MapRepository mapRepository = new MapRepository();
         ApplicationFramework appCore = AppCore.getInstance();
-        appCore.initialise(gui, mapRepository);
         appCore.run();
-
     }
 
     public MessageGenerator getMsgGenerator() {
@@ -61,5 +65,15 @@ public class AppCore extends ApplicationFramework {
 
     public void setGsonSerializer(GsonSerializer gsonSerializer) {
         this.gsonSerializer = gsonSerializer;
+    }
+
+    @Override
+    public Gui getGui() {
+        return gui;
+    }
+
+    @Override
+    public void setGui(Gui gui) {
+        this.gui = gui;
     }
 }
