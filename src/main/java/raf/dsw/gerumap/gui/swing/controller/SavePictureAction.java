@@ -30,6 +30,7 @@ public class SavePictureAction extends AbstractGerumapAction{
         MapView mapView = MainFrame.getInstance().getRightPanel().getCurrentMapView();
         //Jfile chooser se ne pali, ali je jpeg savucaca unutar intelliJ-a
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setSelectedFile(new File(mapView.getMapa().getName()));
         fileChooser.setDialogTitle("Save as Image");
         int result = fileChooser.showSaveDialog(mapView);
         if(result == JFileChooser.APPROVE_OPTION){

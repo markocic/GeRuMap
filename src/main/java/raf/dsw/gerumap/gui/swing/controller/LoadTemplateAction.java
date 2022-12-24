@@ -4,9 +4,9 @@ import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.implementation.MindMap;
-import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -20,6 +20,7 @@ public class LoadTemplateAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter(".json", "json"));
 
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 

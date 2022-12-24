@@ -22,6 +22,7 @@ public class SaveAsTemplateAction extends AbstractGerumapAction {
         JFileChooser fileChooser = new JFileChooser();
 
         MindMap mindMap = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa();
+        fileChooser.setSelectedFile(new File(mindMap.getName() + ".json"));
         mindMap.setTemplate(true);
         File projectFile = null;
 

@@ -5,6 +5,7 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -21,6 +22,7 @@ public class LoadAction extends AbstractGerumapAction{
     public void actionPerformed(ActionEvent e) {
         //pravi novi modal za file chooser
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter(".json", "json"));
 
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {

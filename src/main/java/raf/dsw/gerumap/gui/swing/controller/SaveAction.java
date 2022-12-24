@@ -24,6 +24,7 @@ public class SaveAction extends AbstractGerumapAction{
         JFileChooser fileChooser = new JFileChooser();
 
         Project project = (Project) ((MapTree) MainFrame.getInstance().getMapTree()).getOpenedNode().getMapNode();
+        fileChooser.setSelectedFile(new File(project.getName() + ".json"));
         File projectFile = null;
 
         if (project.getPath() == null || project.getPath().isEmpty()) {
