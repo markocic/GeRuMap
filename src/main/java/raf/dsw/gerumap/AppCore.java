@@ -26,12 +26,12 @@ public class AppCore extends ApplicationFramework {
 
     @Override
     public void run() {
+        gui = new SwingGui();
+        mapRepository = new MapRepository();
+        
         msgGenerator.addSubscriber(gui);
         msgGenerator.addSubscriber(fileLogger);
         msgGenerator.addSubscriber(consoleLogger);
-
-        gui = new SwingGui();
-        mapRepository = new MapRepository();
 
         instance.initialise(gui, mapRepository);
 

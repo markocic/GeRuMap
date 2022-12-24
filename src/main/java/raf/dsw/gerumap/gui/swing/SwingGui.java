@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.core.Gui;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.logger.MessageGenerator;
@@ -23,6 +24,7 @@ public class SwingGui implements Gui {
         // izbaci error poruku
         MessageGenerator msg = (MessageGenerator) notification;
         if (msg.getTipPoruke() == TipPoruke.GRESKA) {
+            System.out.println("here");
             JOptionPane.showMessageDialog(MainFrame.getInstance(), msg.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
         else if (msg.getTipPoruke() == TipPoruke.UPOZORENJE) {
