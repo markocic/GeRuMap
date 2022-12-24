@@ -1,7 +1,6 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
-import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 

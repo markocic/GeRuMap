@@ -2,7 +2,6 @@ package raf.dsw.gerumap.core;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
-import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 

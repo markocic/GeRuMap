@@ -2,7 +2,6 @@ package raf.dsw.gerumap.state;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
-import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;

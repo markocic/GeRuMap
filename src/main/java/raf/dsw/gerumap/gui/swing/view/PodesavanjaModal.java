@@ -2,7 +2,6 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.logger.TipPoruke;
-import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.*;

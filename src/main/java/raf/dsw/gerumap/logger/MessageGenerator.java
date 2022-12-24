@@ -42,10 +42,8 @@ public class MessageGenerator implements MsgPublisher {
     public void removeSubscriber(MsgSubscriber sub) {
         if (sub == null) return;
         if (msgSubscriberList == null) msgSubscriberList = new ArrayList<>();
-        if (msgSubscriberList.contains(sub)) {
-            msgSubscriberList.remove(sub);
-        }
-        if(sub == null || this.msgSubscriberList == null || !this.msgSubscriberList.contains(sub)) return;
+        msgSubscriberList.remove(sub);
+        if(this.msgSubscriberList == null || !this.msgSubscriberList.contains(sub)) return;
         this.msgSubscriberList.remove(sub);
     }
 

@@ -1,12 +1,9 @@
 package raf.dsw.gerumap.serializer.custom;
 
 import com.google.gson.*;
-import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.repository.composite.MapNode;
-import raf.dsw.gerumap.repository.implementation.Element;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
-import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

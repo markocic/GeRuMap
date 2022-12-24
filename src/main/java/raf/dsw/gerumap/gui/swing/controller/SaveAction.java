@@ -6,7 +6,6 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileView;
 import java.awt.event.ActionEvent;
 import java.io.File;
 

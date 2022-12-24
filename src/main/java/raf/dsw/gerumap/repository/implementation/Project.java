@@ -18,7 +18,7 @@ public class Project extends MapNodeComposite {
 
     @Override
     public void addChild(MapNode child) {
-        if (child != null && child instanceof MindMap) {
+        if (child instanceof MindMap) {
             MindMap mindMap = (MindMap) child;
             if (!this.getChildren().contains(mindMap)) {
                 this.getChildren().add(mindMap);
@@ -29,11 +29,9 @@ public class Project extends MapNodeComposite {
 
     @Override
     public void deleteChild(MapNode child) {
-        if (child != null && child instanceof MindMap) {
+        if (child instanceof MindMap) {
             MindMap mindMap = (MindMap) child;
-            if (this.getChildren().contains(mindMap)) {
-                this.getChildren().remove(mindMap);
-            }
+            this.getChildren().remove(mindMap);
         }
         this.notifyMindMapDeleted(child.getName());
     }

@@ -1,10 +1,8 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
-import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.implementation.MindMap;
-import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,8 +17,7 @@ public class SaveAsTemplateAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
-
+        JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir") + "/src/main/resources/templates");
         MindMap mindMap = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa();
         fileChooser.setSelectedFile(new File(mindMap.getName() + ".json"));
         mindMap.setTemplate(true);

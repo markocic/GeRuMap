@@ -9,7 +9,6 @@ import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
 import raf.dsw.gerumap.repository.composite.MapNode;
-import raf.dsw.gerumap.repository.implementation.Element;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.state.StateManager;

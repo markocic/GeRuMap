@@ -1,7 +1,5 @@
 package raf.dsw.gerumap.gui.swing.grafika.model;
 
-import raf.dsw.gerumap.repository.command.CommandType;
-
 import java.awt.*;
 import java.util.ArrayList;
 

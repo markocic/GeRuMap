@@ -2,7 +2,6 @@ package raf.dsw.gerumap.repository.command;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.SwingGui;
-import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 import java.util.ArrayList;
 import java.util.List;

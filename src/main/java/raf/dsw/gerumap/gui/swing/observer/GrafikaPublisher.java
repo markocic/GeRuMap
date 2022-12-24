@@ -2,8 +2,6 @@ package raf.dsw.gerumap.gui.swing.observer;
 
 import raf.dsw.gerumap.repository.command.CommandType;
 
-import java.awt.*;
-
 public interface GrafikaPublisher {
 
     void addGrafikaSubscriber(GrafikaSubscriber sub);

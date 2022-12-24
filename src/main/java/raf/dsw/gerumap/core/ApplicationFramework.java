@@ -16,7 +16,6 @@ public abstract class ApplicationFramework {
     public void initialise(Gui gui, MapRepository mapRepository){
         this.gui = gui;
         this.mapRepository = mapRepository;
-        this.logger = logger;
     }
 
     public void setGui(Gui gui) {

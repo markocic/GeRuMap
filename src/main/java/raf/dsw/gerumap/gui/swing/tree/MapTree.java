@@ -7,7 +7,6 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 import raf.dsw.gerumap.repository.factory.FactoryUtils;
-import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 

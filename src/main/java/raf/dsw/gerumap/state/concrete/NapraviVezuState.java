@@ -2,17 +2,13 @@ package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
-import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
-import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.repository.command.AbstractCommand;
 import raf.dsw.gerumap.repository.command.concrete.VezaCommand;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 
 public class NapraviVezuState extends State {
     private VezaModel vezaModel;

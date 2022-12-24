@@ -1,7 +1,6 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
-import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import java.awt.event.ActionEvent;
 

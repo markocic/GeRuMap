@@ -19,7 +19,7 @@ public class LoadTemplateAction extends AbstractGerumapAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir") + "/src/main/resources/templates");
         fileChooser.setFileFilter(new FileNameExtensionFilter(".json", "json"));
 
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;

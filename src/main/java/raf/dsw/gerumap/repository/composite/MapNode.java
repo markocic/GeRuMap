@@ -2,7 +2,6 @@ package raf.dsw.gerumap.repository.composite;
 
 import raf.dsw.gerumap.gui.swing.observer.IPublisher;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
-import raf.dsw.gerumap.logger.ConsoleLogger;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public abstract class MapNode implements IPublisher {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj != null && obj instanceof MapNode)
+        if (obj instanceof MapNode)
         {
             MapNode node = (MapNode) obj;
             return this.getName().equals(node.getName());

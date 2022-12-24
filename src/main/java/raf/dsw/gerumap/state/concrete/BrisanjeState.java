@@ -2,10 +2,8 @@ package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
-import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
-import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.command.AbstractCommand;

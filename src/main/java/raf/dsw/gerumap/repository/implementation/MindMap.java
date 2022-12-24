@@ -2,7 +2,6 @@ package raf.dsw.gerumap.repository.implementation;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
-import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.repository.command.CommandManager;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.observer.GrafikaPublisher;
@@ -11,7 +10,6 @@ import raf.dsw.gerumap.repository.command.CommandType;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class MindMap extends MapNodeComposite implements GrafikaPublisher {
