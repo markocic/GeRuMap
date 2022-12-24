@@ -16,5 +16,4 @@ public interface IMapTree {
 
     void loadProject(Project p);
 
-    void loadTemplate(MindMap mindMap);
 }

@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
@@ -20,16 +21,22 @@ public class LoadTemplateAction extends AbstractGerumapAction {
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser();
 
-        if (fileChooser.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
-            try {
-                File file = fileChooser.getSelectedFile();
-                MindMap mindMap = AppCore.getInstance().getGsonSerializer().loadTemplate(file);
-                MainFrame.getInstance().getMapTree().loadTemplate(mindMap);
+        if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        MindMap templateMap = null;
+        try {
+            File file = fileChooser.getSelectedFile();
+            templateMap = AppCore.getInstance().getGsonSerializer().loadTemplate(file);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return;
         }
 
+        MindMap currentMap = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa();
+
+        for (ElementModel model : templateMap.getModels()) {
+            currentMap.addModel(model);
+        }
     }
 }

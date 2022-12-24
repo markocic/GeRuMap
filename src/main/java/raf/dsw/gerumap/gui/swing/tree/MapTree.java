@@ -134,18 +134,4 @@ public class MapTree implements IMapTree {
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
-
-    public void loadTemplate(MindMap mindMap) {
-        MapTreeItem parentNode = null;
-        if (openedNode == null) parentNode = selectedNode;
-        else parentNode = openedNode;
-
-        mindMap.setParent(parentNode.getMapNode());
-        MapTreeItem mindMapTree = new MapTreeItem(mindMap);
-        ((MapNodeComposite) parentNode.getMapNode()).addChild(mindMap);
-        parentNode.add(mindMapTree);
-
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
-    }
 }
