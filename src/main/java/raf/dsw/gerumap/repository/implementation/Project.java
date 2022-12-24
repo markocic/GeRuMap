@@ -4,7 +4,7 @@ import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 
 public class Project extends MapNodeComposite {
-    private String author;
+    private String author = "";
     private String path;
     private static int counter = 0;
 
