@@ -2,31 +2,29 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-public class LoadAction extends AbstractGerumapAction{
-
-
-    public LoadAction() {
+public class LoadTemplateAction extends AbstractGerumapAction {
+    public LoadTemplateAction() {
         putValue(SMALL_ICON, loadIcon("/images/load.png"));
-        putValue(NAME, "Load");
-        putValue(SHORT_DESCRIPTION, "Load .json file");
+        putValue(NAME, "Load template");
+        putValue(SHORT_DESCRIPTION, "Load template");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //pravi novi modal za file chooser
         JFileChooser fileChooser = new JFileChooser();
 
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = fileChooser.getSelectedFile();
-                Project p = AppCore.getInstance().getGsonSerializer().loadProject(file);
-                MainFrame.getInstance().getMapTree().loadProject(p);
+                MindMap mindMap = AppCore.getInstance().getGsonSerializer().loadTemplate(file);
+                MainFrame.getInstance().getMapTree().loadTemplate(mindMap);
 
             } catch (Exception ex) {
                 ex.printStackTrace();

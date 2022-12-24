@@ -117,19 +117,7 @@ public class RightPanel extends JPanel implements ISubscriber {
 
     @Override
     public void updateMindMapCreated(MindMap mindMap) {
-
-        MapView mapView = new MapView(mindMap);
-        mapView.setPreferredSize(new Dimension(800, 400));
-
-        JScrollPane jScrollPane = new JScrollPane();
-        jScrollPane.setViewportView(mapView);
-        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-        jScrollPane.setSize(mapView.getSize());
-        mapView.setjScrollPane(jScrollPane);
-
-        this.tabbedPane.addTab(mindMap.getName(),jScrollPane);
+        setupMindMap(mindMap);
     }
 
     @Override
@@ -152,25 +140,30 @@ public class RightPanel extends JPanel implements ISubscriber {
 
         for (MapNode mindMap : openedProject.getChildren()) {
 
-            MapView mapView = new MapView((MindMap) mindMap);
-            mapView.setPreferredSize(new Dimension(800, 400));
-            JScrollPane jScrollPane = new JScrollPane();
-            jScrollPane.setViewportView(mapView);
-            jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-            jScrollPane.setSize(mapView.getSize());
-            mapView.setjScrollPane(jScrollPane);
-
-            this.tabbedPane.addTab(mindMap.getName(), jScrollPane);
-
-            for (ElementModel model : ((MindMap) mindMap).getModels()) {
-                if (model instanceof PojamModel) mapView.addPainter(new PojamPainter(model));
-                else if (model instanceof VezaModel) mapView.addPainter(new VezaPainter(model));
-
-                model.addGrafikaSubscriber(mapView);
-            }
+            setupMindMap(mindMap);
         }
+    }
+
+    private void setupMindMap(MapNode mindMap) {
+        MapView mapView = new MapView((MindMap) mindMap);
+        mapView.setPreferredSize(new Dimension(800, 400));
+        JScrollPane jScrollPane = new JScrollPane();
+        jScrollPane.setViewportView(mapView);
+        jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        jScrollPane.setSize(mapView.getSize());
+        mapView.setjScrollPane(jScrollPane);
+
+
+        for (ElementModel model : ((MindMap) mindMap).getModels()) {
+            if (model instanceof PojamModel) mapView.addPainter(new PojamPainter(model));
+            else if (model instanceof VezaModel) mapView.addPainter(new VezaPainter(model));
+
+            model.addGrafikaSubscriber(mapView);
+        }
+
+        this.tabbedPane.addTab(mindMap.getName(), jScrollPane);
     }
 
     @Override

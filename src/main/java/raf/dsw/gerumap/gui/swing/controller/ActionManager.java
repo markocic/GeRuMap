@@ -8,8 +8,10 @@ public class ActionManager {
 
     private SaveAction saveAction;
     private SaveAsAction saveAsAction;
+    private SaveAsTemplateAction saveAsTemplate;
 
     private LoadAction loadAction;
+    private LoadTemplateAction loadTemplateAction;
 
     private UndoAction undoAction;
 
@@ -21,7 +23,7 @@ public class ActionManager {
 
     private InfoAction infoAction;
 
-    private SavePictureAction savePictureAction = new SavePictureAction();
+    private SavePictureAction savePictureAction;
     private AuthorAction authorAction;
     private OpenProjectAction openProjectAction;
 
@@ -43,7 +45,9 @@ public class ActionManager {
 
         saveAction = new SaveAction();
         saveAsAction = new SaveAsAction();
+        saveAsTemplate = new SaveAsTemplateAction();
         loadAction = new LoadAction();
+        loadTemplateAction = new LoadTemplateAction();
         redoAction = new RedoAction();
         undoAction = new UndoAction();
         savePictureAction = new SavePictureAction();
@@ -214,5 +218,21 @@ public class ActionManager {
 
     public void setSaveAsAction(SaveAsAction saveAsAction) {
         this.saveAsAction = saveAsAction;
+    }
+
+    public SaveAsTemplateAction getSaveAsTemplate() {
+        return saveAsTemplate;
+    }
+
+    public void setSaveAsTemplate(SaveAsTemplateAction saveAsTemplate) {
+        this.saveAsTemplate = saveAsTemplate;
+    }
+
+    public LoadTemplateAction getLoadTemplateAction() {
+        return loadTemplateAction;
+    }
+
+    public void setLoadTemplateAction(LoadTemplateAction loadTemplateAction) {
+        this.loadTemplateAction = loadTemplateAction;
     }
 }

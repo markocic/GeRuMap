@@ -7,6 +7,7 @@ import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.repository.composite.MapNode;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.serializer.adapters.ColorAdapter;
 import raf.dsw.gerumap.serializer.adapters.DimensionAdapter;
@@ -55,6 +56,24 @@ public class GsonSerializer implements Serializer {
             gson.toJson(project, writer);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void saveTemplate(MindMap map, String path) {
+        try (FileWriter writer = new FileWriter(path)) {
+            gson.toJson(map, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public MindMap loadTemplate(File file) {
+        try (FileReader fileReader = new FileReader(file)) {
+            return gson.fromJson(fileReader, MindMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

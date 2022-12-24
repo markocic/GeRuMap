@@ -7,6 +7,7 @@ import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 import raf.dsw.gerumap.repository.factory.FactoryUtils;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
@@ -130,6 +131,20 @@ public class MapTree implements IMapTree {
             MapTreeItem mapTreeItem = new MapTreeItem(map);
             loadedProject.add(mapTreeItem);
         }
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    public void loadTemplate(MindMap mindMap) {
+        MapTreeItem parentNode = null;
+        if (openedNode == null) parentNode = selectedNode;
+        else parentNode = openedNode;
+
+        mindMap.setParent(parentNode.getMapNode());
+        MapTreeItem mindMapTree = new MapTreeItem(mindMap);
+        ((MapNodeComposite) parentNode.getMapNode()).addChild(mindMap);
+        parentNode.add(mindMapTree);
+
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
