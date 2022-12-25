@@ -23,7 +23,6 @@ public class SwingGui implements Gui {
         // izbaci error poruku
         MessageGenerator msg = (MessageGenerator) notification;
         if (msg.getTipPoruke() == TipPoruke.GRESKA) {
-            System.out.println("here");
             JOptionPane.showMessageDialog(MainFrame.getInstance(), msg.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
         }
         else if (msg.getTipPoruke() == TipPoruke.UPOZORENJE) {

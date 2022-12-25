@@ -6,7 +6,6 @@ import raf.dsw.gerumap.repository.implementation.Element;
 public class ElementFactory extends NodeFactory {
     @Override
     public MapNode createNode() {
-        Element child = new Element();
-        return child;
+        return new Element();
     }
 }

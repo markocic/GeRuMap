@@ -7,7 +7,6 @@ public class MapFactory extends NodeFactory {
 
     @Override
     public MapNode createNode() {
-        MindMap child = new MindMap();
-        return child;
+        return new MindMap();
     }
 }

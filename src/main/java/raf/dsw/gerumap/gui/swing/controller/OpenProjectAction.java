@@ -4,7 +4,6 @@ import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.logger.TipPoruke;
-import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

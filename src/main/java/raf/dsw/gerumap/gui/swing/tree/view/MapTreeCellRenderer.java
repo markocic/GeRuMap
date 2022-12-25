@@ -1,8 +1,8 @@
 package raf.dsw.gerumap.gui.swing.tree.view;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
-import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.Element;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
@@ -28,7 +28,7 @@ public class MapTreeCellRenderer extends DefaultTreeCellRenderer {
             imageURL = getClass().getResource("/images/projekat.png");
         }else if(((MapTreeItem)val).getMapNode()instanceof Element){
             imageURL = getClass().getResource("/images/elementNode.png");
-        }else if(((MapTreeItem)val).getMapNode()instanceof MapNode){
+        }else if(((MapTreeItem)val).getMapNode()instanceof MindMap){
             imageURL = getClass().getResource("/images/MindMap.png");
         }
 

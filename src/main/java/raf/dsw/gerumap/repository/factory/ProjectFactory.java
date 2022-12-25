@@ -6,7 +6,6 @@ import raf.dsw.gerumap.repository.implementation.Project;
 public class ProjectFactory extends NodeFactory {
     @Override
     public MapNode createNode() {
-        Project child = new Project();
-        return child;
+        return new Project();
     }
 }

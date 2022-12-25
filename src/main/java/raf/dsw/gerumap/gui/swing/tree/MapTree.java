@@ -57,7 +57,6 @@ public class MapTree implements IMapTree {
 
         if (child.getMapNode().getParent() instanceof Project) {
             // ako brisemo mapu
-            System.out.println("here");
             Project parent = (Project) child.getMapNode().getParent();
             child.getMapNode().notifyMindMapDeleted(child.getMapNode().getName());
             parent.deleteChild(child.getMapNode());
@@ -120,8 +119,7 @@ public class MapTree implements IMapTree {
 
 
     public MapNode createChild(MapNode parent){
-        MapNode child = new FactoryUtils().getFactory(parent).getNode(parent);
-        return child;
+        return new FactoryUtils().getFactory(parent).getNode(parent);
     }
 
     public MapTreeItem getOpenedNode() {

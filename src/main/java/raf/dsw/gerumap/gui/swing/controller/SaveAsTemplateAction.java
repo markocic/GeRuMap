@@ -12,8 +12,8 @@ import java.io.File;
 public class SaveAsTemplateAction extends AbstractGerumapAction {
     public SaveAsTemplateAction() {
         putValue(SMALL_ICON, loadIcon("/images/save.png"));
-        putValue(NAME, "Save as Template");
-        putValue(SHORT_DESCRIPTION, "Save your work");
+        putValue(NAME, "Save as template");
+        putValue(SHORT_DESCRIPTION, "Save a template");
     }
 
     @Override

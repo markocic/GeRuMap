@@ -22,7 +22,6 @@ public class VezaCommand extends AbstractCommand {
 
     @Override
     public void doCommand() {
-        System.out.println("here");
         mindMap.addModelAtIndex(vezaModel, 0);
         updateOdPojam();
         updateDoPojam();
@@ -64,9 +63,6 @@ public class VezaCommand extends AbstractCommand {
         int pojamHeight = doPojam.getSize().height;
 
         vezaModel.setKrajnjaTacka(new Point(x + pojamWidth / 2, y + pojamHeight / 2));
-
-        System.out.println("here2");
-        System.out.println(doPojam.getName() + " " + doPojam);
     }
 
     public void updateOdPojam() {
@@ -81,8 +77,5 @@ public class VezaCommand extends AbstractCommand {
         int pojamHeight = odPojam.getSize().height;
 
         vezaModel.setPocetnaTacka(new Point(x + pojamWidth / 2, y + pojamHeight / 2));
-
-        System.out.println("here3");
-        System.out.println(odPojam.getName() + " " + odPojam);
     }
 }
