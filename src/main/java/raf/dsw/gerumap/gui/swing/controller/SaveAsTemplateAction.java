@@ -29,11 +29,10 @@ public class SaveAsTemplateAction extends AbstractGerumapAction {
 
         fileChooser.setSelectedFile(new File(mindMap.getName() + ".json"));
         mindMap.setTemplate(true);
-        File projectFile = null;
 
         if (fileChooser.showSaveDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-        projectFile = fileChooser.getSelectedFile();
+        File projectFile = fileChooser.getSelectedFile();
 
         // ukoliko template nije u .json formatu, sacuvati ga tako
         String projectPath = projectFile.getPath();

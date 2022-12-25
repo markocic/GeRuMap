@@ -80,7 +80,6 @@ public class PojamModel extends ElementModel {
 
     public void setSize(Dimension size) {
         this.size = size;
-//        notifyGrafikaSubscribers(); moramo da uklonimo jer stvara beskonacnu petlju update poziva
     }
 
     public ArrayList<VezaModel> getOdlazeceVeze() {
@@ -114,16 +113,6 @@ public class PojamModel extends ElementModel {
     }
 
     public void setCentralni(boolean centralni) {
-        // ukoliko je bilo promene sa ne centralni na centralni
-        if (centralni && !isCentralni) {
-            Dimension newDimension = new Dimension((int) (size.getWidth() * 1.5), (int) (size.getHeight() * 1.5));
-            setSize(newDimension);
-        }
-        // ukoliko je bilo promene sa centralni na ne centralni
-        else if (!centralni && isCentralni) {
-            Dimension newDimension = new Dimension((int) (size.getWidth() * 0.67), (int) (size.getHeight() * 0.67));
-            setSize(newDimension);
-        }
         isCentralni = centralni;
     }
 

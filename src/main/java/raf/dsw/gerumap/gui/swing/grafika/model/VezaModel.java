@@ -47,8 +47,7 @@ public class VezaModel extends ElementModel {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof VezaModel)) return false;
-        VezaModel veza = (VezaModel) obj;
+        if (!(obj instanceof VezaModel veza)) return false;
 
         return veza.krajnjaTacka.equals(this.krajnjaTacka) && veza.pocetnaTacka.equals(this.pocetnaTacka);
     }

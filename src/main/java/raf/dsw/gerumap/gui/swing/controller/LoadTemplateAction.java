@@ -32,7 +32,7 @@ public class LoadTemplateAction extends AbstractGerumapAction {
 
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-        MindMap templateMap = null;
+        MindMap templateMap;
         try {
             File file = fileChooser.getSelectedFile();
             templateMap = AppCore.getInstance().getGsonSerializer().loadTemplate(file);

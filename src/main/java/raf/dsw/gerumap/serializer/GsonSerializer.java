@@ -21,7 +21,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-//unutar command deasvanja ne smijemo da imamo zvanje view-a
 public class GsonSerializer implements Serializer {
 
     private final Gson gson;

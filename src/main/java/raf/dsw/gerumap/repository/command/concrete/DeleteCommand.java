@@ -26,7 +26,6 @@ public class DeleteCommand extends AbstractCommand {
 
     @Override
     public void undoCommand() {
-//        mindMap.addModels(models);
         for (ElementModel model : models) {
             if (model instanceof PojamModel) mindMap.addModel(model);
             else if (model instanceof VezaModel) mindMap.addModelAtIndex(model, 0);

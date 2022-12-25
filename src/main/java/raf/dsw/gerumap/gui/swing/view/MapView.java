@@ -59,12 +59,16 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.transform(transform);
-        g2.draw(selekcijaRect);
         if (painters.isEmpty()) return;
         // ovo bi trebalo da iterira kroz sve paintere u mapi i iscrta ih
         for (ElementPainter painter : painters) {
             painter.draw(g2);
         }
+
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(1));
+        g2.draw(selekcijaRect);
+        g2.dispose();
     }
 
     public List<ElementPainter> getPainters() {
@@ -100,31 +104,6 @@ public class MapView extends JPanel implements GrafikaSubscriber{
         if (painter == null || selectedPainters.contains(painter)) return;
         painter.setSelected(true);
         selectedPainters.add(painter);
-    }
-
-    public void addAllSelectedPainters(ArrayList<ElementPainter> paintersList) {
-        if (paintersList.isEmpty()) return;
-        for (ElementPainter painter : paintersList) {
-            if (selectedPainters.contains(painter)) continue;
-
-            painter.setSelected(true);
-            selectedPainters.add(painter);
-        }
-    }
-
-    public void removeSelectedPainter(ElementPainter painter) {
-        if (painter == null || !selectedPainters.isEmpty()) return;
-        painter.setSelected(false);
-        selectedPainters.remove(painter); // remove vec proverava da li element postoji u nizu
-    }
-
-    public void deleteSelectedPainters() {
-        for (ElementPainter painter : selectedPainters) {
-            painters.remove(painter);
-            mapa.removeModel(painter.getElement());
-        }
-        
-        selectedPainters.clear();
     }
 
     public void deletePainterFromModel(ElementModel model) {

@@ -28,11 +28,10 @@ public class SaveAsAction extends AbstractGerumapAction {
         }
 
         fileChooser.setSelectedFile(new File(project.getName() + ".json"));
-        File projectFile = null;
 
         if (fileChooser.showSaveDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-        projectFile = fileChooser.getSelectedFile();
+        File projectFile = fileChooser.getSelectedFile();
         project.setPath(projectFile.getPath());
 
         // ako projekat nije sacuvan u json formatu, automatski ga tako sacuvati

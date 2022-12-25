@@ -30,13 +30,12 @@ public class SaveAction extends AbstractGerumapAction{
 
 
         fileChooser.setSelectedFile(new File(project.getName() + ".json"));
-        File projectFile = null;
 
         if (project.getPath() == null || project.getPath().isEmpty()) {
 
             if (fileChooser.showSaveDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-            projectFile = fileChooser.getSelectedFile();
+            File projectFile = fileChooser.getSelectedFile();
             project.setPath(projectFile.getPath());
 
         }

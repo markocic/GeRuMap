@@ -16,7 +16,6 @@ public class MindMapSerializer implements JsonSerializer<MindMap>, JsonDeseriali
 
         JsonArray models = new JsonArray();
         for (ElementModel model : map.getModels()) {
-            // za sad ovako, treba sacuvati sve informacije u vezi modela
             models.add(jsonSerializationContext.serialize(model));
         }
 
