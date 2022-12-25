@@ -12,7 +12,7 @@ public class VezaPainter extends ElementPainter {
     public VezaPainter(ElementModel elementModel) {
         super(elementModel);
         Line2D line = new Line2D.Double(((VezaModel) elementModel).getPocetnaTacka(), ((VezaModel) elementModel).getKrajnjaTacka());
-        getElement().addGrafikaSubscriber(this);
+        elementModel.addGrafikaSubscriber(this);
         setShape(line);
     }
     @Override

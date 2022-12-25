@@ -128,6 +128,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
     public void deletePainterFromModel(ElementModel model) {
         for (ElementPainter painter : painters) {
             if (painter.getElement().equals(model)) {
+                selectedPainters.remove(painter);
                 painters.remove(painter);
                 return;
             }
@@ -177,13 +178,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
         else if (commandType == CommandType.OBRISI_POJAM) {
             ElementModel pojamModel = (PojamModel) obj;
-            for (ElementPainter painter : painters) {
-                if (pojamModel.equals(painter.getElement())) {
-                    removeSelectedPainter(painter);
-                    removePainter(painter);
-                    break;
-                }
-            }
+            deletePainterFromModel(pojamModel);
         }
 
         else if (commandType == CommandType.DODAJ_VEZU) {
