@@ -18,7 +18,7 @@ public class ZumiranjeState  extends State{
     public void mouseWheelMoved(MouseWheelEvent e) {
         MapView map = (MapView) e.getSource();
         double zoom = map.getZoom();
-        if (e.getPreciseWheelRotation() > 0) zoom = zoom + 0.01;
+        if (e.getPreciseWheelRotation() < 0) zoom = zoom + 0.01;
         else zoom -= 0.01;
 
         if (zoom < 0.01) zoom = 0.01;

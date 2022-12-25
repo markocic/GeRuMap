@@ -73,11 +73,13 @@ public class MapView extends JPanel implements GrafikaSubscriber{
 
     public void addPainter(ElementPainter painter) {
         if (painter == null) return;
+        if (painters.contains(painter)) return;
         painters.add(painter);
     }
 
     public void addPainterAtIndex(ElementPainter painter, int index) {
         if (painter == null) return;
+        if (painters.contains(painter)) return;
         painters.add(index, painter);
     }
 
@@ -130,6 +132,7 @@ public class MapView extends JPanel implements GrafikaSubscriber{
             if (painter.getElement().equals(model)) {
                 selectedPainters.remove(painter);
                 painters.remove(painter);
+                model.removeGrafikaSubscriber(painter);
                 return;
             }
 
