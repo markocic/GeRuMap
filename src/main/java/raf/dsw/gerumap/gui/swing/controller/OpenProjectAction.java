@@ -26,10 +26,7 @@ public class OpenProjectAction extends AbstractGerumapAction {
             AppCore.getInstance().getMsgGenerator().generateMsg("Morate selektovati projekat koji zelite da otvorite", TipPoruke.OBAVJESTENJE);
             return;
         }
-        if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
-            AppCore.getInstance().getMsgGenerator().generateMsg("Mozete otvoriti samo projekat", TipPoruke.GRESKA);
-            return;
-        }
+
         ((MapTree) MainFrame.getInstance().getMapTree()).openSelectedNode();
     }
 }

@@ -31,10 +31,14 @@ public class SaveAsTemplateAction extends AbstractGerumapAction {
         mindMap.setTemplate(true);
         File projectFile = null;
 
-            if (fileChooser.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
-                projectFile = fileChooser.getSelectedFile();
-            } else return;
+        if (fileChooser.showSaveDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-        AppCore.getInstance().getGsonSerializer().saveTemplate(mindMap, projectFile.getPath());
+        projectFile = fileChooser.getSelectedFile();
+
+        // ukoliko template nije u .json formatu, sacuvati ga tako
+        String projectPath = projectFile.getPath();
+        if (!projectPath.endsWith(".json")) projectPath = projectPath.concat(".json");
+
+        AppCore.getInstance().getGsonSerializer().saveTemplate(mindMap, projectPath);
     }
 }

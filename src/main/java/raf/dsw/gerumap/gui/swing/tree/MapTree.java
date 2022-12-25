@@ -1,12 +1,16 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.core.IMapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.composite.MapNodeComposite;
 import raf.dsw.gerumap.repository.factory.FactoryUtils;
+import raf.dsw.gerumap.repository.implementation.Element;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 import raf.dsw.gerumap.repository.implementation.ProjectExplorer;
 
@@ -83,7 +87,18 @@ public class MapTree implements IMapTree {
         }
 
         // postavljamo novi otvoreni projekat i njega i svu njegovu decu postavljamo kao subskrajbere
-        this.openedNode = this.getSelectedNode();
+
+        if (selectedNode.getMapNode() instanceof Project) {
+            this.openedNode = selectedNode;
+        } else if (selectedNode.getMapNode() instanceof MindMap) {
+            this.openedNode = (MapTreeItem) selectedNode.getParent();
+        } else if (selectedNode.getMapNode() instanceof Element) {
+            this.openedNode = (MapTreeItem) selectedNode.getParent().getParent();
+        } else {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate selektovati projekat ili mapu koju zelite da otvorite", TipPoruke.GRESKA);
+            return;
+        }
+
         this.openedNode.getMapNode().addSubscriber(MainFrame.getInstance().getRightPanel());
 
         List<MapNode> children = ((Project)this.openedNode.getMapNode()).getChildren();
