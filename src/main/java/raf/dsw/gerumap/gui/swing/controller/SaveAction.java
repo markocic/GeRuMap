@@ -35,13 +35,17 @@ public class SaveAction extends AbstractGerumapAction{
         File projectFile = null;
 
         if (project.getPath() == null || project.getPath().isEmpty()) {
-            if (fileChooser.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
-                projectFile = fileChooser.getSelectedFile();
-                project.setPath(projectFile.getPath());
-            } else {
-                return;
-            }
 
+            if (fileChooser.showSaveDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
+
+            projectFile = fileChooser.getSelectedFile();
+            project.setPath(projectFile.getPath());
+
+        }
+
+        // ako projekat nije sacuvan u json formatu, automatski ga tako sacuvati
+        if (!project.getPath().endsWith(".json")) {
+            project.setPath(project.getPath() + ".json");
         }
 
         AppCore.getInstance().getGsonSerializer().saveProject(project);

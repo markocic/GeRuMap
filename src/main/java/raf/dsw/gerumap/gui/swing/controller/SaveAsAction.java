@@ -36,6 +36,11 @@ public class SaveAsAction extends AbstractGerumapAction {
         projectFile = fileChooser.getSelectedFile();
         project.setPath(projectFile.getPath());
 
+        // ako projekat nije sacuvan u json formatu, automatski ga tako sacuvati
+        if (!project.getPath().endsWith(".json")) {
+            project.setPath(project.getPath() + ".json");
+        }
+
         AppCore.getInstance().getGsonSerializer().saveProject(project);
 
     }

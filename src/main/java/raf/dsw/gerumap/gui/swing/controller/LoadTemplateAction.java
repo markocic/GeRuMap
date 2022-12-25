@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import javax.swing.*;
@@ -22,6 +23,13 @@ public class LoadTemplateAction extends AbstractGerumapAction {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir") + "/src/main/resources/templates");
         fileChooser.setFileFilter(new FileNameExtensionFilter(".json", "json"));
 
+        MindMap currentMap = getMapToSave();
+
+        if (currentMap == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate otvoriti tab mape u koju zelite da dodate sablon, ili da izaberete tu mapu iz Project Explorer-a", TipPoruke.GRESKA);
+            return;
+        }
+
         if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
         MindMap templateMap = null;
@@ -33,8 +41,6 @@ public class LoadTemplateAction extends AbstractGerumapAction {
             ex.printStackTrace();
             return;
         }
-
-        MindMap currentMap = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa();
 
         for (ElementModel model : templateMap.getModels()) {
             currentMap.addModel(model);

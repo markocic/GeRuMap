@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
@@ -24,15 +25,21 @@ public class LoadAction extends AbstractGerumapAction{
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileNameExtensionFilter(".json", "json"));
 
-        if (fileChooser.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
-            try {
-                File file = fileChooser.getSelectedFile();
-                Project p = AppCore.getInstance().getGsonSerializer().loadProject(file);
-                MainFrame.getInstance().getMapTree().loadProject(p);
+        if (fileChooser.showOpenDialog(MainFrame.getInstance()) != JFileChooser.APPROVE_OPTION) return;
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        try {
+            File file = fileChooser.getSelectedFile();
+
+            if (!file.getName().endsWith(".json")) {
+                AppCore.getInstance().getMsgGenerator().generateMsg("Projekat mora biti u JSON formatu", TipPoruke.GRESKA);
+                return;
             }
+
+            Project p = AppCore.getInstance().getGsonSerializer().loadProject(file);
+            MainFrame.getInstance().getMapTree().loadProject(p);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
     }

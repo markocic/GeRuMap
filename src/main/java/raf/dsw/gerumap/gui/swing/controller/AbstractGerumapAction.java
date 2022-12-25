@@ -3,6 +3,8 @@ package raf.dsw.gerumap.gui.swing.controller;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.gui.swing.view.MapView;
+import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
@@ -51,6 +53,21 @@ public abstract class AbstractGerumapAction extends AbstractAction {
         }
 
         return project;
+    }
+
+    public MindMap getMapToSave() {
+        MapView currentMapView = MainFrame.getInstance().getRightPanel().getCurrentMapView();
+        MapTreeItem selectedNode = MainFrame.getInstance().getMapTree().getSelectedNode();
+
+        MindMap mindMap = null;
+
+        if (currentMapView != null) {
+            mindMap = currentMapView.getMapa();
+        } else if (selectedNode != null && selectedNode.getMapNode() instanceof MindMap) {
+            mindMap = (MindMap) selectedNode.getMapNode();
+        }
+
+        return mindMap;
     }
 
 

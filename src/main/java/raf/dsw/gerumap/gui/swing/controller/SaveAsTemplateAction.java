@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 
 import javax.swing.*;
@@ -18,7 +19,14 @@ public class SaveAsTemplateAction extends AbstractGerumapAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir") + "/src/main/resources/templates");
-        MindMap mindMap = MainFrame.getInstance().getRightPanel().getCurrentMapView().getMapa();
+
+        MindMap mindMap = getMapToSave();
+
+        if (mindMap == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Morate otvoriti tab mape koju zelite da sacuvate kao sablon, ili da izaberete tu mapu iz Project Explorer-a", TipPoruke.GRESKA);
+            return;
+        }
+
         fileChooser.setSelectedFile(new File(mindMap.getName() + ".json"));
         mindMap.setTemplate(true);
         File projectFile = null;

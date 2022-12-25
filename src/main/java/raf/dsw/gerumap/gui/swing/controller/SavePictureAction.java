@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.MapView;
+import raf.dsw.gerumap.logger.TipPoruke;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,8 +22,14 @@ public class SavePictureAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         MapView mapView = MainFrame.getInstance().getRightPanel().getCurrentMapView();
-        //Jfile chooser se ne pali, ali je jpeg savucaca unutar intelliJ-a
+
+        if (mapView == null) {
+            AppCore.getInstance().getMsgGenerator().generateMsg("Mapa koju zelite da sacuvate kao sliku mora biti otvorena", TipPoruke.GRESKA);
+            return;
+        }
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setSelectedFile(new File(mapView.getMapa().getName() + ".png"));
         fileChooser.setDialogTitle("Save as Image");
@@ -32,9 +40,16 @@ public class SavePictureAction extends AbstractGerumapAction{
             mapView.paint(g);
             g.dispose();
             try {
-                ImageIO.write(bi,"png",fileChooser.getSelectedFile());
-            }catch (Exception exception) {
+                File file = fileChooser.getSelectedFile();
 
+                ImageIO.write(bi,"png",file);
+
+                // ukoliko korisnik nije stavio da je slika .png, postavice sam
+                if (!file.getName().endsWith(".png")) {
+                    file.renameTo(new File(file.getPath() + ".png"));
+                }
+            }catch (Exception exception) {
+                exception.printStackTrace();
             }
         }
     }
