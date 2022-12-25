@@ -1,6 +1,9 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.repository.implementation.Project;
 
 import javax.swing.*;
 import java.net.URL;
@@ -32,6 +35,22 @@ public abstract class AbstractGerumapAction extends AbstractAction {
 
         if (action == null) return;
         action.setEnabled(false);
+    }
+
+    public Project getProjectToSave() {
+        MapTreeItem openedNode = ((MapTree) MainFrame.getInstance().getMapTree()).getOpenedNode();
+        MapTreeItem selectedNode = MainFrame.getInstance().getMapTree().getSelectedNode();
+
+        Project project = null;
+        // postavljamo za projekat prvo otvoreni projekat, ukoliko projekat nije otvoren, onda postavljamo selektovani projekat
+        // ukoliko ni projekat nije selektovan onda obavestavamo korisnika da uradi jedno ili drugo
+        if (openedNode != null) {
+            project = (Project) openedNode.getMapNode();
+        } else if (selectedNode != null && selectedNode.getMapNode() instanceof Project) {
+            project = (Project) selectedNode.getMapNode();
+        }
+
+        return project;
     }
 
 

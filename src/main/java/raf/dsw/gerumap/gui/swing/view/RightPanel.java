@@ -8,6 +8,7 @@ import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.grafika.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.observer.ISubscriber;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
@@ -182,6 +183,7 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.projectNameLabel.setText("project name");
         this.authorNameLabel.setText("author name");
         tabbedPane.removeAll();
+        ((MapTree) MainFrame.getInstance().getMapTree()).setOpenedNode(null);
     }
 
     public StateManager getStateManager() {
