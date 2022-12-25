@@ -35,14 +35,12 @@ public class PojamPainter extends ElementPainter {
         else g.setPaint(pojam.getColor());
 
         g.draw(getShape());
-//        drawCenteredString(g, name, true);
-        drawCenteredString(g, name, ((PojamModel) getElement()).isCentralni());
+        drawCenteredString(g, name);
     }
 
-    public void drawCenteredString(Graphics2D g, String text, boolean isCentralni) {
+    public void drawCenteredString(Graphics2D g, String text) {
         PojamModel element = (PojamModel) getElement();
-        if (isCentralni) g.setFont(new Font("Dialog", Font.BOLD, 18));
-        else g.setFont(new Font("Dialog", Font.PLAIN, 12));
+        setFont(g);
         FontMetrics metrics = g.getFontMetrics();
         int x = (int) (element.getCoordinates().getX() + (element.getSize().getWidth() - metrics.stringWidth(text)) / 2);
         int y = (int) (element.getCoordinates().getY() + ((element.getSize().getHeight() - metrics.getHeight()) / 2) + metrics.getAscent());
@@ -50,11 +48,17 @@ public class PojamPainter extends ElementPainter {
     }
 
     public Dimension getSizeBasedOnText(Graphics2D g, String text) {
+        setFont(g);
         FontMetrics metrics = g.getFontMetrics();
         int width = metrics.stringWidth(text) + 30;
         int height = metrics.getHeight() * 2;
 
         return new Dimension(width, height);
+    }
+
+    public void setFont(Graphics g) {
+        if (((PojamModel) getElement()).isCentralni()) g.setFont(new Font("Dialog", Font.BOLD, 18));
+        else g.setFont(new Font("Dialog", Font.PLAIN, 12));
     }
 
     @Override
