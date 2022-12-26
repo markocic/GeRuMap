@@ -21,6 +21,7 @@ public class MindMapSerializer implements JsonSerializer<MindMap>, JsonDeseriali
 
         result.add("models", models);
         result.add("template", new JsonPrimitive(map.isTemplate()));
+        result.add("centralniPojam", jsonSerializationContext.serialize(map.getCentralniPojam()));
         return result;
     }
 

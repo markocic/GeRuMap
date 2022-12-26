@@ -84,6 +84,10 @@ public class RightPanel extends JPanel implements ISubscriber {
         this.stateManager.setPodesavanjaState();
     }
 
+    public void startCentralniState() {
+        this.stateManager.setCentralniState();
+    }
+
     // mis eventovi
     public void mousePressedMediator(int x, int y, MapView map) {
         this.stateManager.getCurrentState().mousePressedState(x, y, map);

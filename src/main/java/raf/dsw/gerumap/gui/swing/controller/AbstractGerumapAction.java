@@ -34,6 +34,7 @@ public abstract class AbstractGerumapAction extends AbstractAction {
         MainFrame.getInstance().getActionManager().getSelekcijaAction().setEnabled(true);
         MainFrame.getInstance().getActionManager().getZumiranjeAction().setEnabled(true);
         MainFrame.getInstance().getActionManager().getPodesavanjaAction().setEnabled(true);
+        MainFrame.getInstance().getActionManager().getCentralniAction().setEnabled(true);
 
         if (action == null) return;
         action.setEnabled(false);

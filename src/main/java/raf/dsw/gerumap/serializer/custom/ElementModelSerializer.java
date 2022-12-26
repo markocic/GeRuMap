@@ -75,6 +75,15 @@ public class ElementModelSerializer implements JsonSerializer<ElementModel>, Jso
             boolean isCentralni = jsonObject.get("isCentralni").getAsBoolean();
 
             PojamModel pojam = new PojamModel(name, coords, dimension, stroke, color);
+
+            for (VezaModel veza : dolazeceVeze) {
+                veza.setDoPojma(pojam);
+            }
+
+            for (VezaModel veza : odlazeceVeze) {
+                veza.setOdPojma(pojam);
+            }
+
             pojam.setDolazeceVeze(dolazeceVeze);
             pojam.setOdlazeceVeze(odlazeceVeze);
             pojam.setCentralni(isCentralni);

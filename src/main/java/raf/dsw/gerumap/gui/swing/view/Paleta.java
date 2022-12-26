@@ -15,6 +15,7 @@ public class Paleta extends JToolBar {
         this.add(MainFrame.getInstance().getActionManager().getNapraviVezuAction());
         this.add(MainFrame.getInstance().getActionManager().getBrisanjeAction());
         this.add(MainFrame.getInstance().getActionManager().getPodesavanjaAction());
+        this.add(MainFrame.getInstance().getActionManager().getCentralniAction());
 
 
     }

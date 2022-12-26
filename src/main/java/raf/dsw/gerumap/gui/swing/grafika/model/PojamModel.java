@@ -11,6 +11,8 @@ public class PojamModel extends ElementModel {
     private ArrayList<VezaModel> odlazeceVeze;
     private ArrayList<VezaModel> dolazeceVeze;
     private boolean isCentralni = false;
+    private int level = 0;
+    private int strana = 1;
 
     public PojamModel(String name, Point coordinates, Dimension size, int stroke, Color color) {
         super(color, stroke);
@@ -70,6 +72,7 @@ public class PojamModel extends ElementModel {
 
     public void setCoordinates(Point coordinates) {
         this.coordinates = coordinates;
+        updateVeze(new Point(coordinates.x + size.width / 2, coordinates.y + size.height / 2));
         notifyShape(coordinates, size);
         notifyGrafikaSubscribers(null, null);
     }
@@ -119,5 +122,26 @@ public class PojamModel extends ElementModel {
     @Override
     public void notifyShape(Object point, Object size) {
 
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getStrana() {
+        return strana;
+    }
+
+    public void setStrana(int strana) {
+        this.strana = strana;
     }
 }

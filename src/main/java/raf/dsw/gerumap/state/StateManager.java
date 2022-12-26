@@ -11,6 +11,7 @@ public class StateManager {
     private SelekcijaState selekcijaState;
     private ZumiranjeState zumiranjeState;
     private PodesavanjaState podesavanjaState;
+    private CentralniState centralniState;
 
     public StateManager() {
         brisanjeState = new BrisanjeState();
@@ -20,6 +21,7 @@ public class StateManager {
         selekcijaState = new SelekcijaState();
         zumiranjeState = new ZumiranjeState();
         podesavanjaState = new PodesavanjaState();
+        centralniState = new CentralniState();
 
         currentState = selekcijaState;
     }
@@ -56,4 +58,7 @@ public class StateManager {
         currentState = podesavanjaState;
     }
 
+    public void setCentralniState() {
+        currentState = centralniState;
+    }
 }

@@ -18,6 +18,7 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
     private ArrayList<ElementModel> models = new ArrayList<>();
     private boolean template;
     private static int counter = 0;
+    private PojamModel centralniPojam;
     private transient CommandManager commandManager = new CommandManager();
 
     public MindMap(String name, MapNode parent) {
@@ -152,4 +153,11 @@ public class MindMap extends MapNodeComposite implements GrafikaPublisher {
         notifyGrafikaSubscribers(CommandType.MULTI_BRISANJE, models);
     }
 
+    public PojamModel getCentralniPojam() {
+        return centralniPojam;
+    }
+
+    public void setCentralniPojam(PojamModel centralniPojam) {
+        this.centralniPojam = centralniPojam;
+    }
 }

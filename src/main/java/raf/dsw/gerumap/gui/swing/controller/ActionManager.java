@@ -3,6 +3,8 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.gui.swing.controller.paleta.*;
 
+import javax.swing.*;
+
 public class ActionManager {
 
 
@@ -35,6 +37,7 @@ public class ActionManager {
     private ZumiranjeAction zumiranjeAction;
 
     private PodesavanjaAction podesavanjaAction;
+    private CentralniAction centralniAction;
 
     public ActionManager() {
         initActions();
@@ -66,6 +69,7 @@ public class ActionManager {
         selekcijaAction = new SelekcijaAction();
         zumiranjeAction = new ZumiranjeAction();
         podesavanjaAction = new PodesavanjaAction();
+        centralniAction = new CentralniAction();
     }
 
     public SavePictureAction getSavePictureAction() {
@@ -234,5 +238,9 @@ public class ActionManager {
 
     public void setLoadTemplateAction(LoadTemplateAction loadTemplateAction) {
         this.loadTemplateAction = loadTemplateAction;
+    }
+
+    public CentralniAction getCentralniAction() {
+        return centralniAction;
     }
 }
