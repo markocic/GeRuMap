@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class CentralniAction extends AbstractGerumapAction {
     public CentralniAction() {
-        putValue(SMALL_ICON, loadIcon("/images/plus_icon.png"));
+        putValue(SMALL_ICON, loadIcon("/images/centralni.png"));
         putValue(NAME, "Centralni pojam");
         putValue(SHORT_DESCRIPTION, "Centralni pojam");
     }

@@ -49,11 +49,6 @@ public class MoveCommand extends AbstractCommand {
 
             pojamModel.setCoordinates(newPoint);
 
-            int pojamWidth = (int) pojamModel.getSize().getWidth();
-            int pojamHeight = (int) pojamModel.getSize().getHeight();
-
-            pojamModel.updateVeze(new Point(newPoint.x + pojamWidth / 2, newPoint.y + pojamHeight / 2));
-
         }
     }
 

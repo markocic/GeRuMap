@@ -8,14 +8,20 @@ import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class CentralniState extends State {
+
+    private ArrayList<PojamModel> visited = new ArrayList<>();
     @Override
     public void mousePressedState(int x, int y, MapView map) {
         PojamPainter pojamPainter = getPojamPainterAtClickedLocation(new Point(x, y), map);
 
         PojamModel pojamModel = ((PojamModel) pojamPainter.getElement());
+
+        if (map.getMapa().getCentralniPojam() != null) {
+            map.getMapa().getCentralniPojam().setCentralni(false);
+        }
 
         pojamModel.setCentralni(true);
         map.getMapa().setCentralniPojam(pojamModel);
@@ -41,6 +47,8 @@ public class CentralniState extends State {
 
         for (ElementModel model : map.getMapa().getModels()) {
             if (model instanceof VezaModel) continue;
+            if (!((PojamModel) model).isCentralni() && ((PojamModel) model).getLevel() == 0) continue;
+
             if (((PojamModel) model).getStrana() == -1) {
                 leviNivoCount[((PojamModel) model).getLevel()] += 1;
                 leviNivoCount2[((PojamModel) model).getLevel()] += 1;
@@ -56,6 +64,7 @@ public class CentralniState extends State {
             if (model instanceof VezaModel) continue;
 
             PojamModel pojamM = (PojamModel) model;
+            if (!pojamM.isCentralni() && pojamM.getLevel() == 0) continue;
 
             int xPoint = 0, yPoint = 0;
 
@@ -90,11 +99,16 @@ public class CentralniState extends State {
     }
 
     public void setPojamLevel(PojamModel pojam, int level, int size) {
-        if (level > size) return;
+        if (level > size || visited.contains(pojam)) return;
         pojam.setLevel(++level);
+        visited.add(pojam);
 
         for (VezaModel veza : pojam.getOdlazeceVeze()) {
             setPojamLevel(veza.getDoPojma(), level, size);
+        }
+
+        for (VezaModel veza : pojam.getDolazeceVeze()) {
+            setPojamLevel(veza.getOdPojma(), level, size);
         }
     }
 }
