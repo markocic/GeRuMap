@@ -1,9 +1,9 @@
-package raf.dsw.gerumap.state.concrete;
+package raf.dsw.gerumap.gui.swing.state.concrete;
 
+import raf.dsw.gerumap.gui.swing.state.State;
 import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.repository.command.AbstractCommand;
 import raf.dsw.gerumap.repository.command.concrete.MoveCommand;
-import raf.dsw.gerumap.state.State;
 
 public class PomeranjeState  extends State {
 

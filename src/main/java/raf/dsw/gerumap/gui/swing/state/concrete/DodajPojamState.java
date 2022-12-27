@@ -1,4 +1,4 @@
-package raf.dsw.gerumap.state.concrete;
+package raf.dsw.gerumap.gui.swing.state.concrete;
 
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
@@ -6,7 +6,7 @@ import raf.dsw.gerumap.gui.swing.view.MapView;
 import raf.dsw.gerumap.logger.TipPoruke;
 import raf.dsw.gerumap.repository.command.AbstractCommand;
 import raf.dsw.gerumap.repository.command.concrete.PojamCommand;
-import raf.dsw.gerumap.state.State;
+import raf.dsw.gerumap.gui.swing.state.State;
 
 import javax.swing.*;
 import java.awt.*;

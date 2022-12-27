@@ -12,10 +12,9 @@ import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.repository.composite.MapNode;
 import raf.dsw.gerumap.repository.implementation.MindMap;
 import raf.dsw.gerumap.repository.implementation.Project;
-import raf.dsw.gerumap.state.StateManager;
+import raf.dsw.gerumap.gui.swing.state.StateManager;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;

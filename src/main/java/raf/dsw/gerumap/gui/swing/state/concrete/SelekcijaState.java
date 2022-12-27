@@ -1,8 +1,8 @@
-package raf.dsw.gerumap.state.concrete;
+package raf.dsw.gerumap.gui.swing.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.view.MapView;
-import raf.dsw.gerumap.state.State;
+import raf.dsw.gerumap.gui.swing.state.State;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

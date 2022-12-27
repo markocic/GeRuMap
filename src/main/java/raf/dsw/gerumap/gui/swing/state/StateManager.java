@@ -1,6 +1,6 @@
-package raf.dsw.gerumap.state;
+package raf.dsw.gerumap.gui.swing.state;
 
-import raf.dsw.gerumap.state.concrete.*;
+import raf.dsw.gerumap.gui.swing.state.concrete.*;
 
 public class StateManager {
     private State currentState;

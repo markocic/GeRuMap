@@ -1,11 +1,11 @@
-package raf.dsw.gerumap.state.concrete;
+package raf.dsw.gerumap.gui.swing.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.grafika.model.ElementModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.PojamModel;
 import raf.dsw.gerumap.gui.swing.grafika.model.VezaModel;
 import raf.dsw.gerumap.gui.swing.grafika.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.state.State;
 import raf.dsw.gerumap.gui.swing.view.MapView;
-import raf.dsw.gerumap.state.State;
 
 import java.awt.*;
 import java.util.ArrayList;
