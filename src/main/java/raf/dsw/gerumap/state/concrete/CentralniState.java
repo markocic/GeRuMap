@@ -20,7 +20,7 @@ public class CentralniState extends State {
         pojamModel.setCentralni(true);
         map.getMapa().setCentralniPojam(pojamModel);
 
-        int level = 0;
+        int level = -1;
 
         setPojamLevel(pojamModel, level, map.getMapa().getModels().size());
 
@@ -31,7 +31,13 @@ public class CentralniState extends State {
 
         boolean temp = true;
 
+        for (VezaModel veza : pojamModel.getOdlazeceVeze()) {
 
+            if (temp) {
+                mrdniLevo(veza.getDoPojma());
+            }
+            temp = !temp;
+        }
 
         for (ElementModel model : map.getMapa().getModels()) {
             if (model instanceof VezaModel) continue;
@@ -44,13 +50,7 @@ public class CentralniState extends State {
             }
         }
 
-        for (VezaModel veza : pojamModel.getOdlazeceVeze()) {
 
-            if (temp) {
-                mrdniLevo(veza.getDoPojma());
-            }
-            temp = !temp;
-        }
 
         for (ElementModel model : map.getMapa().getModels()) {
             if (model instanceof VezaModel) continue;
@@ -59,8 +59,6 @@ public class CentralniState extends State {
 
             int xPoint = 0, yPoint = 0;
 
-            System.out.println(Arrays.toString(leviNivoCount));
-            System.out.println(Arrays.toString(desniNivoCount));
             if (pojamM.getStrana() == -1) {
                 // leva strana
                 int yOffset = map.getHeight() / (leviNivoCount[pojamM.getLevel()] + 1);
@@ -79,26 +77,6 @@ public class CentralniState extends State {
             Point newPoint = new Point(xPoint, yPoint);
             pojamM.setCoordinates(newPoint);
         }
-
-
-//        Queue<PojamModel> queueSaSvimPojmovima = new LinkedList();
-//        do {
-//            pojamModel = queue.remove();
-//            queueSaSvimPojmovima.add(pojamModel);
-//            for (VezaModel veza : pojamModel.getOdlazeceVeze()) {
-//                queue.add(veza.getDoPojma());
-//            }
-//            System.out.println(pojamModel + " " + pojamModel.getOdlazeceVeze().size());
-//            System.out.println(queue);
-//            System.out.println(level++);
-//        } while(!queue.isEmpty());
-
-//        System.out.println("end");
-//        System.out.println(pojamModel);
-//        System.out.println(queue);
-
-//        System.out.println("svi pojmovi: " + queueSaSvimPojmovima);
-        map.repaint();
 
     }
 
