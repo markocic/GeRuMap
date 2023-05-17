@@ -3,7 +3,6 @@ It was developed in Java using Swing as part of the [Software Design](https://ra
 
 [Documentation (Serbian)](https://cake-hearing-30b.notion.site/GeRuMap-93e033bfb3b14be0a41cf7dcd5198e69) <br>
 [Sequence Diagram](https://cake-hearing-30b.notion.site/Dijagram-Sekvence-1e565fa1a911452186fe98e322fed329)
-***
 
 ## Design Patterns
 * Singleton
@@ -45,14 +44,13 @@ java -jar gerumap-v1.0.jar
 You can also run .exe with wine if you, for some reason, want to do that.
 
 # Screenshots
-!(home page)[https://imgur.com/dqiU6x9.jpg]
+![home page](https://imgur.com/dqiU6x9.jpg)
 
-!(editing map)[https://imgur.com/qCcKL2z.jpg]
+![editing map](https://imgur.com/qCcKL2z.jpg)
 
-!(concept settings)[https://imgur.com/pdFAqm4.jpg]
+![concept settings](https://imgur.com/pdFAqm4.jpg)
 
 
-***
 ## Authors
 * Marko Kocic 99/22 RN
 * Danilo Joncic 141/22 RN
